@@ -9,24 +9,34 @@ https://www.ti.com/tool/CCSTUDIO
 
 ## Firmware Design    
 
+Architecture separated into 3 layers. Each layer is implemented using the layer below it.  
+- Core: Target-independent application  
+- Devices: APIs and Vendor drivers  
+- Drivers: Target-specific register level control   
+ 
+#### Figure-1: Firmware Dependency Graph
 <p align="center">
   <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/firmware-dependency-graph.png?raw=true" alt="Firmware Dependency Graph"/>
 </p>
 
+#### Figure-2: Process 1: Main Firmware Loop
 <p align="center">
-  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/process-1-main-firmware-loop.png?raw=true" alt="Process 1: Main firmware loop"/>
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/process-1-main-firmware-loop.png?raw=true" alt="Process 1: Main Firmware Loop"/>
 </p>
 
+#### Figure-3: Subprocess 1.1: Peripheral Configuration
 <p align="center">
   <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/subprocess-1.1-peripheral-configuration.png?raw=true" alt="Subprocess 1.1: Peripheral Configuration"/>
 </p>
 
+#### Figure-4: Subprocess 1.2: Process OBC Command
 <p align="center">
-  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/subprocess-1.2-process-obc-command.png?raw=true" alt="Subprocess 1.2: Process OBC command"/>
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/subprocess-1.2-process-obc-command.png?raw=true" alt="Subprocess 1.2: Process OBC Command"/>
 </p>
 
+#### Figure-5: Subprocess 1.2.1: Check if JSON Command Supported
 <p align="center">
-  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/subprocess-1.2.1-check-if-json-command-supported.png?raw=true" alt="Subprocess 1.2.1: Check if JSON command supported"/>
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/subprocess-1.2.1-check-if-json-command-supported.png?raw=true" alt="Subprocess 1.2.1: Check if JSON Command Supported"/>
 </p>
 
 ## Repository Structure  

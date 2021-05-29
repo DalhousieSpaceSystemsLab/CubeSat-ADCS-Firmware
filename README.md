@@ -10,7 +10,9 @@ https://www.ti.com/tool/CCSTUDIO
 # Table of Contents
 - [Firmware Design](#firmware-design)    
 - [Repository Structure](#firmware-and-development-environment)
-- [About the LORIS Project](##about-the-loris-project)
+  * [Creating New Example](#)   
+- [OBC Simulation](#)
+- [About the LORIS Project](#about-the-loris-project)
 - [What is an ADCS](#what-is-an-adcs)
 
 ## Firmware Design    

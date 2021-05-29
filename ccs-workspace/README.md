@@ -19,7 +19,6 @@ Architecture separated into 3 layers. Each layer is implemented using the layer 
 - Core: Target-independent application  
 - Devices: APIs and Vendor drivers  
 - Drivers: Target-specific register level control   
- 
 Benefits:
 - Decoupling: Changes to hardware revisions minimally impact firmware
 - Portability: Target device can be changed in the future.
@@ -31,10 +30,9 @@ Benefits:
 
 - ADCS behaves as a slave device to OBC. The hardware/firmware behaviour is entirely controlled by the ADCS software running on OBC. 
 - Commands allow the ADCS software to control the states of the hardware firmware, ie:
-* Command to write the speed value of the reaction wheels
-* Command to write the dipole magnitude of the magnetorquer
-* Command to request sensor measurement
-* etc
+  * Command to write the speed value of the reaction wheels
+  * Command to write the dipole magnitude of the magnetorquer
+  * Command to request sensor measurement
 - Onboard watchdog runs to reset device state in case of solar protonation event or device fault.
 
 #### Figure-2: Process 1: Main Firmware Loop

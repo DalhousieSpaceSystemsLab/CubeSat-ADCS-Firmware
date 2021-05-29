@@ -18,8 +18,8 @@ https://www.ti.com/tool/CCSTUDIO
 Architecture separated into 3 layers. Each layer is implemented using the layer below it.  
 - Core: Target-independent application  
 - Devices: APIs and Vendor drivers  
-- Drivers: Target-specific register level control   
-Benefits:
+- Drivers: Target-specific register level control  
+Benefits:  
 - Decoupling: Changes to hardware revisions minimally impact firmware
 - Portability: Target device can be changed in the future.
 

@@ -15,6 +15,12 @@ https://www.ti.com/tool/CCSTUDIO
 - [About the LORIS Project](#about-the-loris-project)
 - [What is an ADCS](#what-is-an-adcs)
 
+# cloning repository - local setup
+@todo
+map local folder to network drive so all users share same include paths for compiler and projecct settings
+https://www.computerworld.com/article/2694895/how-to-map-a-local-folder-to-a-drive-letter-in-windows.html
+map to local /X: drive on your windows instance  
+
 ## Firmware Design    
 
 Architecture separated into 3 layers. Each layer is implemented using the layer below it.  

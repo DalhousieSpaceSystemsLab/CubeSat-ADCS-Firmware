@@ -19,7 +19,7 @@ Architecture separated into 3 layers. Each layer is implemented using the layer 
 - Core: Target-independent application  
 - Devices: APIs and Vendor drivers  
 - Drivers: Target-specific register level control 
- 
+
 Benefits:  
 - Decoupling: Changes to hardware revisions minimally impact firmware
 - Portability: Target device can be changed in the future.
@@ -70,6 +70,19 @@ Other files such as drivers for testing a specific function of the code are save
 This approach is undertaken because there can only be one main.c file per project. Inside of each /filename.example project, the project's properties need to be set so that the include path for the compiler includes the required source and header files in the /firmware-main project in the workspace. This is so that only one copy of the source and header files are used by all the example projects as a "sole source of truth" and avoids version control issues associated with redundant copies of files. 
 
 ### Creating New Example   
+
+
+## OBC Simulation
+
+Automated tool was developed to emulate OBC commands to ADCS hardware using a Bus Pirate v3.6 and Python. Allows verification of hardware/firmware behavior when commands issued to system.  
+
+<p align="center">
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/images/bus-pirate.jpg?raw=true" alt="Bus pirate connected to MSP430"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/images/bus-pirate-terminal-output.jpg?raw=true" alt="Bus pirate terminal output"/>
+</p>
 
 # About the LORIS Project
 

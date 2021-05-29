@@ -9,6 +9,11 @@ https://www.ti.com/tool/CCSTUDIO
 
 ## Firmware Design    
 
+<p align="center">
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/firmware-dependency-graph.png?raw=true" alt="Firmware Dependency Graph"/>
+</p>
+
+
 ## Repository Structure  
 
 The firmware for deployment on the embedded microcontroller is found in the /firmware-main CCS project. 

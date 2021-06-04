@@ -1,5 +1,5 @@
 /**
- * @file rw_z.example.c
+ * @file main.c
  * @author thomas christison (christisonthomas@gmail.com)
  * @brief Single file executable to demonstrate driving maxon motor
  * using a pwm signal(z == P2.5) and direction GPIO
@@ -16,7 +16,7 @@
  * Motor Driver: Texas Instruments DRV10970
  * https://www.ti.com/lit/ds/symlink/drv10970.pdf?ts=1617147100144&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FDRV10970
  *
- * Tachometer: Texas Instruments LM2917N-8/NOPB
+ * Tachometer: Texas Instruments LM2917N-14/NOPB
  * https://www.ti.com/lit/ds/snas555d/snas555d.pdf
  * Tachometer output to channel CH3 of U2 (CURR_SENSE_MAGNETORQUER) in test setup (breadboard)
  *
@@ -69,7 +69,7 @@ int main()
     /* start timerA2 count from 0 to ffff forever */
     TA2CTL |= MC__CONTINOUS;
 
-    TA2CCR2 = UINT16_MAX / 2.0f; /* 50% DUTY cycle on P2.5 */
+    TA2CCR2 = UINT16_MAX / 4.0f; /* 50% DUTY cycle on P2.5 */
 
     //_BIS_SR(GIE + LPM0_bits);
     _BIS_SR(GIE);

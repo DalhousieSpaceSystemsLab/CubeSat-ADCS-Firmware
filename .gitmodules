@@ -5,9 +5,3 @@
 	path = bufferlib
 	url = https://github.com/cmattatall/bufferlib
 
-[submodule "ccs-workspace/firmware-main/layer-devices/inc/BMI160_driver"]
-	path = ccs-workspace/firmware-main/layer-devices/inc/BMI160_driver
-	url = https://github.com/BoschSensortec/BMI160_driver
-[submodule "ccs-workspace/firmware-main/layer-devices/BMI160_driver"]
-	path = ccs-workspace/firmware-main/layer-devices/BMI160_driver
-	url = https://github.com/BoschSensortec/BMI160_driver.git

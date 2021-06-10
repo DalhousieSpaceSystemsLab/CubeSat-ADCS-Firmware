@@ -48,41 +48,41 @@ void I2C0_init(void)
 
 
 int I2C0_write_bytes(uint8_t dev_addr, uint8_t *bytes, uint16_t byte_count)
-{   
+{
     int retval = 0;
     if (bytes != NULL)
     {
+        I2C0_i2c_txbuf_ptr = I2C0_i2c_txbuf; // reset buffer first
         /* First byte in transmit buffer is device address */
-        I2C0_i2c_txbuf_ptr  = I2C0_i2c_txbuf;
+        I2C0_i2c_txbuf_ptr = I2C0_i2c_txbuf;
         *I2C0_i2c_txbuf_ptr = dev_addr;
         I2C0_i2c_txbuf_ptr++;
-
         /* Rest of data comes next */
         uint16_t bcnt = sizeof(dev_addr) + byte_count;
-
         if (bcnt > sizeof(I2C0_i2c_txbuf))
         {
-            retval =  -1;
+            retval = -1;
         }
         else
         {
-            strncpy((char *)I2C0_i2c_txbuf_ptr, (char*)bytes, bcnt);
-
+            strncpy((char *)I2C0_i2c_txbuf_ptr, (char *)bytes, bcnt);
             I2C0_i2c_txcnt = bcnt;
-
             /** @todo IMPLEMENT THE STUFF THAT ACTUALLY TRANSMITS, CALLER DATA
              * IS JUST LOADED RIGHT NOW*/
-#warning TODO: NOT FULLY IMPLEMENTED YET
-
-            retval = bcnt;
+            UCB0TXBUF = *I2C0_i2c_txbuf;
+            while (!UCB0CTL1 |= UCTXSTP)
+                ; // wait for stop condition
         }
     }
     else
     {
         retval = 0;
     }
+
     return retval;
+
 }
+
 
 
 int I2C0_read_bytes(uint8_t *caller_buf, uint16_t caller_buflen)

@@ -228,35 +228,17 @@ static void BNO055_delay_msek(u32 msek)
 static s8 BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
 
-    /** @todo */
-#warning THIS NEEDS TO BE IMLPEMENTED
+    s32 BMX160_iERROR = BMI160_OK;
 
-    s32 BMX160_iERROR = BMX160_INIT_VALUE;
-#if 0
-    u8  array[I2C_BUFFER_LEN] = {BMX160_INIT_VALUE};
-    u8  stringpos             = BMX160_INIT_VALUE;
+    // copied from studying example at:
+    // https://github.com/DFRobot/DFRobot_BMX160/blob/master/DFRobot_BMX160.cpp
+    uint8_t outGoingBytes[] = {BMX160_MAG_DATA_ADDR, 0};
+    I2C0_write_bytes(dev_addr, outGoingBytes, sizeof(outGoingBytes));
+    I2C0_read_bytes(reg_data, cnt);
 
+    return 0;
 
-    array[BMX160_INIT_VALUE] = reg_addr;
-
-    /* Please take the below API as your reference
-     * for read the data using I2C communication
-     * add your I2C read API here.
-     * "BMX160_iERROR = I2C_WRITE_READ_STRING(DEV_ADDR,
-     * ARRAY, ARRAY, 1, CNT)"
-     * BMX160_iERROR is an return value of SPI write API
-     * Please select your valid return value
-     * In the driver BMX160_SUCCESS defined as 0
-     * and FAILURE defined as -1
-     */
-    for (stringpos = BMX160_INIT_VALUE; stringpos < cnt; stringpos++)
-    {
-        *(reg_data + stringpos) = array[stringpos];
-    }
-#endif
-    return (s8)BMX160_iERROR;
 }
-
 
 s8 BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {

@@ -12,6 +12,9 @@
  * @todo for now we can just use CC to hide direct register
  * writes and have native build succeed, but in future an I2C API really
  * should be written so core application is portable to other devices.
+ *
+ *  Datasheet for BMX160: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmx160-ds0001.pdf
+ *  For BMX160 example with abstracted host mcu see: https://github.com/BoschSensortec/BMI160_driver/blob/master/examples/read_sensor_data/read_sensor_data.c
  */
 
 /*********************************************************************/
@@ -43,7 +46,7 @@
 void IMU_init_i2c(void);
 int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-void IMU_delay_msek(u32 msek);
+void delay_ms(u32 ms);
 #endif /* #if defined(IMU_API_REFACTOR) */
 
 #if defined(BNO055)
@@ -59,7 +62,7 @@ static struct bno055_t bno055;
 
 static s8 BNO055_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 static s8 BNO055_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-static void BNO055_delay_msek(u32 msek);
+static void BNO055_delay_ms(u32 ms);
 static void IMU_init_i2c(void);
 
 #endif /* #if defined(BNO055) */
@@ -68,7 +71,7 @@ static void IMU_init_i2c(void);
 #if defined(BMX160)
 static int8_t BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 static int8_t BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-static void BMX160_delay_msek(u32 msek);
+static void BMX160_delay_ms(u32 ms);
 static void IMU_init_i2c(void);
 #endif /* #if defined(BMX160) */
 
@@ -76,20 +79,25 @@ static void IMU_init_i2c(void);
 
 imu_dev_t imu_dev;
 
-/*********************************************************************/
+/***************** Function Definitions ******************************/
 
-/* format from interface document : {"imu" : [ +5, +2, -3] } */
+/*
+ * @brief format from interface document : {"imu" : [ +5, +2, -3] }
+ */
 int IMU_measurements_to_string(char *buf, unsigned int buflen)
 {
     CONFIG_ASSERT(buf != NULL);
 
-    /** @todo IMLEMENT */
+    /** @todo IMPLEMENT string conversion */
 #warning IMPLEMENT IMU_init_i2c IN TERMS OF THE I2C API DRIVER FUNCTIONS
 
     return 0;
 }
 
 
+/*
+ * @brief
+ */
 void IMU_init(void)
 {
 
@@ -99,31 +107,23 @@ void IMU_init(void)
     /*
      *  @todo THIS SECTION IS OUT OF DATE NOW - See BMX160 Section for refactored format
      */
-    /* bno055 struct declared in bno055.h*/
 
-    /*----------------------------------------------------------------------------*
-     *  struct bno055_t parameters can be accessed by using BNO055
-     *  BNO055_t having the following parameters
-     *  Bus write function pointer: BNO055_WR_FUNC_PTR
-     *  Bus read function pointer: BNO055_RD_FUNC_PTR
-     *  Burst read function pointer: BNO055_BRD_FUNC_PTR
-     *  Delay function pointer: delay_msec
-     *  I2C address: dev_addr
-     *  Chip id of the sensor: chip_id
-     *---------------------------------------------------------------------------*/
-    bno055.bus_read   = BNO055_I2C_bus_read;
+    bno055.bus_read   = BNO055_I2C_bus_read;        /* bno055 struct declared in bno055.h*/
     bno055.bus_write  = BNO055_I2C_bus_write;
-    bno055.delay_msec = BNO055_delay_msek;
-    bno055.bus_read   = bno055_init(&bno055);
+    bno055.delay_msec = delay_ms;
 
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
 
-    imu_dev.read   = BMX160_I2C_bus_read;           /* Read Function Pointer  */
-    imu_dev.write  = BMX160_I2C_bus_write;          /* Write Function Pointer */
-    imu_dev.delay_ms = BMX160_delay_msek;           /* Delay Function Pointer */
-    imu_dev.read   = bmx160_init(&bmx160);          /* @todo IS THIS RIGHT? */
+    /* link read/write/delay function to appropriate BMX160 function call prototypes */
+    imu_dev.read        = IMU_I2C_bus_read;         /* Read Function Pointer  */
+    imu_dev.write       = IMU_I2C_bus_write;        /* Write Function Pointer */
+    imu_dev.delay_ms    = delay_ms;                 /* Delay Function Pointer */
+
+    /* Set correct I2C address */s
+    imu_dev.id      = BMX160_I2C_ADDR;              /* Set I2C device address */
+    imu_dev.intf    = BMX160_I2C_INTF;              /* Set 0 for I2C interface */
 
 #endif /* #if defined(BMX160) */
 
@@ -133,7 +133,9 @@ void IMU_init(void)
 
 }
 
-
+/*
+ * @brief Initialize appropriate I2C interface
+ */
 static void IMU_init_i2c(void)
 {
 
@@ -151,6 +153,9 @@ static void IMU_init_i2c(void)
 
 #if defined(BNO055)
 
+/*
+ * @brief
+ */
 static s8 BNO055_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
 
@@ -183,7 +188,9 @@ static s8 BNO055_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
     return (s8)BNO055_iERROR;
 }
 
-
+/*
+ * @brief
+ */
 s8 BNO055_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
     s32 BNO055_iERROR = BNO055_INIT_VALUE;
@@ -220,23 +227,21 @@ s8 BNO055_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
     return (s8)BNO055_iERROR;
 }
 
+#endif /* #if defined(BNO055) */
 
-static void BNO055_delay_msek(u32 msek)
+/*
+ * @brief
+ * int8_t bmi160_get_regs(uint8_t reg_addr, uint8_t *data, uint16_t len, const struct bmi160_dev *dev)
+ *
+ */
+int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
-/** @todo */
-#warning THIS NEEDS TO BE IMLPEMENTED
-    /*Here you can write your own delay routine*/
-}
-
+#if defined(BNO055)
 
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
-
-static int8_t BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
-{
-
-    s32 BMX160_iERROR = BMI160_OK;
+    int8_t rslt = BMI160_OK;
 
     // copied from studying example at:
     // https://github.com/DFRobot/DFRobot_BMX160/blob/master/DFRobot_BMX160.cpp
@@ -246,12 +251,27 @@ static int8_t BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt
 
     return 0;
 
+#endif /* #if defined(BMX160) */
+
 }
 
-int8_t BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+/*
+ * @brief
+ *
+ * @note
+ *      for BMX160 invoked in bmi160.c's function:
+ *          int8_t bmi160_set_regs(uint8_t reg_addr, uint8_t *data, uint16_t len, const struct bmi160_dev *dev)
+ *      using format:
+ *          dev->write(dev->id, reg_addr, data, len);
+ */
+int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
-    s32 BMX160_iERROR = BMX160_INIT_VALUE;
+#if defined(BNO055)
 
+#endif /* #if defined(BNO055) */
+
+#if defined(BMX160)
+    int8_t rslt = BMX160_OK;
 
     char txbuf[50]; /* just hard coding this for now */
     txbuf[0] = reg_addr;
@@ -263,10 +283,10 @@ int8_t BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
     }
     strncpy(&txbuf[1], (char *)reg_data, bcnt);
 
-    int write_status = I2C1_write_bytes((uint8_t)dev_addr, txbuf, bcnt);
+    int write_status = I2C0_write_bytes((uint8_t)dev_addr, txbuf, bcnt);
     if (write_status != 0 && write_status != -1)
     {
-        BMX160_iERROR = BMX160_SUCCESS;
+        rslt = BMX160_SUCCESS;
     }
 
     /* SEE SECTION 4.6 OF DATASHEET */
@@ -281,39 +301,22 @@ int8_t BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
             *(reg_data + stringpos);
     }
 #endif
-    return (s8)BMX160_iERROR;
-}
-
-
-static void BMX160_delay_msek(u32 msek)
-{
-/** @todo */
-#warning THIS NEEDS TO BE IMLPEMENTED
-    /*Here you can write your own delay routine*/
-}
-
-
+    return rslt;
 #endif /* #if defined(BMX160) */
-
-
-
-#if defined(IMU_API_REFACTOR)
-void IMU_init_i2c(void);
-int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
-{
-    return
-}
-int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
-{
-
 }
 
-void IMU_delay_msek(u32 msek)
+/*
+ * @brief delay ms number of milliseconds on msp430
+ *
+ * example source: https://www.embeddedrelated.com/showcode/314.php
+ */
+static void delay_ms(uint32_t ms)
 {
-/** @todo */
+    /** @todo */
 #warning THIS NEEDS TO BE IMLPEMENTED
     /*Here you can write your own delay routine*/
 }
 
-#endif /* #if defined(IMU_API_REFACTOR) */
+
+
 

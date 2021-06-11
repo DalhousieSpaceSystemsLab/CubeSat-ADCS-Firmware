@@ -53,6 +53,7 @@ int I2C0_write_bytes(uint8_t dev_addr, uint8_t *bytes, uint16_t byte_count)
     if (bytes != NULL)
     {
         I2C0_i2c_txbuf_ptr = I2C0_i2c_txbuf; // reset buffer first
+
         /* First byte in transmit buffer is device address */
         I2C0_i2c_txbuf_ptr = I2C0_i2c_txbuf;
         *I2C0_i2c_txbuf_ptr = dev_addr;

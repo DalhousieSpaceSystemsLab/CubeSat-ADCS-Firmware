@@ -31,7 +31,6 @@
 #include "imu.h"
 #include "i2c.h"
 
-
 #if defined(BNO055)
 #include "bno055.h"
 #endif /* #if defined(BNO055) */
@@ -42,39 +41,12 @@
 
 /*********************************************************************/
 
-#if defined(IMU_API_REFACTOR)
 void IMU_init_i2c(void);
 int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 void delay_ms(u32 ms);
-#endif /* #if defined(IMU_API_REFACTOR) */
 
-#if defined(BNO055)
-
-static struct bno055_t bno055;
-
-/*
- * This is why stdint.h is a thing...
- * I shouldn't have to wrap your customized platform-specific typedefs for fixed (s8 is standard type int8_t)
- * width integer types fffffss...
- * #TEXASINSTRUMENTSISGARBAGE
- */
-
-static s8 BNO055_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-static s8 BNO055_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-static void BNO055_delay_ms(u32 ms);
 static void IMU_init_i2c(void);
-
-#endif /* #if defined(BNO055) */
-
-
-#if defined(BMX160)
-static int8_t BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-static int8_t BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-static void BMX160_delay_ms(u32 ms);
-static void IMU_init_i2c(void);
-#endif /* #if defined(BMX160) */
-
 /***************** Global Variables **********************************/
 
 imu_dev_t imu_dev;
@@ -94,7 +66,6 @@ int IMU_measurements_to_string(char *buf, unsigned int buflen)
     return 0;
 }
 
-
 /*
  * @brief
  */
@@ -103,27 +74,58 @@ void IMU_init(void)
 
     IMU_init_i2c();
 
-#if defined(BNO055)
-    /*
-     *  @todo THIS SECTION IS OUT OF DATE NOW - See BMX160 Section for refactored format
-     */
+    /* link read/write/delay function to appropriate IMU function call prototypes */
+    imu_dev.read        = IMU_I2C_bus_read;         /* Read Function Pointer  */
+    imu_dev.write       = IMU_I2C_bus_write;        /* Write Function Pointer */
+    imu_dev.delay_ms    = delay_ms;                 /* Delay Function Pointer */
 
-    bno055.bus_read   = BNO055_I2C_bus_read;        /* bno055 struct declared in bno055.h*/
-    bno055.bus_write  = BNO055_I2C_bus_write;
-    bno055.delay_msec = delay_ms;
+#if defined(BNO055)
+
+    /* Configure BNO055 Sensor Settings*/
 
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
 
-    /* link read/write/delay function to appropriate BMX160 function call prototypes */
-    imu_dev.read        = IMU_I2C_bus_read;         /* Read Function Pointer  */
-    imu_dev.write       = IMU_I2C_bus_write;        /* Write Function Pointer */
-    imu_dev.delay_ms    = delay_ms;                 /* Delay Function Pointer */
+    int8_t rslt;
 
     /* Set correct I2C address */s
     imu_dev.id      = BMX160_I2C_ADDR;              /* Set I2C device address */
     imu_dev.intf    = BMX160_I2C_INTF;              /* Set 0 for I2C interface */
+
+    rslt = bmi160_init(&imu_dev);
+
+    /*if (rslt == BMX160_OK)
+    {
+        printf("BMX160 initialization success !\n");
+        printf("Chip ID 0x%X\n", imu_dev.chip_id);
+    }
+    else
+    {
+        printf("BMIX60 initialization failure !\n");
+        exit();
+    }*/
+
+    /* Set IMU sensor & power configuration */
+
+    /* Select the Output data rate, range of accelerometer sensor */
+    //imu_dev.accel_cfg.odr     = BMI160_ACCEL_ODR_1600HZ;
+    //imu_dev.accel_cfg.range   = BMI160_ACCEL_RANGE_16G;
+    //imu_dev.accel_cfg.bw      = BMI160_ACCEL_BW_NORMAL_AVG4;
+
+    /* Select the power mode of accelerometer sensor */
+    //imu_dev.accel_cfg.power   = BMI160_ACCEL_NORMAL_MODE;
+
+    /* Select the Output data rate, range of Gyroscope sensor */
+    imu_dev.gyro_cfg.odr        = BMI160_GYRO_ODR_3200HZ;
+    imu_dev.gyro_cfg.range      = BMI160_GYRO_RANGE_2000_DPS;
+    imu_dev.gyro_cfg.bw         = BMI160_GYRO_BW_NORMAL_MODE;
+
+    /* Select the power mode of Gyroscope sensor */
+    imu_dev.gyro_cfg.power      = BMI160_GYRO_NORMAL_MODE;
+
+    /* Set the sensor configuration */
+    rslt = bmi160_set_sens_conf(&imu_dev);
 
 #endif /* #if defined(BMX160) */
 
@@ -151,14 +153,14 @@ static void IMU_init_i2c(void)
 
 }
 
-#if defined(BNO055)
-
 /*
  * @brief
+ * int8_t bmi160_get_regs(uint8_t reg_addr, uint8_t *data, uint16_t len, const struct bmi160_dev *dev)
+ *
  */
-static s8 BNO055_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
-
+#if defined(BNO055)
     /** @todo */
 #warning THIS NEEDS TO BE IMLPEMENTED
 
@@ -186,13 +188,35 @@ static s8 BNO055_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
     }
 #endif
     return (s8)BNO055_iERROR;
+#endif /* #if defined(BNO055) */
+
+#if defined(BMX160)
+    int8_t rslt = BMI160_OK;
+
+    // copied from studying example at:
+    // https://github.com/DFRobot/DFRobot_BMX160/blob/master/DFRobot_BMX160.cpp
+    uint8_t outGoingBytes[] = {BMX160_MAG_DATA_ADDR, 0};
+    I2C0_write_bytes(dev_addr, outGoingBytes, sizeof(outGoingBytes));
+    I2C0_read_bytes(reg_data, cnt);
+
+    return 0;
+
+#endif /* #if defined(BMX160) */
+
 }
 
 /*
  * @brief
+ *
+ * @note
+ *      for BMX160 invoked in bmi160.c's function:
+ *          int8_t bmi160_set_regs(uint8_t reg_addr, uint8_t *data, uint16_t len, const struct bmi160_dev *dev)
+ *      using format:
+ *          dev->write(dev->id, reg_addr, data, len);
  */
-s8 BNO055_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
+#if defined(BNO055)
     s32 BNO055_iERROR = BNO055_INIT_VALUE;
 
 
@@ -223,51 +247,8 @@ s8 BNO055_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
         array[stringpos + BNO055_I2C_BUS_WRITE_ARRAY_INDEX] =
             *(reg_data + stringpos);
     }
-#endif
+#endif /* #if 0 */
     return (s8)BNO055_iERROR;
-}
-
-#endif /* #if defined(BNO055) */
-
-/*
- * @brief
- * int8_t bmi160_get_regs(uint8_t reg_addr, uint8_t *data, uint16_t len, const struct bmi160_dev *dev)
- *
- */
-int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
-{
-#if defined(BNO055)
-
-#endif /* #if defined(BNO055) */
-
-#if defined(BMX160)
-    int8_t rslt = BMI160_OK;
-
-    // copied from studying example at:
-    // https://github.com/DFRobot/DFRobot_BMX160/blob/master/DFRobot_BMX160.cpp
-    uint8_t outGoingBytes[] = {BMX160_MAG_DATA_ADDR, 0};
-    I2C0_write_bytes(dev_addr, outGoingBytes, sizeof(outGoingBytes));
-    I2C0_read_bytes(reg_data, cnt);
-
-    return 0;
-
-#endif /* #if defined(BMX160) */
-
-}
-
-/*
- * @brief
- *
- * @note
- *      for BMX160 invoked in bmi160.c's function:
- *          int8_t bmi160_set_regs(uint8_t reg_addr, uint8_t *data, uint16_t len, const struct bmi160_dev *dev)
- *      using format:
- *          dev->write(dev->id, reg_addr, data, len);
- */
-int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
-{
-#if defined(BNO055)
-
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)

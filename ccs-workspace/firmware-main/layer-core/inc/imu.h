@@ -40,13 +40,10 @@ int IMU_measurements_to_string(char *buf, unsigned int buflen);
 void IMU_init(void);
 void IMU_init_i2c(void);
 
+/* Functions linked to device level structs for use in vendor drivers */
 int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-
-void delay_ms(uint32_t ms); /*@todo Makes sense to move this function since it may be useful elsewhere*/
-
-
-
+void delay_ms(uint32_t ms);         /* @todo Makes sense to move this function to separate core layer file since it may be useful elsewhere too*/
 
 
 #ifdef __cplusplus

@@ -166,8 +166,10 @@ static void IMU_init_i2c(void)
 
 /*
  * @brief
- * int8_t bmi160_get_regs(uint8_t reg_addr, uint8_t *data, uint16_t len, const struct bmi160_dev *dev)
+ *    int8_t bmi160_get_regs(uint8_t reg_addr,      uint8_t *data,      uint16_t len,   const struct bmi160_dev *dev)
+ *           bmi160_get_regs(BMI160_GYRO_DATA_ADDR, data_array,         6,              dev);
  *
+ *                 dev->read(dev->id,               reg_addr,           data,           len);
  */
 int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
@@ -202,12 +204,25 @@ int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
-    int8_t rslt = BMI160_OK;
 
-    // copied from studying example at:
-    // https://github.com/DFRobot/DFRobot_BMX160/blob/master/DFRobot_BMX160.cpp
-    uint8_t outGoingBytes[] = {BMX160_MAG_DATA_ADDR, 0};
+    /*
+     * See page 99 - 100 in BMX160 datasheet
+     *
+     * First the master writes two bytes to I2C bus to tell the slave what data it wants to read
+     *
+     * [Slave Address with R/W bit = 0][ Register Address]
+     *
+     */
+
+    uint8_t outGoingBytes[] = [dev_addr, reg_addr];
     I2C0_write_bytes(dev_addr, outGoingBytes, sizeof(outGoingBytes));
+
+    /*
+     * Next the master writes another byte to the I2C bus
+     * [Slave Address with R/W bit = 1]
+     * Now the slave takes over the bus and pushes cnt number of bytes to the bus for the master to read
+     *
+     */
     I2C0_read_bytes(reg_data, cnt);
 
     return 0;
@@ -272,6 +287,9 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 
 
 #if defined(BMX160)
+
+    /* See page 99 in BMX160 Datasheet */
+
     int8_t rslt = BMX160_OK;
 
     char txbuf[50]; /* just hard coding this for now */
@@ -337,7 +355,7 @@ int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data)
      * The user can ask for accel data ,gyro data or both sensor
      * data using (BMI160_ACCEL_SEL | BMI160_GYRO_SEL) enum
      */
-    return bmi160_get_sensor_data(BMI160_GYRO_SEL, &acc_data_dummy, &gyro_data, &imu_dev);
+    return bmi160_get_sensor_data(BMI160_GYRO_SEL, &acc_data_dummy, gyro_data, &imu_dev);
 
 #endif /* #if defined(BMX160) */
 }

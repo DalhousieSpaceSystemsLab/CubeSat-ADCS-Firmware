@@ -1,11 +1,11 @@
 /**
  * @file imu.c
- * @author Carl Mattatall (cmattatall2@gmail.com)
+ * @author Carl Mattatall (cmattatall2@gmail.com), Thomas Christison (christisonthomas@gmail.com)
  * @brief Source module for the inertial measurement unit API
  * @version 0.1
  * @date 2021-01-02
  *
- * @copyright Copyright (c) 2021 Carl Mattatall
+ * @copyright Copyright (c) 2021 Carl Mattatall, Thomas Christison
  *
  * @note this entire source module is ugly as sin...
  *
@@ -13,51 +13,49 @@
  * writes and have native build succeed, but in future an I2C API really
  * should be written so core application is portable to other devices.
  */
+
+/*********************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
-
-#include "targets.h"
-#include "imu.h"
 
 /** @note THIS AND ALL REGISTER LEVEL MANIPS SHOULD BE REFACTORED AWAY INTO
  * DRIVER LEVEL API CALLS IN THE FUTURE */
 #include <msp430.h>
 
+#include "targets.h"
+#include "imu.h"
 #include "i2c.h"
 
-#define BMX160
 
 #if defined(BNO055)
-
 #include "bno055.h"
-
 #endif /* #if defined(BNO055) */
 
-
 #if defined(BMX160)
-
 #include "bmi160.h"
-
 #endif /* #if defined(BMX160) */
 
+/*********************************************************************/
 
-#define I2C_BUFFER_LEN 8
-#define I2C0 5
-#define BNO055_I2C_BUS_WRITE_ARRAY_INDEX ((u8)1)
-#define BMX160_I2C_BUS_WRITE_ARRAY_INDEX ((u8)1)
-
-/*
- * This is why stdint.h is a thing...
- * I shouldn't have to wrap your customized platform-specific typedefs for fixed
- * width integer types fffffss...
- * #TEXASINSTRUMENTSISGARBAGE
- */
-
+#if defined(IMU_API_REFACTOR)
+void IMU_init_i2c(void);
+int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+void IMU_delay_msek(u32 msek);
+#endif /* #if defined(IMU_API_REFACTOR) */
 
 #if defined(BNO055)
 
 static struct bno055_t bno055;
+
+/*
+ * This is why stdint.h is a thing...
+ * I shouldn't have to wrap your customized platform-specific typedefs for fixed (s8 is standard type int8_t)
+ * width integer types fffffss...
+ * #TEXASINSTRUMENTSISGARBAGE
+ */
 
 static s8 BNO055_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 static s8 BNO055_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
@@ -66,17 +64,19 @@ static void IMU_init_i2c(void);
 
 #endif /* #if defined(BNO055) */
 
+
 #if defined(BMX160)
-
-static struct bno055_t bno055;
-
-static s8 BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-static s8 BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+static int8_t BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+static int8_t BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 static void BMX160_delay_msek(u32 msek);
 static void IMU_init_i2c(void);
-
 #endif /* #if defined(BMX160) */
 
+/***************** Global Variables **********************************/
+
+imu_dev_t imu_dev;
+
+/*********************************************************************/
 
 /* format from interface document : {"imu" : [ +5, +2, -3] } */
 int IMU_measurements_to_string(char *buf, unsigned int buflen)
@@ -92,55 +92,64 @@ int IMU_measurements_to_string(char *buf, unsigned int buflen)
 
 void IMU_init(void)
 {
-#if defined(BNO055)
 
     IMU_init_i2c();
 
+#if defined(BNO055)
+    /*
+     *  @todo THIS SECTION IS OUT OF DATE NOW - See BMX160 Section for refactored format
+     */
+    /* bno055 struct declared in bno055.h*/
+
+    /*----------------------------------------------------------------------------*
+     *  struct bno055_t parameters can be accessed by using BNO055
+     *  BNO055_t having the following parameters
+     *  Bus write function pointer: BNO055_WR_FUNC_PTR
+     *  Bus read function pointer: BNO055_RD_FUNC_PTR
+     *  Burst read function pointer: BNO055_BRD_FUNC_PTR
+     *  Delay function pointer: delay_msec
+     *  I2C address: dev_addr
+     *  Chip id of the sensor: chip_id
+     *---------------------------------------------------------------------------*/
     bno055.bus_read   = BNO055_I2C_bus_read;
     bno055.bus_write  = BNO055_I2C_bus_write;
     bno055.delay_msec = BNO055_delay_msek;
     bno055.bus_read   = bno055_init(&bno055);
 
-#elif defined(BMX160)
-
-    IMU_init_i2c();
-
-    bno055.bus_read   = BMX160_I2C_bus_read;
-    bno055.bus_write  = BMX160_I2C_bus_write;
-    bno055.delay_msec = BMX160_delay_msek;
-    bno055.bus_read   = bmx160_init(&bmx160);
-
-#else
-
-    printf("Called %s\n", __func__);
-
 #endif /* #if defined(BNO055) */
+
+#if defined(BMX160)
+
+    imu_dev.read   = BMX160_I2C_bus_read;           /* Read Function Pointer  */
+    imu_dev.write  = BMX160_I2C_bus_write;          /* Write Function Pointer */
+    imu_dev.delay_ms = BMX160_delay_msek;           /* Delay Function Pointer */
+    imu_dev.read   = bmx160_init(&bmx160);          /* @todo IS THIS RIGHT? */
+
+#endif /* #if defined(BMX160) */
+
+#if !defined(BNO055) && !defined(BMX160)
+    printf("Called %s\n", __func__);                /* @todo Is this still necessary? */
+#endif /* !defined(BNO055) && !defined(BMX160) */
+
 }
 
 
 static void IMU_init_i2c(void)
 {
-#if defined(BNO055)
 
+#if defined(BNO055)
     /* We use I2C1 (using UCB1) for BNO055 IMU in Rev A ONLY */
     I2C1_init();
-
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
-
-    /*
-     * IN REV B We use I2C0 (using UCB0) with replacement BMX160 IMU
-     * due to chip shortage
-     */
+    /* IN REV B We use I2C0 (using UCB0) with replacement BMX160 due to chip shortage */
     I2C0_init();
-
 #endif /* #if defined(BMX160) */
+
 }
 
-
 #if defined(BNO055)
-
 
 static s8 BNO055_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
@@ -224,8 +233,7 @@ static void BNO055_delay_msek(u32 msek)
 
 #if defined(BMX160)
 
-
-static s8 BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+static int8_t BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
 
     s32 BMX160_iERROR = BMI160_OK;
@@ -240,7 +248,7 @@ static s8 BMX160_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 
 }
 
-s8 BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+int8_t BMX160_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 {
     s32 BMX160_iERROR = BMX160_INIT_VALUE;
 
@@ -286,3 +294,26 @@ static void BMX160_delay_msek(u32 msek)
 
 
 #endif /* #if defined(BMX160) */
+
+
+
+#if defined(IMU_API_REFACTOR)
+void IMU_init_i2c(void);
+int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+{
+    return
+}
+int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+{
+
+}
+
+void IMU_delay_msek(u32 msek)
+{
+/** @todo */
+#warning THIS NEEDS TO BE IMLPEMENTED
+    /*Here you can write your own delay routine*/
+}
+
+#endif /* #if defined(IMU_API_REFACTOR) */
+

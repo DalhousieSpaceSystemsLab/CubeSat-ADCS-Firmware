@@ -1,12 +1,14 @@
 /**
  * @file i2c0.c
- * @author Carl Mattatall (cmattatall2@gmail.com)
+ * @author Carl Mattatall (cmattatall2@gmail.com), Thomas Christison (christisonthomas@gmail.com)
  * @brief Source module to implement an i2c driver using UCB0 for msp430f5529
  * @brief
  * @version 0.1
  * @date 2021-03-25
  *
- * @copyright Copyright (c) 2021 Carl Mattatall
+ * @copyright Copyright (c) 2021 Carl Mattatall, Thomas Christison
+ *
+ * https://www.ti.com/lit/ug/slau208q/slau208q.pdf?ts=1623263272335&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FMSP430BT5190
  *
  */
 
@@ -17,10 +19,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 #include <msp430.h>
 
 #include "i2c.h"
+
+#define USCI_B_I2C_SET_DATA_RATE_100KBPS                                 100000
 
 static volatile uint8_t  I2C0_i2c_txbuf[32];
 static volatile uint8_t *I2C0_i2c_txbuf_ptr;
@@ -30,25 +33,74 @@ static volatile uint8_t  I2C0_i2c_rxbuf[32];
 static volatile uint8_t *I2C0_i2c_rxbuf_inptr;
 static volatile uint8_t *I2C0_i2c_rxbuf_outptr;
 
-
 static void I2C0_PHY_init(void);
 
-
+/*
+ * @brief initialize I2C master on USCIB0
+ *
+ * The recommended USCI initialization/reconfiguration process is:
+ * 1.  Set UCSWRST(BIS.B#UCSWRST,&UCxCTL1).
+ * 2.  Initialize all USCI registers with UCSWRST= 1.
+ * 3.  Configureports.
+ * 4.  Clear UCSWRST through software (BIC.B #UCSWRST,&UCxCTL1).
+ * 5.  Enable interrupts (optional).
+ */
 void I2C0_init(void)
 {
+    uint16_t preScalarValue;
+
+    /*
+     * set peripheral function - multiplex gpio pins to i2c mode
+     * P3.0 - UCB1 SDA
+     * P3.1 - UCB0 SCL
+     */
     I2C0_PHY_init();
 
-    UCB0CTL1 |= UCSWRST; /* unlock peripheral to modify config */
+    /* Disable the USCI module and clears the other bits of control register */
+    UCB0CTL1 |= UCSWRST;
 
-    /** @todo IMPLEMENT REGISTER LEVEL CONFIGURATION STUFF*/
-#warning TODO: IMPLEMENT REGISTER LEVEL CONFIGURATION FOR I2C0
+    /*
+     * Configure as I2C master mode.
+     * UCMST = Master mode
+     * UCMODE_3 = I2C mode
+     * UCSYNC = Synchronous mode
+     */
+    UCB0CTL0 |= UCMST + UCMODE_3 + UCSYNC;
 
+    /* Initialize I2C clock source */
+    UCB0CTL1 |= UCSSEL__SMCLK; /* sub-main clock*/
+
+    /* Set data rate.
+     * Compute the clock divider that achieves the fastest speed less than or
+     * equal to the desired speed.  The numerator is biased to favor a larger
+     * clock divider so that the resulting clock is always less than or equal
+     * to the desired clock, never greater.
+     */
+
+#warning NEED Current SMCLK frequency in Hz
+    preScalarValue = (unsigned short)(CURR_SMCLK / USCI_B_I2C_SET_DATA_RATE_100KBPS);
+    UCB0BRW = preScalarValue; /* Bit rate control word */
+
+    /* Init master */
     UCB0CTL1 &= ~UCSWRST;
 }
 
 
 int I2C0_write_bytes(uint8_t dev_addr, uint8_t *bytes, uint16_t byte_count)
 {
+    /*
+     * After initialization master transmitter mode is initiated by:
+     * 1. writing the desired slave address to the UCB0I2CSA register
+     * 2. selecting the size of the slave address with the UCSLA10 bit
+     * 3. Setting UCTR for trasmitter mode
+     * 4. Setting UCTXSTT to generate a START condition
+     *
+     * The USCI module checks if the bus is available, generates the START condition, and
+     * transmits the slave address. The UCTXIFG bit is set when the START condition is generated and
+     * the first data to be transmitted can be written into UCB0TXBUF. As soon as the slave
+     * acknowledges the address, the UCTXSTT bit is cleared.
+     */
+
     int retval = 0;
     if (bytes != NULL)
     {

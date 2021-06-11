@@ -13,6 +13,8 @@
  * writes and have native build succeed, but in future an I2C API really
  * should be written so core application is portable to other devices.
  *
+ *  Datasheet for BNO055: https://cdn-shop.adafruit.com/datasheets/BST_BNO055_DS000_12.pdf
+ *
  *  Datasheet for BMX160: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmx160-ds0001.pdf
  *  For BMX160 example with abstracted host mcu see: https://github.com/BoschSensortec/BMI160_driver/blob/master/examples/read_sensor_data/read_sensor_data.c
  */
@@ -39,13 +41,11 @@
 #include "bmi160.h"
 #endif /* #if defined(BMX160) */
 
-/*********************************************************************/
-
-void IMU_init_i2c(void);
+/**************** Static Function Declarations ***********************/
+/*
 int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-void delay_ms(u32 ms);
-
+*/
 static void IMU_init_i2c(void);
 /***************** Global Variables **********************************/
 
@@ -88,6 +88,9 @@ void IMU_init(void)
 #if defined(BMX160)
 
     int8_t rslt;
+
+    /* Restart the device - All register values are overwritten with default parameters*/
+    //bmi160_soft_reset(&imu_dev);
 
     /* Set correct I2C address */s
     imu_dev.id      = BMX160_I2C_ADDR;              /* Set I2C device address */
@@ -153,6 +156,14 @@ static void IMU_init_i2c(void)
 
 }
 
+
+
+
+
+
+
+
+
 /*
  * @brief
  * int8_t bmi160_get_regs(uint8_t reg_addr, uint8_t *data, uint16_t len, const struct bmi160_dev *dev)
@@ -205,6 +216,14 @@ int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 
 }
 
+
+
+
+
+
+
+
+
 /*
  * @brief
  *
@@ -236,7 +255,7 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
         BNO055_iERROR = BNO055_SUCCESS;
     }
 
-    /* SEE SECTION 4.6 OF DATASHEET */
+    /* SEE SECTION 4.6 OF BNO055 DATASHEET - I2C Protocol*/
 #if 0
     u8  array[I2C_BUFFER_LEN];
     u8  stringpos = BNO055_INIT_VALUE;
@@ -250,6 +269,7 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 #endif /* #if 0 */
     return (s8)BNO055_iERROR;
 #endif /* #if defined(BNO055) */
+
 
 #if defined(BMX160)
     int8_t rslt = BMX160_OK;
@@ -267,10 +287,10 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
     int write_status = I2C0_write_bytes((uint8_t)dev_addr, txbuf, bcnt);
     if (write_status != 0 && write_status != -1)
     {
-        rslt = BMX160_SUCCESS;
+        rslt = IMU_WRITE_SUCCESS;
     }
 
-    /* SEE SECTION 4.6 OF DATASHEET */
+    /*  */
 #if 0
     u8  array[I2C_BUFFER_LEN];
     u8  stringpos = BMX160_INIT_VALUE;
@@ -281,7 +301,7 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
         array[stringpos + BMX160_I2C_BUS_WRITE_ARRAY_INDEX] =
             *(reg_data + stringpos);
     }
-#endif
+#endif /* #if 0 */
     return rslt;
 #endif /* #if defined(BMX160) */
 }
@@ -291,13 +311,51 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
  *
  * example source: https://www.embeddedrelated.com/showcode/314.php
  */
-static void delay_ms(uint32_t ms)
+void delay_ms(uint32_t ms)
 {
     /** @todo */
 #warning THIS NEEDS TO BE IMLPEMENTED
-    /*Here you can write your own delay routine*/
+
 }
 
 
+/*
+ * @brief
+ */
+int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data)
+{
+
+#if defined(BMX160)
+
+    //int8_t rslt = BMX160_OK;
+
+    imu_sensor_data_t acc_data_dummy;
+
+    /*
+     * API call reads sensor data, stores it in
+     * the imu_sensor_data_t structure pointer passed by the user.
+     * The user can ask for accel data ,gyro data or both sensor
+     * data using (BMI160_ACCEL_SEL | BMI160_GYRO_SEL) enum
+     */
+    return bmi160_get_sensor_data(BMI160_GYRO_SEL, &acc_data_dummy, &gyro_data, &imu_dev);
+
+#endif /* #if defined(BMX160) */
+}
 
 
+/*
+
+
+IMU_self_test();
+
+IMU_set_offsets();
+
+IMU_get_offsets()
+
+IMU_set_power_mode();
+
+IMU_get_power_mode();
+
+    //int8_t bmi160_get_sens_conf(struct bmi160_dev *dev);
+    //int8_t bmi160_set_sens_conf(struct bmi160_dev *dev);
+*/

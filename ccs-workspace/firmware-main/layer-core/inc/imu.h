@@ -32,20 +32,20 @@ extern "C"
 typedef struct bno055_t imu_dev_t;
 #elif defined(BMX160)
 typedef struct bmi160_dev imu_dev_t;
+typedef struct bmi160_sensor_data imu_sensor_data_t;
 #endif
 
-/************************** Function Definitions *****************************/
+/************** Global Function Declarations *********************************/
 
 int IMU_measurements_to_string(char *buf, unsigned int buflen);
 void IMU_init(void);
-void IMU_init_i2c(void);
 
 /* Functions linked to device level structs for use in vendor drivers */
 int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
 void delay_ms(uint32_t ms);         /* @todo Makes sense to move this function to separate core layer file since it may be useful elsewhere too*/
 
-
+int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data);
 #ifdef __cplusplus
 /* clang-format off */
 }

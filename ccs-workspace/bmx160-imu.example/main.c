@@ -26,7 +26,7 @@
 
 #include <msp430.h>
 
-#include "bmi160.h"
+#include "imu.h"
 #include "i2c.h"
 
 /* Comment out following line if using example on Rev B Motherboard target*/
@@ -57,22 +57,25 @@ int main()
      *
      *
      */
-    IMU_init_i2c();
+    IMU_init();
 
-
-
-    /* read sensor data
+    imu_sensor_data_t gyro_data;
+    /* get sensor data
      *
      */
-
+    IMU_get_gyro();
 
     /* self test
      *
      */
+    IMU_self_test();
 
     /* Offsets
      *
      */
+    IMU_get_offsets();
+
+    IMU_get_power_mode();
 
     while (1)
     {

@@ -43,8 +43,8 @@
 
 /**************** Static Function Declarations ***********************/
 /*
-int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
-int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt);
+int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt);
+int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt);
 */
 static void IMU_init_i2c(void);
 /***************** Global Variables **********************************/
@@ -120,6 +120,7 @@ void IMU_init(void)
     //imu_dev.accel_cfg.power   = BMI160_ACCEL_NORMAL_MODE;
 
     /* Select the Output data rate, range of Gyroscope sensor */
+    /* @todo SET DESIRED CONFIGURATION */
     imu_dev.gyro_cfg.odr        = BMI160_GYRO_ODR_3200HZ;
     imu_dev.gyro_cfg.range      = BMI160_GYRO_RANGE_2000_DPS;
     imu_dev.gyro_cfg.bw         = BMI160_GYRO_BW_NORMAL_MODE;
@@ -157,13 +158,6 @@ static void IMU_init_i2c(void)
 }
 
 
-
-
-
-
-
-
-
 /*
  * @brief
  *    int8_t bmi160_get_regs(uint8_t reg_addr,      uint8_t *data,      uint16_t len,   const struct bmi160_dev *dev)
@@ -171,7 +165,7 @@ static void IMU_init_i2c(void)
  *
  *                 dev->read(dev->id,               reg_addr,           data,           len);
  */
-int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt)
 {
 #if defined(BNO055)
     /** @todo */
@@ -179,8 +173,8 @@ int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 
     s32 BNO055_iERROR = BNO055_INIT_VALUE;
 #if 0
-    u8  array[I2C_BUFFER_LEN] = {BNO055_INIT_VALUE};
-    u8  stringpos             = BNO055_INIT_VALUE;
+    uint8_t  array[I2C_BUFFER_LEN] = {BNO055_INIT_VALUE};
+    uint8_t  stringpos             = BNO055_INIT_VALUE;
 
 
     array[BNO055_INIT_VALUE] = reg_addr;
@@ -208,36 +202,27 @@ int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
     /*
      * See page 99 - 100 in BMX160 datasheet
      *
-     * First the master writes two bytes to I2C bus to tell the slave what data it wants to read
+     * First the master writes two bytes to I2C bus to tell the slave what data it wants to read:
      *
      * [Slave Address with R/W bit = 0][ Register Address]
      *
      */
 
-    uint8_t outGoingBytes[] = [dev_addr, reg_addr];
-    I2C0_write_bytes(dev_addr, outGoingBytes, sizeof(outGoingBytes));
+    uint8_t outGoingBytes[] = [reg_addr];
+    I2C0_write_bytes(dev_addr, &outGoingBytes, sizeof(outGoingBytes));
 
     /*
      * Next the master writes another byte to the I2C bus
      * [Slave Address with R/W bit = 1]
      * Now the slave takes over the bus and pushes cnt number of bytes to the bus for the master to read
-     *
      */
-    I2C0_read_bytes(reg_data, cnt);
+    I2C0_read_bytes(dev_addr, reg_data, cnt);
 
     return 0;
 
 #endif /* #if defined(BMX160) */
 
 }
-
-
-
-
-
-
-
-
 
 /*
  * @brief
@@ -248,7 +233,7 @@ int8_t IMU_I2C_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
  *      using format:
  *          dev->write(dev->id, reg_addr, data, len);
  */
-int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
+int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt)
 {
 #if defined(BNO055)
     s32 BNO055_iERROR = BNO055_INIT_VALUE;
@@ -272,8 +257,8 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
 
     /* SEE SECTION 4.6 OF BNO055 DATASHEET - I2C Protocol*/
 #if 0
-    u8  array[I2C_BUFFER_LEN];
-    u8  stringpos = BNO055_INIT_VALUE;
+    uint8_t  array[I2C_BUFFER_LEN];
+    uint8_t  stringpos = BNO055_INIT_VALUE;
 
     array[BNO055_INIT_VALUE] = reg_addr;
     for (stringpos = BNO055_INIT_VALUE; stringpos < cnt; stringpos++)
@@ -285,11 +270,20 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
     return (s8)BNO055_iERROR;
 #endif /* #if defined(BNO055) */
 
-
 #if defined(BMX160)
 
-    /* See page 99 in BMX160 Datasheet */
+    /* See page 99 in BMX160 Datasheet
+     *
+     * Master writes three bytes to I2C bus to tell the slave which register to write, followed by the byte to write
+     *
+     * [Slave Address with R/W bit = 0][Register Address][Data byte to write]
+     *
+     */
+    uint8_t outGoingBytes[] = [reg_addr, reg_data];
+    I2C0_write_bytes(dev_addr, &outGoingBytes, sizeof(outGoingBytes));
 
+
+#if 0
     int8_t rslt = BMX160_OK;
 
     char txbuf[50]; /* just hard coding this for now */
@@ -309,9 +303,9 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
     }
 
     /*  */
-#if 0
-    u8  array[I2C_BUFFER_LEN];
-    u8  stringpos = BMX160_INIT_VALUE;
+
+    uint8_t  array[I2C_BUFFER_LEN];
+    uint8_t  stringpos = BMX160_INIT_VALUE;
 
     array[BMX160_INIT_VALUE] = reg_addr;
     for (stringpos = BMX160_INIT_VALUE; stringpos < cnt; stringpos++)
@@ -319,8 +313,9 @@ int8_t IMU_I2C_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt)
         array[stringpos + BMX160_I2C_BUS_WRITE_ARRAY_INDEX] =
             *(reg_data + stringpos);
     }
-#endif /* #if 0 */
     return rslt;
+#endif /* #if 0 */
+
 #endif /* #if defined(BMX160) */
 }
 

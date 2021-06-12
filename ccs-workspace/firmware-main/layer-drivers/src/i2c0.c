@@ -8,7 +8,7 @@
  *
  * @copyright Copyright (c) 2021 Carl Mattatall, Thomas Christison
  *
- * https://www.ti.com/lit/ug/slau208q/slau208q.pdf?ts=1623263272335&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FMSP430BT5190
+ * Section 38: https://www.ti.com/lit/ug/slau208q/slau208q.pdf?ts=1623263272335&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FMSP430BT5190
  *
  */
 
@@ -85,23 +85,36 @@ void I2C0_init(void)
     UCB0CTL1 &= ~UCSWRST;
 }
 
-
+/*
+ * After initialization master transmitter mode is initiated by:
+ * 1. writing the desired slave address to the UCB0I2CSA register
+ * 2. selecting the size of the slave address with the UCSLA10 bit
+ * 3. Setting UCTR for trasmitter mode
+ * 4. Setting UCTXSTT to generate a START condition
+ *
+ * The USCI module checks if the bus is available, generates the START condition, and
+ * transmits the slave address. The UCTXIFG bit is set when the START condition is generated and
+ * the first data to be transmitted can be written into UCB0TXBUF. As soon as the slave
+ * acknowledges the address, the UCTXSTT bit is cleared.
+ */
 int I2C0_write_bytes(uint8_t dev_addr, uint8_t *bytes, uint16_t byte_count)
 {
-    /*
-     * After initialization master transmitter mode is initiated by:
-     * 1. writing the desired slave address to the UCB0I2CSA register
-     * 2. selecting the size of the slave address with the UCSLA10 bit
-     * 3. Setting UCTR for trasmitter mode
-     * 4. Setting UCTXSTT to generate a START condition
-     *
-     * The USCI module checks if the bus is available, generates the START condition, and
-     * transmits the slave address. The UCTXIFG bit is set when the START condition is generated and
-     * the first data to be transmitted can be written into UCB0TXBUF. As soon as the slave
-     * acknowledges the address, the UCTXSTT bit is cleared.
-     */
-
     int retval = 0;
+
+    /* Set slave address*/
+    UCB0I2CSA = dev_addr;
+
+    /* Set UCSLA10 bit for 7-bit slave address*/
+    UCB0CTL0 |= UCSLA10;
+
+    /* Set UCTR for transmitter mode */
+    UCB0CTL1 |= UCTR;
+
+    /* Generate START condition */
+    UCB0CTL1 |= UCTXSTT;
+
+
+#if 0
     if (bytes != NULL)
     {
         I2C0_i2c_txbuf_ptr = I2C0_i2c_txbuf; // reset buffer first
@@ -132,13 +145,26 @@ int I2C0_write_bytes(uint8_t dev_addr, uint8_t *bytes, uint16_t byte_count)
         retval = 0;
     }
 
-    return retval;
 
+#endif /* #if 0 */
+
+    return retval;
 }
 
-
-
-int I2C0_read_bytes(uint8_t *caller_buf, uint16_t caller_buflen)
+/*
+ * After initialization master receiver mode is initiated by:
+ * 1. writing the desired slave address to the UCB0I2CSA register
+ * 2. selecting the size of the slave address with the UCSLA10 bit
+ * 3. Clearing UCTR for receiver mode
+ * 4. Setting UCTXSTT to generate a START condition
+ *
+ * The USCI module checks if the bus is available, generates the START condition, and
+ * transmits the slave address. As soon as the slave acknowledges the address, the UCTXSTT
+ * bit is cleared.
+ *
+ *
+ */
+int I2C0_read_bytes(uint8_t dev_addr, uint8_t *caller_buf, uint16_t caller_buflen)
 {
     if (caller_buf == NULL)
     {

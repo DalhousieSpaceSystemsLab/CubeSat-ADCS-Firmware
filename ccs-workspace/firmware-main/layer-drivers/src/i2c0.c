@@ -65,10 +65,10 @@ void I2C0_init(void)
      * UCMODE_3 = I2C mode
      * UCSYNC = Synchronous mode
      */
-    UCB0CTL0 |= UCMST + UCMODE_3 + UCSYNC;
+    UCB0CTL0 = UCMST + UCMODE_3 + UCSYNC;
 
     /* Initialize I2C clock source */
-    UCB0CTL1 |= UCSSEL__SMCLK; /* sub-main clock*/
+    UCB0CTL1 = UCSSEL__SMCLK + USCWRST; /* sub-main clock*/
 
     /* Set data rate.
      * Compute the clock divider that achieves the fastest speed less than or
@@ -77,12 +77,16 @@ void I2C0_init(void)
      * to the desired clock, never greater.
      */
 
-#warning NEED Current SMCLK frequency in Hz
-    preScalarValue = (unsigned short)(CURR_SMCLK / USCI_B_I2C_SET_DATA_RATE_100KBPS);
-    UCB0BRW = preScalarValue; /* Bit rate control word */
+/*#warning NEED Current SMCLK frequency in Hz - Not implemented */
+    //preScalarValue = (unsigned short)(CURR_SMCLK_HZ / USCI_B_I2C_SET_DATA_RATE_100KBPS);
+    //UCB0BRW = preScalarValue; /* Bit rate control word */
+    UCB0BR0 = 10;           // fSCL = SMCLK/160 = ~100kHz
+    UCB0BR1 = 0;
 
     /* Init master */
-    UCB0CTL1 &= ~UCSWRST;
+    UCB0CTL1 &= ~UCSWRST;   // Clear SW reset, resume operation
+    UCB0IE |= UCNACKIE;     /* Enable Interrupts */
+
 }
 
 /*

@@ -31,7 +31,7 @@
 
 #include "targets.h"
 #include "imu.h"
-#include "i2c_b0.h"
+#include "i2c_b1.h"
 
 #if defined(BNO055)
 #include "bno055.h"
@@ -48,7 +48,7 @@ static void IMU_init_i2c(void);
 /***************** Global Variables **********************************/
 
 imu_dev_t imu_dev;
-
+extern uint8_t ReceiveBuffer[]; /* defined in i2c_b1.c*/
 /***************** Function Definitions ******************************/
 
 /*
@@ -90,7 +90,7 @@ void IMU_init(void)
     /* Restart the device - All register values are overwritten with default parameters*/
     //bmi160_soft_reset(&imu_dev);
 
-    /* Set correct I2C address */s
+    /* Set correct I2C address */
     imu_dev.id      = BMX160_I2C_ADDR;              /* Set I2C device address */
     imu_dev.intf    = BMX160_I2C_INTF;              /* Set 0 for I2C interface */
 
@@ -149,8 +149,8 @@ static void IMU_init_i2c(void)
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
-    /* IN REV B We use I2C0 (using UCB0) with replacement BMX160 due to chip shortage */
-    i2c_b0_init();
+    /* IN REV B We use I2C0 (using UCB1) with replacement BMX160 due to chip shortage */
+    i2c_b1_init();
 #endif /* #if defined(BMX160) */
 
 }
@@ -171,6 +171,10 @@ int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, u
 
 #if defined(BMX160)
 
+    uint8_t  stringpos;
+
+    I2C_Mode rslt = IDLE_MODE;
+
     /*
      * See page 99 - 100 in BMX160 datasheet
      *
@@ -180,19 +184,22 @@ int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, u
      *
      */
 
-    I2CB0_Master_WriteReg(dev_addr, reg_addr, 0, 0);
+    rslt = I2CB1_Master_WriteReg(dev_addr, reg_addr, 0, 0);
 
     /*
      * Next the master writes another byte to the I2C bus
      * [Slave Address with R/W bit = 1]
      * Now the slave takes over the bus and pushes cnt number of bytes to the bus for the master to read
      */
-    I2CB0_Master_ReadReg(dev_addr, reg_addr, cnt); // Received bytes in ReceiveBuffer
+    rslt = I2CB1_Master_ReadReg(dev_addr, reg_addr, cnt); // Received bytes in ReceiveBuffer
 
-    /* @todo Copy ReceiveBuffer into reg_data pointer */
-    reg_data = ReceiveBuffer;
+    /* Copy ReceiveBuffer into reg_data pointer */
+    for (stringpos = 0; stringpos < cnt; stringpos++)
+    {
+        *(reg_data + stringpos) = ReceiveBuffer[stringpos];
+    }
 
-    return 0;
+    return (int8_t) rslt;
 
 #endif /* #if defined(BMX160) */
 
@@ -221,7 +228,7 @@ int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, 
      * [Slave Address with R/W bit = 0][Register Address][Data byte to write]
      *
      */
-    return (int8_t)I2CB0_Master_WriteReg(dev_addr, reg_addr, reg_data, cnt);
+    return (int8_t)I2CB1_Master_WriteReg(dev_addr, reg_addr, reg_data, cnt);
 
 #endif /* #if defined(BMX160) */
 }
@@ -231,8 +238,16 @@ int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, 
  *
  * example source: https://www.embeddedrelated.com/showcode/314.php
  *
- *      BCSCTL1 = CALBC1_1MHZ;
- *      DCOCTL = CALDCO_1MHZ;
+ * clock configuration info:
+ * http://www.simplyembedded.org/tutorials/msp430-configuration/
+ * also see datasheet/family user guide
+ *
+ *      BCSCTL1 = CALBC1_1MHZ;  // Basic clock system control 1
+ *      DCOCTL = CALDCO_1MHZ;   // DCOCLK: internal digitally controller oscillator
+ *
+ *      On power up or after a reset, the device is configured such that
+ *      MCLK (the master clock used by the CPU) is sourced from DCOCLK
+ *      which has a frequency of approximately 1.1MHz.
  *
  */
 void delay_ms(uint32_t ms)
@@ -254,12 +269,9 @@ int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data)
 
 #if defined(BMX160)
 
-    //int8_t rslt = BMX160_OK;
-
     imu_sensor_data_t acc_data_dummy;
 
-    /*
-     * API call reads sensor data, stores it in
+    /*     * API call reads sensor data, stores it in
      * the imu_sensor_data_t structure pointer passed by the user.
      * The user can ask for accel data ,gyro data or both sensor
      * data using (BMI160_ACCEL_SEL | BMI160_GYRO_SEL) enum
@@ -269,20 +281,76 @@ int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data)
 #endif /* #if defined(BMX160) */
 }
 
+/*
+ * @brief
+ */
+int8_t IMU_self_test(void)
+{
+
+#if defined(BMX160)
+
+    return bmi160_perform_self_test(BMI160_GYRO_ONLY, &imu_dev);
+
+#endif /* #if defined(BMX160) */
+}
 
 /*
+ * @brief
+ */
+int8_t IMU_get_offsets(imu_sensor_offsets_t *offset)
+{
+
+#if defined(BMX160)
+
+    /* See IMU datasheet for offset calibration information */
+    return bmi160_get_offsets(offset, &imu_dev);
+
+#endif /* #if defined(BMX160) */
+}
+
+/*
+ * @brief
+ */
+int8_t IMU_set_offsets(const imu_fast_off_comp_t *foc_conf, const imu_sensor_offsets_t *offset)
+{
+
+#if defined(BMX160)
+
+    /* See IMU datasheet for offset calibration information */
+    return bmi160_set_offsets(foc_conf, offset, &imu_dev);
+
+#endif /* #if defined(BMX160) */
+}
+
+/*
+ * @brief
+ */
+int8_t IMU_get_power_mode(imu_power_mode_status_t *powermode)
+{
+
+#if defined(BMX160)
+
+    return bmi160_get_power_mode(powermode, &imu_dev);
+
+#endif /* #if defined(BMX160) */
+}
+
+/*
+ * @brief
+ */
+void IMU_reset(void)
+{
+
+#if defined(BMX160)
+
+    bmi160_soft_reset(&imu_dev); /* restarts device */
+    IMU_init();                  /* reconfigure IMU */
+
+#endif /* #if defined(BMX160) */
+}
 
 
-IMU_self_test();
 
-IMU_set_offsets();
 
-IMU_get_offsets()
 
-IMU_set_power_mode();
 
-IMU_get_power_mode();
-
-    //int8_t bmi160_get_sens_conf(struct bmi160_dev *dev);
-    //int8_t bmi160_set_sens_conf(struct bmi160_dev *dev);
-*/

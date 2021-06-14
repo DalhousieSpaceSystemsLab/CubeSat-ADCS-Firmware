@@ -33,6 +33,9 @@ typedef struct bno055_t imu_dev_t;
 #elif defined(BMX160)
 typedef struct bmi160_dev imu_dev_t;
 typedef struct bmi160_sensor_data imu_sensor_data_t;
+typedef struct bmi160_offsets imu_sensor_offsets_t;
+typedef struct bmi160_pmu_status imu_power_mode_status_t;
+typedef struct bmi160_foc_conf imu_fast_off_comp_t;
 #endif
 
 /************** Global Function Declarations *********************************/
@@ -45,7 +48,14 @@ int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, u
 int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt);
 void delay_ms(uint32_t ms);         /* @todo Makes sense to move this function to separate core layer file since it may be useful elsewhere too*/
 
+/* IMU API*/
 int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data);
+int8_t IMU_self_test(void);
+int8_t IMU_get_offsets(imu_sensor_offsets_t *offset);
+int8_t IMU_set_offsets(const imu_fast_off_comp_t *foc_conf, const imu_sensor_offsets_t *offset);
+int8_t IMU_get_power_mode(imu_power_mode_status_t *powermode);
+void IMU_reset(void);
+
 #ifdef __cplusplus
 /* clang-format off */
 }

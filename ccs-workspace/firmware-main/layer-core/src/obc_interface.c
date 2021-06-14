@@ -16,7 +16,7 @@
 #include <stdbool.h>
 #include <stdarg.h>
 #include "targets.h"
-
+#include "attributes.h"
 #include "obc_interface.h"
 #include "bufferlib.h"
 #include "injection_api.h"
@@ -41,6 +41,14 @@ typedef struct
     transmit_func    tx;
 } OBC_IF_fops;
 
+__attribute__((weak)) size_t strnlen (const char *s, size_t maxlen)
+{
+  size_t i;
+  for (i = 0; i < maxlen; ++i)
+    if (s[i] == '\0')
+      break;
+  return i;
+}
 
 /**
  * @brief Receive callback to be injected from OBC IF into LL driver
@@ -149,7 +157,7 @@ int OCB_IF_get_command_string(uint8_t *buf, uint_least16_t buflen)
 }
 
 
-/*__EMULATABLE*/ int OBC_IF_tx(uint8_t *buf, uint_least16_t buflen)
+__attribute__((weak)) int OBC_IF_tx(uint8_t *buf, uint_least16_t buflen)
 {
     CONFIG_ASSERT(ops.tx != NULL);
     return ops.tx(buf, buflen);

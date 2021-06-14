@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TARGET_MCU
-
 #if defined(TARGET_MCU)
 #include "watchdog.h"
 #include "mcu.h"

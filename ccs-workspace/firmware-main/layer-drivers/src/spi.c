@@ -183,8 +183,18 @@ int SPI0_transmit(const uint8_t *bytes, uint16_t len)
     return 0;
 }
 
-
-__interrupt_vec(USCI_B0_VECTOR) void USCI_B0_VECTOR_ISR(void)
+//******************************************************************************
+//*************************SPI Interrupt Service Routine************************
+//******************************************************************************
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+#pragma vector=USCI_B0_VECTOR
+__interrupt void USCI_B0_ISR(void)
+#elif defined(__GNUC__)
+void __attribute__ ((interrupt(USCI_B0_VECTOR))) USCI_B0_ISR (void)
+#else
+#error Compiler not supported!
+#endif
+//__interrupt_vec(USCI_B0_VECTOR) void USCI_B0_VECTOR_ISR(void)
 {
     if ((UCB0IV & UCB0IVRX) == UCB0IVRX)
     {

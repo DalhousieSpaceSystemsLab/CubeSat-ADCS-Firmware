@@ -97,7 +97,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="layer-drivers/src/i2c_b0.c|JTOK/test|JTOK/test/hex_value.test.c|layer-drivers/src/i2c1.c|layer-drivers/src/i2c0.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="layer-drivers/src/i2c_b0.c|layer-drivers/src/i2c1.c|layer-drivers/src/i2c0.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

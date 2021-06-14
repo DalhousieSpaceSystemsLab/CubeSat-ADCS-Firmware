@@ -31,7 +31,7 @@
 
 #include "targets.h"
 #include "imu.h"
-#include "i2c.h"
+#include "i2c_b0.h"
 
 #if defined(BNO055)
 #include "bno055.h"
@@ -42,11 +42,9 @@
 #endif /* #if defined(BMX160) */
 
 /**************** Static Function Declarations ***********************/
-/*
-int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt);
-int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt);
-*/
+
 static void IMU_init_i2c(void);
+
 /***************** Global Variables **********************************/
 
 imu_dev_t imu_dev;
@@ -152,7 +150,7 @@ static void IMU_init_i2c(void)
 
 #if defined(BMX160)
     /* IN REV B We use I2C0 (using UCB0) with replacement BMX160 due to chip shortage */
-    I2C0_init();
+    i2c_b0_init();
 #endif /* #if defined(BMX160) */
 
 }
@@ -168,33 +166,7 @@ static void IMU_init_i2c(void)
 int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt)
 {
 #if defined(BNO055)
-    /** @todo */
-#warning THIS NEEDS TO BE IMLPEMENTED
-
-    s32 BNO055_iERROR = BNO055_INIT_VALUE;
-#if 0
-    uint8_t  array[I2C_BUFFER_LEN] = {BNO055_INIT_VALUE};
-    uint8_t  stringpos             = BNO055_INIT_VALUE;
-
-
-    array[BNO055_INIT_VALUE] = reg_addr;
-
-    /* Please take the below API as your reference
-     * for read the data using I2C communication
-     * add your I2C read API here.
-     * "BNO055_iERROR = I2C_WRITE_READ_STRING(DEV_ADDR,
-     * ARRAY, ARRAY, 1, CNT)"
-     * BNO055_iERROR is an return value of SPI write API
-     * Please select your valid return value
-     * In the driver BNO055_SUCCESS defined as 0
-     * and FAILURE defined as -1
-     */
-    for (stringpos = BNO055_INIT_VALUE; stringpos < cnt; stringpos++)
-    {
-        *(reg_data + stringpos) = array[stringpos];
-    }
-#endif
-    return (s8)BNO055_iERROR;
+    /* Write i2c bus read function for BNO055 */
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
@@ -208,15 +180,17 @@ int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, u
      *
      */
 
-    uint8_t outGoingBytes[] = [reg_addr];
-    I2C0_write_bytes(dev_addr, &outGoingBytes, sizeof(outGoingBytes));
+    I2CB0_Master_WriteReg(dev_addr, reg_addr, 0, 0);
 
     /*
      * Next the master writes another byte to the I2C bus
      * [Slave Address with R/W bit = 1]
      * Now the slave takes over the bus and pushes cnt number of bytes to the bus for the master to read
      */
-    I2C0_read_bytes(dev_addr, reg_data, cnt);
+    I2CB0_Master_ReadReg(dev_addr, reg_addr, cnt); // Received bytes in ReceiveBuffer
+
+    /* @todo Copy ReceiveBuffer into reg_data pointer */
+    reg_data = ReceiveBuffer;
 
     return 0;
 
@@ -236,38 +210,6 @@ int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, u
 int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt)
 {
 #if defined(BNO055)
-    s32 BNO055_iERROR = BNO055_INIT_VALUE;
-
-
-    char txbuf[50]; /* just hard coding this for now */
-    txbuf[0] = reg_addr;
-
-    unsigned int bcnt = sizeof(reg_addr) + cnt;
-    if (bcnt > sizeof(txbuf))
-    {
-        bcnt = sizeof(txbuf);
-    }
-    strncpy(&txbuf[1], (char *)reg_data, bcnt);
-
-    int write_status = I2C1_write_bytes((uint8_t)dev_addr, txbuf, bcnt);
-    if (write_status != 0 && write_status != -1)
-    {
-        BNO055_iERROR = BNO055_SUCCESS;
-    }
-
-    /* SEE SECTION 4.6 OF BNO055 DATASHEET - I2C Protocol*/
-#if 0
-    uint8_t  array[I2C_BUFFER_LEN];
-    uint8_t  stringpos = BNO055_INIT_VALUE;
-
-    array[BNO055_INIT_VALUE] = reg_addr;
-    for (stringpos = BNO055_INIT_VALUE; stringpos < cnt; stringpos++)
-    {
-        array[stringpos + BNO055_I2C_BUS_WRITE_ARRAY_INDEX] =
-            *(reg_data + stringpos);
-    }
-#endif /* #if 0 */
-    return (s8)BNO055_iERROR;
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
@@ -279,42 +221,7 @@ int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, 
      * [Slave Address with R/W bit = 0][Register Address][Data byte to write]
      *
      */
-    uint8_t outGoingBytes[] = [reg_addr, reg_data];
-    I2C0_write_bytes(dev_addr, &outGoingBytes, sizeof(outGoingBytes));
-
-
-#if 0
-    int8_t rslt = BMX160_OK;
-
-    char txbuf[50]; /* just hard coding this for now */
-    txbuf[0] = reg_addr;
-
-    unsigned int bcnt = sizeof(reg_addr) + cnt;
-    if (bcnt > sizeof(txbuf))
-    {
-        bcnt = sizeof(txbuf);
-    }
-    strncpy(&txbuf[1], (char *)reg_data, bcnt);
-
-    int write_status = I2C0_write_bytes((uint8_t)dev_addr, txbuf, bcnt);
-    if (write_status != 0 && write_status != -1)
-    {
-        rslt = IMU_WRITE_SUCCESS;
-    }
-
-    /*  */
-
-    uint8_t  array[I2C_BUFFER_LEN];
-    uint8_t  stringpos = BMX160_INIT_VALUE;
-
-    array[BMX160_INIT_VALUE] = reg_addr;
-    for (stringpos = BMX160_INIT_VALUE; stringpos < cnt; stringpos++)
-    {
-        array[stringpos + BMX160_I2C_BUS_WRITE_ARRAY_INDEX] =
-            *(reg_data + stringpos);
-    }
-    return rslt;
-#endif /* #if 0 */
+    return (int8_t)I2CB0_Master_WriteReg(dev_addr, reg_addr, reg_data, cnt);
 
 #endif /* #if defined(BMX160) */
 }
@@ -323,12 +230,19 @@ int8_t IMU_I2C_bus_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, 
  * @brief delay ms number of milliseconds on msp430
  *
  * example source: https://www.embeddedrelated.com/showcode/314.php
+ *
+ *      BCSCTL1 = CALBC1_1MHZ;
+ *      DCOCTL = CALDCO_1MHZ;
+ *
  */
 void delay_ms(uint32_t ms)
 {
     /** @todo */
-#warning THIS NEEDS TO BE IMLPEMENTED
-
+    while (ms)
+    {
+        __delay_cycles(1000); /* 1000 for 1MHz and 16000 for 16MHz */
+        ms--;
+    }
 }
 
 

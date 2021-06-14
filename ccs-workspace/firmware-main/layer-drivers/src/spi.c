@@ -183,6 +183,21 @@ int SPI0_transmit(const uint8_t *bytes, uint16_t len)
     return 0;
 }
 
+
+__interrupt_vec(USCI_B0_VECTOR) void USCI_B0_VECTOR_ISR(void)
+{
+    if ((UCB0IV & UCB0IVRX) == UCB0IVRX)
+    {
+        /* always read reg to prevent overrun error */
+        uint8_t received_byte = UCB0RXBUF;
+        if (NULL != SPI0_rx_callback)
+        {
+            SPI0_rx_callback(received_byte);
+        }
+    }
+}
+
+
 static void SPI0_PHY_config(void)
 {
     /* Configure alternate pin mode */
@@ -198,30 +213,3 @@ static void SPI0_PHY_config(void)
     UCB0_SPI0_MISO_OUT &= ~UCB0_SPI0_MISO_PIN; /* Pulldown MISO */
     UCB0_SPI0_MISO_REN &= ~UCB0_SPI0_MISO_PIN; /* Disable MISO pullup res */
 }
-
-//__interrupt_vec(USCI_B0_VECTOR) void USCI_B0_VECTOR_ISR(void)
-
-//******************************************************************************
-//*************************SPI Interrupt Service Routine************************
-//******************************************************************************
-#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector=USCI_B0_VECTOR
-__interrupt void USCI_B0_ISR(void)
-#elif defined(__GNUC__)
-void __attribute__ ((interrupt(USCI_B0_VECTOR))) USCI_B0_ISR (void)
-#else
-#error Compiler not supported!
-#endif
-{
-    if ((UCB0IV & UCB0IVRX) == UCB0IVRX)
-    {
-        /* always read reg to prevent overrun error */
-        uint8_t received_byte = UCB0RXBUF;
-        if (NULL != SPI0_rx_callback)
-        {
-            SPI0_rx_callback(received_byte);
-        }
-    }
-}
-
-

@@ -12,6 +12,7 @@
 #include "magnetometer.h"
 #include "reaction_wheels.h"
 #include "imu.h"
+#include "indicator_led.h"
 #else
 #include <errno.h>
 #endif /* #if defined(TARGET_MCU) */

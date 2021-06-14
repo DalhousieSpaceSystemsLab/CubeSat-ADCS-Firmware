@@ -95,7 +95,19 @@ int uart_transmit(uint8_t *msg, uint_least16_t msglen)
 }
 
 
-__interrupt_vec(USCI_A0_VECTOR) void USCI_A0_ISR(void)
+
+//******************************************************************************
+//*************************I2C Interrupt Service Routine************************
+//******************************************************************************
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+#pragma vector=USCI_A0_VECTOR
+__interrupt void USCI_A0_ISR(void)
+#elif defined(__GNUC__)
+void __attribute__ ((interrupt(USCI_A0_VECTOR))) USCI_A0_ISR (void)
+#else
+#error Compiler not supported!
+#endif
+//__interrupt_vec(USCI_A0_VECTOR) void USCI_A0_ISR(void)
 {
 
     /* See table 39-19 */

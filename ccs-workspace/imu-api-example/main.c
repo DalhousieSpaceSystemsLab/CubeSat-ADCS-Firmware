@@ -43,7 +43,7 @@ int main()
 
     led_init();                 /* Turn on indicator LED */
 
-    IMU_init();                 /* Initialize IMU */
+    rslt = IMU_init();                 /* Initialize IMU */
 
     //rslt = IMU_self_test();            /* self test gyro sensor */
 
@@ -53,10 +53,10 @@ int main()
 
     //rslt = IMU_get_power_mode(&imu_power_status);       /* Check IMU power mode config */
 
-
-    rslt = IMU_get_gyro(&gyro_readings);   /* Get sensor data */
-
-    while(1);
+    if (rslt == 0)
+    {
+        rslt = IMU_get_gyro(&gyro_readings);   /* Get sensor data */
+    }
 
 
     return rslt;

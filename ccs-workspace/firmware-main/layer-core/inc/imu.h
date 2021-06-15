@@ -41,7 +41,7 @@ typedef struct bmi160_foc_conf imu_fast_off_comp_t;
 /************** Global Function Declarations *********************************/
 
 int IMU_measurements_to_string(char *buf, unsigned int buflen);
-void IMU_init(void);
+int8_t IMU_init(void);
 
 /* Functions linked to device level structs for use in vendor drivers */
 int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t cnt);

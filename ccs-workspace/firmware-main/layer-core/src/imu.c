@@ -67,8 +67,9 @@ int IMU_measurements_to_string(char *buf, unsigned int buflen)
 /*
  * @brief
  */
-void IMU_init(void)
+int8_t IMU_init(void)
 {
+    int8_t rslt;
 
     IMU_init_i2c();
 
@@ -85,8 +86,6 @@ void IMU_init(void)
 
 #if defined(BMX160)
 
-    int8_t rslt;
-
     /* Restart the device - All register values are overwritten with default parameters*/
     //bmi160_soft_reset(&imu_dev);
 
@@ -95,6 +94,15 @@ void IMU_init(void)
     imu_dev.intf    = BMX160_I2C_INTF;              /* Set 0 for I2C interface */
 
     rslt = bmi160_init(&imu_dev);
+
+    if(rslt != 0)
+    {
+        /* Error */
+        return rslt;
+    }
+
+    else /* Initialization successful*/
+    {
 
     /*if (rslt == BMX160_OK)
     {
@@ -129,11 +137,11 @@ void IMU_init(void)
     /* Set the sensor configuration */
     rslt = bmi160_set_sens_conf(&imu_dev);
 
+    }
+
 #endif /* #if defined(BMX160) */
 
-#if !defined(BNO055) && !defined(BMX160)
-    printf("Called %s\n", __func__);                /* @todo Is this still necessary? */
-#endif /* !defined(BNO055) && !defined(BMX160) */
+    return rslt;
 
 }
 
@@ -142,14 +150,7 @@ void IMU_init(void)
  */
 static void IMU_init_i2c(void)
 {
-
-#if defined(BNO055)
-#endif /* #if defined(BNO055) */
-
-#if defined(BMX160)
     i2c_b1_init();
-#endif /* #if defined(BMX160) */
-
 }
 
 
@@ -168,9 +169,9 @@ int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, u
 
 #if defined(BMX160)
 
-    uint8_t  stringpos;
+    uint8_t  stringpos, rslt;
 
-    I2C_Mode rslt = IDLE_MODE;
+    //I2C_Mode rslt;/* = IDLE_MODE;*/
 
     /*
      * See page 99 - 100 in BMX160 datasheet
@@ -183,6 +184,8 @@ int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, u
 
     rslt = I2CB1_Master_WriteReg(dev_addr, reg_addr, 0, 0);
 
+    if (rslt == BMI160_OK)
+    {
     /*
      * Next the master writes another byte to the I2C bus
      * [Slave Address with R/W bit = 1]
@@ -190,13 +193,14 @@ int8_t IMU_I2C_bus_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, u
      */
     rslt = I2CB1_Master_ReadReg(dev_addr, reg_addr, cnt); // Received bytes in ReceiveBuffer
 
-    /* Copy ReceiveBuffer into reg_data pointer */
-    for (stringpos = 0; stringpos < cnt; stringpos++)
-    {
-        *(reg_data + stringpos) = ReceiveBuffer[stringpos];
+        /* Copy ReceiveBuffer into reg_data pointer */
+        for (stringpos = 0; stringpos < cnt; stringpos++)
+        {
+            *(reg_data + stringpos) = ReceiveBuffer[stringpos];
+        }
     }
 
-    return (int8_t) rslt;
+    return rslt;
 
 #endif /* #if defined(BMX160) */
 

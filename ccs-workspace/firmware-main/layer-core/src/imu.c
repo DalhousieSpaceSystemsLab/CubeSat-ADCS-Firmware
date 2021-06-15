@@ -144,12 +144,9 @@ static void IMU_init_i2c(void)
 {
 
 #if defined(BNO055)
-    /* We use I2C1 (using UCB1) for BNO055 IMU in Rev A ONLY */
-    I2C1_init();
 #endif /* #if defined(BNO055) */
 
 #if defined(BMX160)
-    /* IN REV B We use I2C0 (using UCB1) with replacement BMX160 due to chip shortage */
     i2c_b1_init();
 #endif /* #if defined(BMX160) */
 

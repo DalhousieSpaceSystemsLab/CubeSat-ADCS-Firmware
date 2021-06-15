@@ -99,7 +99,7 @@ I2C_Mode I2CB1_Master_ReadReg(uint8_t dev_addr, uint8_t reg_addr, uint8_t count)
     UCB1CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
 
     /* @todo Do i need LPM0?? */
-    __bis_SR_register( GIE);              // Enter LPM0 w/ interrupts
+    __bis_SR_register(/*LPM0 +*/ GIE);              // Enter LPM0 w/ interrupts
 
     return MasterMode;
 }
@@ -137,14 +137,14 @@ I2C_Mode I2CB1_Master_WriteReg(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_
 
     /* Initialize slave address and interrupts */
     UCB1I2CSA = dev_addr;       /* Set slave address*/
-    UCB1CTL0 |= UCSLA10;        /* Set UCSLA10 bit for 7-bit slave address*/
+    UCB1CTL0 &= ~UCSLA10;        /* clear UCSLA10 bit for 7-bit slave address*/
 
     UCB1IFG &= ~(UCTXIFG + UCRXIFG);        // Clear any pending interrupts
     UCB1IE &= ~UCRXIE;                      // Disable RX interrupt
     UCB1IE |= UCTXIE;                       // Enable TX interrupt
 
     UCB1CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
-    __bis_SR_register(LPM0_bits + GIE);              // Enter LPM0 w/ interrupts
+    __bis_SR_register(/*LPM0_bits + */GIE);              // Enter LPM0 w/ interrupts
 
     return MasterMode;
 }
@@ -161,12 +161,12 @@ void CopyArray(uint8_t *source, uint8_t *dest, uint8_t count)
 /*
  * initialize GPIO for I2C
  * I2C Pins, SDA = P4.1, SCL = P4.2
- * P4SEL |= BIT1 + BIT2;                     // P4.1,2 option select
+ * P4SEL |= BIT1 + BIT2;
  */
 static void I2CB1_pin_init(void)
 {
-    P3SEL |= BIT0; /* p3.0 == SDA */
-    P3SEL |= BIT1; /* p3.1 == SCL */
+    P4SEL |= BIT1; /* p4.1 == SDA */
+    P4SEL |= BIT2; /* p4.2 == SCL */
 }
 
 

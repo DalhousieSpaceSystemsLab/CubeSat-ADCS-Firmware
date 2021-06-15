@@ -24,9 +24,6 @@
  *
  */
 
-/* Comment out following line if using example on Rev B Motherboard target*/
-#define MSP_LAUNCH_PAD /* target microcontroller - MSPlaunchpad used for sensor testing and characterization*/
-
 #include <msp430.h>
 
 #include "imu.h"
@@ -38,8 +35,8 @@ int main()
     int8_t rslt;
 
     imu_sensor_data_t gyro_readings = {0};              /* */
-    imu_sensor_offsets_t imu_offsets = {0};             /* */
-    imu_power_mode_status_t imu_power_status = {0};     /* */
+    //imu_sensor_offsets_t imu_offsets = {0};             /* */
+    //imu_power_mode_status_t imu_power_status = {0};     /* */
     //imu_fast_off_comp_t imu_foc = {0};                  /* */
 
     WDTCTL = WDTPW + WDTHOLD;   /* Stop watchdog timer */
@@ -48,17 +45,19 @@ int main()
 
     IMU_init();                 /* Initialize IMU */
 
-    rslt = IMU_self_test();            /* self test gyro sensor */
+    //rslt = IMU_self_test();            /* self test gyro sensor */
 
-    rslt = IMU_get_offsets(&imu_offsets);               /* Offsets */
+    //rslt = IMU_get_offsets(&imu_offsets);               /* Offsets */
 
     //rslt = IMU_set_offsets(&imu_foc, &imu_offsets);   /* Offsets */
 
-    rslt = IMU_get_power_mode(&imu_power_status);       /* Check IMU power mode config */
+    //rslt = IMU_get_power_mode(&imu_power_status);       /* Check IMU power mode config */
+
 
     rslt = IMU_get_gyro(&gyro_readings);   /* Get sensor data */
 
-    IMU_reset();
+    while(1);
+
 
     return rslt;
 }

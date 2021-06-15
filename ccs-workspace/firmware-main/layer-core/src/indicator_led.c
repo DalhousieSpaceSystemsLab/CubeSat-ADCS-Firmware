@@ -1,6 +1,13 @@
 
 #include <msp430.h>
 
+/* Comment out following line if using example on Rev B Motherboard target*/
+#define MSP_LAUNCH_PAD /* target microcontroller - MSPlaunchpad used for sensor testing and characterization*/
+
+#ifdef MSP_LAUNCH_PAD
+#warning MSP_LAUNCH_PAD defined
+#endif
+
 /*
  * @brief turns on indicator led to indicate MSP430 active
  */

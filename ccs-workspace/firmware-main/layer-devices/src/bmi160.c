@@ -1484,6 +1484,7 @@ int8_t bmi160_init(struct bmi160_dev *dev)
         /* Assign chip id as zero */
         dev->chip_id = 0;
 
+        /*try up to three times to get chip id == 0xD8 */
         while ((try--) && (dev->chip_id != BMI160_CHIP_ID))
         {
             /* Read chip_id */

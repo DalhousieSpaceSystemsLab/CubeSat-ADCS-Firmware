@@ -78,13 +78,16 @@ Other files such as drivers for testing a specific function of the code are save
 This approach is undertaken because there can only be one main.c file per project. Inside of each /filename.example project, the project's properties need to be set so that the include path for the compiler includes the required source and header files in the /firmware-main project in the workspace. This is so that only one copy of the source and header files are used by all the example projects as a "sole source of truth" and avoids version control issues associated with redundant copies of files.
 
 @todo fill in template below to match repo
-.  
-├── ...  
-├── test                    # Test files (alternatively `spec` or `tests`)  
-│   ├── benchmarks          # Load and stress tests   
-│   ├── integration         # End-to-end, integration tests (alternatively `e2e`)  
-│   └── unit                # Unit tests  
-└── ...  
+
+### A typical top-level directory layout
+    .
+    ├── build                   # Compiled files (alternatively `dist`)
+    ├── docs                    # Documentation files (alternatively `doc`)
+    ├── src                     # Source files (alternatively `lib` or `app`)
+    ├── test                    # Automated tests (alternatively `spec` or `tests`)
+    ├── tools                   # Tools and utilities
+    ├── LICENSE
+    └── README.md
 
 
 ### Creating New Example   

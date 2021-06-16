@@ -99,7 +99,9 @@ I2C_Mode I2CB1_Master_ReadReg(uint8_t dev_addr, uint8_t reg_addr, uint8_t count)
     UCB1CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
 
     /* @todo Do i need LPM0?? */
-    __bis_SR_register(LPM0 + GIE);              // Enter LPM0 w/ interrupts
+    __bis_SR_register(/*LPM0 +*/ GIE);              // Enter LPM0 w/ interrupts
+
+    while(MasterMode);
 
     return MasterMode;
 }

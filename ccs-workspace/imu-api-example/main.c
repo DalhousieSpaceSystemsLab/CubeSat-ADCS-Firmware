@@ -53,11 +53,14 @@ int main()
 
     //rslt = IMU_get_power_mode(&imu_power_status);       /* Check IMU power mode config */
 
-    if (rslt == 0)
+    while (rslt == 0)
     {
         rslt = IMU_get_gyro(&gyro_readings);   /* Get sensor data */
-    }
 
+        /* Process gyro data */
+        IMU_measurements_to_string(buf, sizeof(buflen), gyro_readings);
+
+    }
 
     return rslt;
 }

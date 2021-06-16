@@ -54,12 +54,15 @@ extern uint8_t ReceiveBuffer[]; /* defined in i2c_b1.c*/
 /*
  * @brief format from interface document : {"imu" : [ +5, +2, -3] }
  */
-int IMU_measurements_to_string(char *buf, unsigned int buflen)
+int IMU_measurements_to_string(char *buf, unsigned int buflen, const imu_sensor_data_t gyro_readings)
 {
     CONFIG_ASSERT(buf != NULL);
 
-    /** @todo IMPLEMENT string conversion */
-#warning IMPLEMENT IMU_init_i2c IN TERMS OF THE I2C API DRIVER FUNCTIONS
+    /* May need to calculate gyro measurements based on reading and gyro dps range*/
+    imu_dev.gyro_cfg.bw
+
+
+#warning /** @todo IMPLEMENT string conversion */
 
     return 0;
 }
@@ -103,18 +106,7 @@ int8_t IMU_init(void)
 
     else /* Initialization successful*/
     {
-
-    /*if (rslt == BMX160_OK)
-    {
-        printf("BMX160 initialization success !\n");
-        printf("Chip ID 0x%X\n", imu_dev.chip_id);
-    }
-    else
-    {
-        printf("BMIX60 initialization failure !\n");
-        exit();
-    }*/
-
+#warning Ensure gyro settings are properly selected
     /* Set IMU sensor & power configuration */
 
     /* Select the Output data rate, range of accelerometer sensor */
@@ -127,9 +119,25 @@ int8_t IMU_init(void)
 
     /* Select the Output data rate, range of Gyroscope sensor */
     /* @todo SET DESIRED CONFIGURATION */
-    imu_dev.gyro_cfg.odr        = BMI160_GYRO_ODR_3200HZ;
-    imu_dev.gyro_cfg.range      = BMI160_GYRO_RANGE_2000_DPS;
-    imu_dev.gyro_cfg.bw         = BMI160_GYRO_BW_NORMAL_MODE;
+
+    imu_dev.gyro_cfg.odr        = BMI160_GYRO_ODR_3200HZ;    /* Highest output datarate is 3200Hz
+                                                              * lowest is 25Hz - See Table 15 in datasheet
+                                                              */
+    /*
+     * Selection of ODR affects bandwidth of the sensor.
+     * Frequency response is often represented as “bandwidth” in specification tables
+     * for IMUs and gyroscopes. As a performance parameter, it represents the frequency
+     * at which the output magnitude drops to about 70% (–3 dB) of the actual magnitude
+     * of motion that the sensor is experiencing. In some cases, bandwidth may also be
+     * defined by the frequency at which the output response lags the actual motion by
+     * 90 degrees (for a 2-pole system).
+     *
+     * See table 15 in BMX160 Datasheet
+     */
+
+    imu_dev.gyro_cfg.range      = BMI160_GYRO_RANGE_125_DPS;    /* Lowest full range for highest resolution measurements*/
+    imu_dev.gyro_cfg.bw         = BMI160_GYRO_BW_NORMAL_MODE;   /* No oversampling */
+
 
     /* Select the power mode of Gyroscope sensor */
     imu_dev.gyro_cfg.power      = BMI160_GYRO_NORMAL_MODE;

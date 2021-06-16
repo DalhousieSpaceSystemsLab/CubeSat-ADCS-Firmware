@@ -107,8 +107,22 @@ This approach is undertaken because there can only be one main.c file per projec
     └── README.md
 
 
+    .
+    ├── ...
+    ├── test                    # Test files (alternatively `spec` or `tests`)
+    │   ├── benchmarks          # Load and stress tests
+    │   ├── integration         # End-to-end, integration tests (alternatively `e2e`)
+    │   └── unit                # Unit tests
+    └── ...
+
+
 ### Creating New Example   
 
+## Flashing and Debugging Code on Motherboard PCB
+
+<p align="center">
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/images/flashing-motherboard-with-launchpad.jpg?raw=true" alt=""/>
+</p>
 
 ## OBC Simulation
 

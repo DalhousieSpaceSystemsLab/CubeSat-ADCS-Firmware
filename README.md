@@ -21,6 +21,10 @@ map local folder to network drive so all users share same include paths for comp
 https://www.computerworld.com/article/2694895/how-to-map-a-local-folder-to-a-drive-letter-in-windows.html
 map to local /X: drive on your windows instance  
 
+<p align="center">
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/images/local-repo-setup.jpg?raw=true" alt=""/>
+</p>
+
 ## Firmware Design    
 
 Architecture separated into 3 layers. Each layer is implemented using the layer below it.  
@@ -68,6 +72,12 @@ Benefits:
   <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/drawio-diagrams/subprocess-1.2.1-check-if-json-command-supported.png?raw=true" alt="Subprocess 1.2.1: Check if JSON Command Supported"/>
 </p>
 
+## Creating a new project
+
+<p align="center">
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/images/new-project-creation.jpg?raw=true" alt=""/>
+</p>
+
 ## Repository Structure  
 
 The firmware for deployment on the embedded microcontroller is found in the /firmware-main CCS project. 
@@ -77,6 +87,9 @@ Other files such as drivers for testing a specific function of the code are save
 **\*-api-example**  for examples that use firmware-main api function calls  
 **\*-reg-example**  for examples that use register level manipulation  
 
+<p align="center">
+  <img src="https://github.com/DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware/blob/dev/resources/images/naming-convention.jpg?raw=true" alt=""/>
+</p>
 
 This approach is undertaken because there can only be one main.c file per project. Inside of each /filename.example project, the project's properties need to be set so that the include path for the compiler includes the required source and header files in the /firmware-main project in the workspace. This is so that only one copy of the source and header files are used by all the example projects as a "sole source of truth" and avoids version control issues associated with redundant copies of files.
 

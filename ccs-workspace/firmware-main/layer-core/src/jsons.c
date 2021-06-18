@@ -48,6 +48,8 @@ static jtok_tkn_t tkns[JSON_TKN_CNT];
 static char       tmp_chrbuf[100];
 
 
+extern imu_sensor_data_t gyro_readings;
+
 /* JSON HANDLER DECLARATIONS */
 static json_handler_retval parse_hardware_json(json_handler_args args);
 static json_handler_retval parse_firmware_json(json_handler_args args);
@@ -586,7 +588,8 @@ static json_handler_retval parse_imu(json_handler_args args)
     if (jtok_tokcmp("read", &tkns[*t]))
     {
         memset(tmp_chrbuf, 0, sizeof(tmp_chrbuf));
-        int error = IMU_measurements_to_string(tmp_chrbuf, sizeof(tmp_chrbuf));
+        int error = IMU_measurements_to_string(tmp_chrbuf, sizeof(tmp_chrbuf), gyro_readings);
+#warning this imu measurement conversion may not be properly implemented
         if (error)
         {
             OBC_IF_printf("{\"error\" : \"imu measurement\"}", tmp_chrbuf);

@@ -59,7 +59,7 @@ int IMU_measurements_to_string(char *buf, unsigned int buflen, const imu_sensor_
     CONFIG_ASSERT(buf != NULL);
 
     /* May need to calculate gyro measurements based on reading and gyro dps range*/
-    imu_dev.gyro_cfg.bw
+    //imu_dev.gyro_cfg.bw
 
 
 #warning /** @todo IMPLEMENT string conversion */

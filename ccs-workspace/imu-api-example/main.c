@@ -58,7 +58,7 @@ int main()
         rslt = IMU_get_gyro(&gyro_readings);   /* Get sensor data */
 
         /* Process gyro data */
-        IMU_measurements_to_string(buf, sizeof(buflen), gyro_readings);
+        //IMU_measurements_to_string(buf, sizeof(buflen), gyro_readings);
 
     }
 

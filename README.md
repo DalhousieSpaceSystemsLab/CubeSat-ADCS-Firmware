@@ -28,17 +28,25 @@ Select Project>>Import CCS Projects and then click on browse.
 Choose your ccs-workspace folder from the github repo and four projects should show up as found. 
 Select all of them and then select finish. 
 You should now have these four projects open in your Code Composer Studio.
+
+![image](https://user-images.githubusercontent.com/72110751/124775876-5b0fc700-df15-11eb-9b8c-760c95f6beed.png)
 	
-5.  Go to Project >> Show Build Settings >> General >> Project >> Device and fill in the boxes as shown. Our microcontroller is the MSP430F5529. Do not worry about the Connection box until the MSP430 is actually plugged into your computer.
+5.  Select the project imu-api-example.
+Go to Project >> Show Build Settings >> General >> Project >> Device and fill in the boxes as shown. Our microcontroller is the MSP430F5529. Do not worry about the Connection box until the MSP430 is actually plugged into your computer.
+
+![image](https://user-images.githubusercontent.com/72110751/124775921-67941f80-df15-11eb-80a5-ffca14e95d0b.png)
 	
-6. Select the project imu-api-example.
-Go to project >> show build settings.
-To the right of the compiler version option click on more>> add and then navigate to the folder of your downloaded TI v18.12.8.LTS compiler.
-Now return to the show build settings menu and choose TI v18.12.8.LTS from the dropdown
+6. In build settings to the right of the compiler version option click on More >> Add and then navigate to the folder of your downloaded TI v18.12.8.LTS compiler.
+Now return to the show build settings menu and choose TI v18.12.8.LTS from the dropdown.
+
+![image](https://user-images.githubusercontent.com/72110751/124776431-d3768800-df15-11eb-8075-45e704fa73b5.png)
 	
-7. From the linker command file box choose lnk_msp430f5529.cmd which should be an option in the dropdown menu.
+7. From the linker command file box under Projectchoose lnk_msp430f5529.cmd which should be an option in the dropdown menu.
 	
-8. Right click imu_api_example and select build project. There should be no errors. If you recieve a warning of unresolved symbols make sure that you have the correct linker selected.
+8. Right click imu_api_example and select build project. The project should build with no errors. If you recieve a warning of unresolved symbols make sure that you have the correct linker selected.
+There may be a high number of warnings but many of these are custom warnings set up by previous team members and not actual problems.
+
+![image](https://user-images.githubusercontent.com/72110751/124776577-ef7a2980-df15-11eb-9d54-dd7612294992.png)
 	
 If you have any questions about this process do not hesitate to contact me through Microsoft teams.
 

@@ -48,7 +48,7 @@ There may be a high number of warnings but many of these are custom warnings set
 
 ![image](https://user-images.githubusercontent.com/72110751/124776577-ef7a2980-df15-11eb-9d54-dd7612294992.png)
 	
-If you have any questions about this process do not hesitate to contact me through Microsoft teams.
+If you have any questions about this process do not hesitate to contact Jasper Grant through Microsoft teams or at jasper.grant@dal.ca.
 
 
 ## Firmware Design    

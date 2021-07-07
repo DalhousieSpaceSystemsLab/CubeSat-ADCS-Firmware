@@ -16,29 +16,31 @@ https://www.ti.com/tool/CCSTUDIO
 - [What is an ADCS](#what-is-an-adcs)
 
 # cloning repository - local setup
-	1. Start by downloading Code Composer Studio IDE: https://www.ti.com/tool/CCSTUDIO?utm_source=google&utm_medium=cpc&utm_campaign=epd-der-null-code_composer-cpc-evm-google-wwe&utm_content=code_composer&ds_k=code+composer&DCM=yes&gclid=CjwKCAjwoZWHBhBgEiwAiMN66TawHLv5GIA5KT6bzWSHOIJ7lSXV6wT62M3T5EF7DMVeqHHu3dSMyBoC2VYQAvD_BwE&gclsrc=aw.ds#downloads 
-	2. Next clone the DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware repo onto your local machine. Location should not be important but I tried two different locations and only the second one under documents worked for me.
-	3. Download and install the compiler TI v18.12.8.LTS from the following link: https://www.ti.com/tool/download/ARM-CGT-18
-	4. Open up code composer studio.
-	Choose CubeSat-ADCS-Firmware\ccs-workspace as your workspace. 
-	Select Project>>Import CCS Projects and then click on browse. 
-	Choose your ccs-workspace folder from the github repo and four projects should show up as found. 
-	Select all of them and then select finish. 
-	You should now have these four projects open in your Code Composer Studio.
+1. Start by downloading Code Composer Studio IDE: https://www.ti.com/tool/CCSTUDIO?utm_source=google&utm_medium=cpc&utm_campaign=epd-der-null-code_composer-cpc-evm-google-wwe&utm_content=code_composer&ds_k=code+composer&DCM=yes&gclid=CjwKCAjwoZWHBhBgEiwAiMN66TawHLv5GIA5KT6bzWSHOIJ7lSXV6wT62M3T5EF7DMVeqHHu3dSMyBoC2VYQAvD_BwE&gclsrc=aw.ds#downloads
 	
+2. Next clone the DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware repo onto your local machine. Location should not be important but I tried two different locations and only the second one under documents worked for me.
 	
-	5.  Go to Project >> Show Build Settings >> General >> Project >> Device and fill in the boxes as shown. Our microcontroller is the MSP430F5529. Do not worry about the Connection box until the MSP430 is actually plugged into your computer.
+3. Download and install the compiler TI v18.12.8.LTS from the following link: https://www.ti.com/tool/download/ARM-CGT-18
 	
+4. Open up code composer studio.
+Choose CubeSat-ADCS-Firmware\ccs-workspace as your workspace. 
+Select Project>>Import CCS Projects and then click on browse. 
+Choose your ccs-workspace folder from the github repo and four projects should show up as found. 
+Select all of them and then select finish. 
+You should now have these four projects open in your Code Composer Studio.
 	
-	6. Select the project imu-api-example.
-	Go to project >> show build settings.
-	To the right of the compiler version option click on more>> add and then navigate to the folder of your downloaded TI v18.12.8.LTS compiler.
-	Now return to the show build settings menu and choose TI v18.12.8.LTS from the dropdown
+5.  Go to Project >> Show Build Settings >> General >> Project >> Device and fill in the boxes as shown. Our microcontroller is the MSP430F5529. Do not worry about the Connection box until the MSP430 is actually plugged into your computer.
 	
+6. Select the project imu-api-example.
+Go to project >> show build settings.
+To the right of the compiler version option click on more>> add and then navigate to the folder of your downloaded TI v18.12.8.LTS compiler.
+Now return to the show build settings menu and choose TI v18.12.8.LTS from the dropdown
 	
-	7. From the linker command file box choose lnk_msp430f5529.cmd which should be an option in the dropdown menu.
-	8. Right click imu_api_example and select build project. There should be no errors. If you recieve a warning of unresolved symbols make sure that you have the correct linker selected.
-	If you have any questions about this process do not hesitate to contact me through Microsoft teams.
+7. From the linker command file box choose lnk_msp430f5529.cmd which should be an option in the dropdown menu.
+	
+8. Right click imu_api_example and select build project. There should be no errors. If you recieve a warning of unresolved symbols make sure that you have the correct linker selected.
+	
+If you have any questions about this process do not hesitate to contact me through Microsoft teams.
 
 
 ## Firmware Design    

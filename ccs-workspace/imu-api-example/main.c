@@ -29,8 +29,10 @@
 #include "imu.h"
 #include "indicator_led.h"
 
-
 int main()
+
+
+
 {
     int8_t rslt;
 
@@ -52,11 +54,9 @@ int main()
     //rslt = IMU_set_offsets(&imu_foc, &imu_offsets);   /* Offsets */
 
     //rslt = IMU_get_power_mode(&imu_power_status);       /* Check IMU power mode config */
-
-    while (rslt == 0)
+    while (rslt == 0 )
     {
         rslt = IMU_get_gyro(&gyro_readings);   /* Get sensor data */
-
         /* Process gyro data */
         //IMU_measurements_to_string(buf, sizeof(buflen), gyro_readings);
 
@@ -64,4 +64,3 @@ int main()
 
     return rslt;
 }
-

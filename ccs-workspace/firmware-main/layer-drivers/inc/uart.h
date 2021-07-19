@@ -15,9 +15,9 @@ extern "C"
  * @brief Initialize the UART with interface UCA0
  * @param rx the receive function to execute upon execution of the UART rx ISR
  */
-void uart_init(receive_func rx);
+void uart_init(void);
 void uart_deinit(void);
-int  uart_transmit(uint8_t *buf, uint_least16_t buflen);
+int uart_transmit(uint8_t *msg, uint_least16_t msglen);
 
 #else
 

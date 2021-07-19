@@ -28,9 +28,20 @@
 
 static receive_func uart_rx_cb;
 
-void uart_init(receive_func rx)
+
+#define UART_BUFLEN 200u
+extern volatile uint8_t  uart_rxbuf[UART_BUFLEN];
+extern volatile uint8_t *uart_rx_inptr;
+extern volatile uint8_t *uart_rx_outptr;
+
+
+void uart_init(void)
 {
-    P3SEL = BIT3 + BIT4; /* P3.4,5 = USCI_A0 TXD/RXD */
+    uart_rx_inptr  = uart_rxbuf;
+    uart_rx_outptr = uart_rxbuf;
+
+    P3SEL |= BIT3; /* P3.3 = UCA0TX */
+    P3SEL |= BIT4; /* P3.4 = UCA0RX */
     UCA0CTL1 |= UCSWRST; /* **Put state machine in reset** */
 
     UCA0CTL1 |= UCSSEL__SMCLK; /* SMCLK */
@@ -46,10 +57,6 @@ void uart_init(receive_func rx)
 
     /* over sampling */
     UCA0CTL1 &= ~UCSWRST; /* Initialize USCI state machine */
-
-    log_trace("initialized uart\n");
-    CONFIG_ASSERT(rx != NULL);
-    uart_rx_cb = rx;
 
     UCA0IE |= UCRXIE; /* Enable USCI_A0 RX interrupt */
 }
@@ -79,19 +86,18 @@ void uart_deinit(void)
 
 int uart_transmit(uint8_t *msg, uint_least16_t msglen)
 {
-    CONFIG_ASSERT(msg != NULL);
     if (!(UCA0IE & UCTXIE) && !(UCA0STAT & UCBUSY))
-    {
-        unsigned int i = 0;
-        do
         {
-            if (UCA0IFG & UCTXIFG)
+            unsigned int i = 0;
+            do
             {
-                UCA0TXBUF = msg[i++];
-            }
-        } while (i < msglen);
-    }
-    return 0;
+if (UCA0IFG & UCTXIFG)
+                {
+                    UCA0TXBUF = msg[i++];
+                }
+            } while (i < msglen);
+        }
+        return 0;
 }
 
 //******************************************************************************

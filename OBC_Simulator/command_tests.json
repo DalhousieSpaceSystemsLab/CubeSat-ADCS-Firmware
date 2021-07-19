@@ -1,0 +1,6 @@
+{   
+    "commandDelaySec" : 0.1,
+    "commands" : [
+        {"imu" : "read"}
+    ]
+}

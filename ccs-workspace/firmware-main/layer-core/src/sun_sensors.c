@@ -36,13 +36,7 @@
 #else
 #endif /* #if defined(TARGET_MCU) */
 
-
-typedef struct
-{
-    float lux_1;
-    float lux_2;
-    float lux_3;
-} SUNSEN_measurement_t;
+struct SUNSEN_measurement_t;
 
 static void SUNSEN_enable_ADS7841_x_plus(void);
 static void SUNSEN_enable_ADS7841_x_minus(void);
@@ -59,8 +53,8 @@ static void SUNSEN_disable_ADS7841_z_plus(void);
 static void SUNSEN_disable_ADS7841_z_minus(void);
 
 
-static void                 SUNSEN_init_phy(void);
-static SUNSEN_measurement_t SUNSEN_get_face_lux(SUNSEN_FACE_t face);
+//static void                 SUNSEN_init_phy(void);
+//static SUNSEN_measurement_t SUNSEN_get_face_lux(SUNSEN_FACE_t face);
 static int                  SUNSEN_adcs_to_temp_deg_c(uint16_t adc_val);
 
 

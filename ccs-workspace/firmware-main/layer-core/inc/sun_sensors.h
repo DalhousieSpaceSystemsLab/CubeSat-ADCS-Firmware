@@ -17,9 +17,19 @@ typedef enum
     SUNSEN_FACE_z_neg,
 } SUNSEN_FACE_t;
 
+
+typedef struct
+{
+    float lux_1;
+    float lux_2;
+    float lux_3;
+} SUNSEN_measurement_t;
+
 int SUNSEN_get_z_pos_temp(void);
 int SUNSEN_get_z_neg_temp(void);
 int SUNSEN_face_lux_to_string(char *buf, int len, SUNSEN_FACE_t face);
+static void SUNSEN_init_phy(void);
+static SUNSEN_measurement_t SUNSEN_get_face_lux(SUNSEN_FACE_t face);
 
 
 #ifdef __cplusplus

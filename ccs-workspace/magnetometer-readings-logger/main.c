@@ -78,6 +78,7 @@ int main()
     __bis_SR_register(GIE);
     while (rslt == 0 )
     {
+        //This IMU_get_gyro function should be swapped out for it's magnetometer equivalent and then other libraries and variables not needed can be removed.
         rslt = IMU_get_gyro(&gyro_readings);
         uart_printf("%d %d %d\n", gyro_readings.x, gyro_readings.y, gyro_readings.z);
 

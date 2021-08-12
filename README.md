@@ -20,7 +20,7 @@ https://www.ti.com/tool/CCSTUDIO
 	
 2. Next clone the DalhousieSpaceSystemsLab/CubeSat-ADCS-Firmware repo onto your local machine. Location should not be important but I tried two different locations and only the second one under documents worked for me.
 	
-3. Download and install the compiler TI v18.12.8.LTS from the following link: https://www.ti.com/tool/download/ARM-CGT-18
+3. Download and install the compiler TI v18.12.8.LTS from the following link: https://www.ti.com/tool/download/MSP-CGT-18
 	
 4. Open up code composer studio.
 Choose CubeSat-ADCS-Firmware\ccs-workspace as your workspace. 

@@ -240,7 +240,7 @@ static void SUNSEN_disable_ADS7841_z_minus(void)
 }
 
 
-static SUNSEN_measurement_t SUNSEN_get_face_lux(SUNSEN_FACE_t face)
+SUNSEN_measurement_t SUNSEN_get_face_lux(SUNSEN_FACE_t face)
 {
     SUNSEN_measurement_t measurement;
     memset(&measurement, 0, sizeof(measurement));
@@ -276,7 +276,7 @@ static int SUNSEN_adcs_to_temp_deg_c(uint16_t adc_val)
 }
 
 
-static void SUNSEN_init_phy(void)
+void SUNSEN_init_phy(void)
 {
 #if defined(TARGET_MCU)
 

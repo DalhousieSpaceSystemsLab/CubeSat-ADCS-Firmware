@@ -120,7 +120,7 @@ int8_t IMU_init(void)
     /* Select the Output data rate, range of Gyroscope sensor */
     /* @todo SET DESIRED CONFIGURATION */
 
-    imu_dev.gyro_cfg.odr        = BMI160_GYRO_ODR_3200HZ;    /* Highest output datarate is 3200Hz
+    imu_dev.gyro_cfg.odr        = BMI160_GYRO_ODR_25HZ;    /* Highest output datarate is 3200Hz
                                                               * lowest is 25Hz - See Table 15 in datasheet
                                                               */
     /*

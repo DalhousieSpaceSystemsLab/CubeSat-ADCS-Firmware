@@ -1,22 +1,39 @@
 import serial
+import time
+import datetime
+
 s = serial.Serial(port='COM15', baudrate=115200)
 s.flush()
-s.write(bytes(str('m'),'ascii')) # enter mode select
-s.write(bytes(str('3'),'ascii')) # select uart mode
-s.write(bytes(str('5'),'ascii')) # 9600 baudrate
-#s.write(bytes(b'1')) # parity
-#s.write(bytes(b'1')) # 1 stop bit
-#s.write(bytes(b'1')) # "set 1 == idle level"
-#s.write(bytes(b'2')) # output mode level == normal
-#s.write(bytes(b'(1)'))
-#s.write(bytes(b'y'))
+s.write(bytes(str('m') + '\n','ascii')) # enter mode select
+time.sleep(0.1)
+s.write(bytes(str('3') + '\n','ascii')) # select uart mode
+time.sleep(0.1)
+s.write(bytes('5' + '\n','ascii')) # 9600 baudrate
+time.sleep(0.1)
+s.write(bytes('1' + '\n','ascii')) # parity
+time.sleep(0.1)
+s.write(bytes('1' + '\n','ascii')) # 1 stop bit
+time.sleep(0.1)
+s.write(bytes('1' + '\n','ascii')) # "set 1 == idle level"
+time.sleep(0.1)
+s.write(bytes('2' + '\n','ascii')) # output mode level == normal
+time.sleep(0.1)
+s.write(bytes('(1)' + '\n','ascii'))
+time.sleep(0.1)
+s.write(bytes('y' + '\n','ascii'))
+time.sleep(0.1)
 
-s.flush()
-print('written successfully')
-cycles = 0
+f = open("log1.txt", "w")
+
 while s.is_open:
-    print(cycles)
-    res = s.read(1)
-    print(res)
-    cycles+=1
+    try:
+        timestamp = datetime.datetime.now().strftime("[ %H : %M : %S : %f ]")
+        data = s.readline()
+        f.write(f"{timestamp} : {data.decode('UTF-8')}")
+        print(data.decode('UTF-8'))
+    except KeyboardInterrupt:
+        f.close()
+        break
 print('port closed')
+
+

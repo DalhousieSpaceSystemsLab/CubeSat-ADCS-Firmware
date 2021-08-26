@@ -22,8 +22,9 @@ s.write(bytes('(1)' + '\n','ascii'))
 time.sleep(0.1)
 s.write(bytes('y' + '\n','ascii'))
 time.sleep(0.1)
+print("Finished writing\n")
 
-f = open("log1.txt", "w")
+f = open("log12hour.txt", "w")
 
 while s.is_open:
     try:

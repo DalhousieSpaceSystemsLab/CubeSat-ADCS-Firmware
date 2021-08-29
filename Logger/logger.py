@@ -30,8 +30,12 @@ while s.is_open:
     try:
         timestamp = datetime.datetime.now().strftime("[ %H : %M : %S : %f ]")
         data = s.readline()
-        f.write(f"{timestamp} : {data.decode('UTF-8')}")
-        print(data.decode('UTF-8'))
+        try:
+            data = data.decode('UTF-8')
+            f.write(f"{timestamp} : {data}")
+            print(data)
+        except:
+           f.write(f"{timestamp} : ERROR\n")
     except KeyboardInterrupt:
         f.close()
         break

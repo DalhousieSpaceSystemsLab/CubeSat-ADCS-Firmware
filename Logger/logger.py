@@ -24,7 +24,7 @@ s.write(bytes('y' + '\n','ascii'))
 time.sleep(0.1)
 print("Finished writing\n")
 
-f = open("log12hour.txt", "w")
+f = open("log12hour4.txt", "w")
 
 while s.is_open:
     try:
@@ -39,6 +39,7 @@ while s.is_open:
     except KeyboardInterrupt:
         f.close()
         break
+    s.flush()
 print('port closed')
 
 

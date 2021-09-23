@@ -18,6 +18,30 @@
 #include "obc_interface.h"
 #include "jsons.h"
 
+#define UART_RX_MSG_DELIM '!'
+#define UART_BUFLEN 200u
+
+volatile uint8_t  uart_rxbuf[UART_BUFLEN];
+static volatile int uart_rx_delim_received;
+static uint8_t uart_txbuf[UART_BUFLEN];
+volatile uint8_t *uart_rx_inptr;
+volatile uint8_t *uart_rx_outptr;
+
+uint8_t caller_rxbuf[200];
+
+#define uart_printf(fmt, ...)                                                  \
+    do                                                                         \
+    {                                                                          \
+        uint16_t cnt;                                                          \
+        cnt = snprintf(uart_txbuf, sizeof(uart_txbuf), (fmt), ##__VA_ARGS__);  \
+        if (cnt > sizeof(uart_txbuf))                                          \
+        {                                                                      \
+            cnt = sizeof(uart_txbuf);                                          \
+        }                                                                      \
+        uart_transmit(uart_txbuf, cnt);                                        \
+    } while (0)
+
+
 
 static void pulldown_unused_floating_pins(void);
 

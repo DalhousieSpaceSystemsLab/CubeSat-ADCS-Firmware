@@ -59,6 +59,13 @@ uint8_t caller_rxbuf[200];
     } while (0)
 
 
+typedef enum
+{
+    MQTR_x,
+    MQTR_y,
+    MQTR_z,
+} MQTR_t;
+
 int main()
 
 
@@ -66,23 +73,25 @@ int main()
 {
     int8_t rslt;
 
-    imu_sensor_data_t gyro_readings = {0};
-
     WDTCTL = WDTPW + WDTHOLD;
 
     led_init();
 
     rslt = IMU_init();
 
+    MQTR_init();
+    MQTR_set_coil_voltage_mv(MQTR_x, 500);
+    MQTR_set_coil_voltage_mv(MQTR_y, 500);
+    MQTR_set_coil_voltage_mv(MQTR_z, 500);
+
     uart_init();
-    __bis_SR_register(GIE);
-    while (rslt == 0 )
-    {
-        rslt = IMU_get_gyro(&gyro_readings);
-        uart_printf("%d %d %d\n", gyro_readings.x, gyro_readings.y, gyro_readings.z);
+        __bis_SR_register(GIE);
+        while (rslt == 0 )
+        {
 
+            uart_printf("%d %d %d\n", MQTR_get_coil_voltage_mv(MQTR_x), MQTR_get_coil_voltage_mv(MQTR_y),MQTR_get_coil_voltage_mv(MQTR_z));
 
-    }
+        }
 
     return rslt;
 }

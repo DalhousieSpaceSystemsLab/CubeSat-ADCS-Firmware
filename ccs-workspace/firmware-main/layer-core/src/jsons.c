@@ -48,7 +48,7 @@ static jtok_tkn_t tkns[JSON_TKN_CNT];
 static char       tmp_chrbuf[100];
 
 
-extern imu_sensor_data_t gyro_readings;
+imu_sensor_data_t gyro_readings;
 
 /* JSON HANDLER DECLARATIONS */
 static json_handler_retval parse_hardware_json(json_handler_args args);

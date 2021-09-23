@@ -21,7 +21,7 @@ signal.signal(signal.SIGINT, signal_handler_SIGINT)
 
 class ObcBusPirate():
 
-    def __init__(self, chardev = "/dev/ttyUSB0", usb_baud = 115200):
+    def __init__(self, chardev = "COM15", usb_baud = 115200):
         pass
         self.min_delay = 0.1
         self.port = serial.Serial(chardev, baudrate = usb_baud, timeout = 0.1)
@@ -203,5 +203,5 @@ if __name__ == "__main__":
         for i in range(1, argc):
             process_json_commands(sys.argv[i])
     else:
-        json_filepath = input("Enter the path to the json file with OBC commands: ")
+        json_filepath = "C:/Users/Jasper Grant/Documents/CubeSat-ADCS-Firmware/OBC_Simulator/command_tests.json"
         process_json_commands(json_filepath)

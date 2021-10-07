@@ -1,38 +1,30 @@
 /**
  * @file main.c
  *
- * @purpose IMU logger to be read by computer through USB port
+ * @purpose magnetometer logger to be read by computer through UART-> USB port
  *
- * @author thomas christison (christisonthomas@gmail.com)
- * @modified by jasper grant (jasper.grant@dal.ca)
+ * @author Zhang Yiming (Yimimg.Zhang@dal.ca)
  * @brief
- * @version 0.1
- * @date 2021-07-19
+ * @version 0.2
+ * @date 2021-08-25
  *
  *
- * IMU Datasheet
- * https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmx160-ds0001.pdf
+ * Magnetometer Datasheet
+ * https://aerospace.honeywell.com/content/dam/aerobt/en/documents/learn/products/sensors/datasheet/HMC_1051-1052-1053_Data_Sheet.pdf
  *
- * Rev B will be using default I2C address of 0x68 with ADDR select pin pulled to ground.
- *
- * BMX160 IMU is a sensor which internally contains the BMI160 IMU which has a vendor provided driver so that will be used
- *  - To use the vendor driver, three functions are required to be written for the microcontroller: write, read, and delay
- *
- * Additionally we should configure the IMU for the sensor configuration we desire.
- *  - In this case we only require the gyroscope data and can ignore the magnetometer and accelerometer configuration data.
- *  - The additional sensors can be integrated into the ADCS in the future if desired by extenting our code base and system to
- *    use the measurements.
+ * HMC 1053 is a 3 Axis Magnetic Sensors, it will be used to measure the 3 axis magnetic field value around LORIS satellite in space
  *
  */
 
 #include <msp430.h>
 
-#include "imu.h"
+#include "magnetometer.h"
 #include "indicator_led.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include <uart.h>
+
 
 #define UART_BUFLEN 200u
 
@@ -59,30 +51,34 @@ uint8_t caller_rxbuf[200];
     } while (0)
 
 
+
 int main()
 
+    {
+    //int8_t rslt = 0;
+    MAGTOM_measurement_t magtom_readings = {0}; //has error
 
+    WDTCTL = WDTPW + WDTHOLD; /*watchdog*/
 
-{
-    int8_t rslt;
-
-    imu_sensor_data_t gyro_readings = {0};
-
-    WDTCTL = WDTPW + WDTHOLD;
-
-    led_init();
-
-    rslt = IMU_init();
+    MAGTOM_init(); /* Magnetometer Initilization*/
 
     uart_init();
-    __bis_SR_register(GIE);
-    while (rslt == 0 )
+    __bis_SR_register(GIE); /* ??? */
+    led_init(); /* Turn on indicator LED */
+
+    FILE *out;
+    out = fopen ("magtomout.txt","w");
+    puts("Hello, world!\n");
+    uart_printf("Hello, world!\n");
+    int i = 0;
+    for (i = 0; i < 1000; i++)
     {
-        //This IMU_get_gyro function should be swapped out for it's magnetometer equivalent and then other libraries and variables not needed can be removed.
-        rslt = IMU_get_gyro(&gyro_readings);
-        uart_printf("%d %d %d\n", gyro_readings.x, gyro_readings.y, gyro_readings.z);
+        magtom_readings = MAGTOM_get_measurement();
+        //uart_printf("%f %f %f\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
+        //printf("Z:%f Y:%f X:%f\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
+        //fprintf(out,"%f %f %f\n\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
 
     }
-
-    return rslt;
+    fclose(out);
+    return 0;
 }

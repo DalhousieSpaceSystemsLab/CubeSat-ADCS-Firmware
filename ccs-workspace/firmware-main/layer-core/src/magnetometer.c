@@ -41,18 +41,14 @@
 #define MAGTOM_ADS7841_Y_FACE_CHANNEL (ADS7841_CHANNEL_SGL_2)
 #define MAGTOM_ADS7841_Z_FACE_CHANNEL (ADS7841_CHANNEL_SGL_3)
 
-typedef struct
-{
-    float x_BMAG;
-    float y_BMAG;
-    float z_BMAG;
-} MAGTOM_measurement_t;
+
+//typedef struct MAGTOM_measurement MAGTOM_measurement_t;
 
 static void MAGTOM_enable_ADS7841(void);
 static void MAGTOM_disable_ADS7841(void);
 static void MAGTOM_init_phy(void);
 
-static MAGTOM_measurement_t MAGTOM_get_measurement(void);
+MAGTOM_measurement_t MAGTOM_get_measurement(void);
 
 
 static bool phy_initialized = false;
@@ -113,7 +109,7 @@ static void MAGTOM_disable_ADS7841(void)
 }
 
 
-static MAGTOM_measurement_t MAGTOM_get_measurement(void)
+MAGTOM_measurement_t MAGTOM_get_measurement(void)
 {
     MAGTOM_measurement_t data = {0};
 
@@ -150,6 +146,21 @@ static MAGTOM_measurement_t MAGTOM_get_measurement(void)
     data.x_BMAG = ADS7841_measure_channel(MAGTOM_ADS7841_X_FACE_CHANNEL);
     data.y_BMAG = ADS7841_measure_channel(MAGTOM_ADS7841_Y_FACE_CHANNEL);
     data.z_BMAG = ADS7841_measure_channel(MAGTOM_ADS7841_Z_FACE_CHANNEL);
+    /*2021-09-14 Update:the output result from ADS7841_measure_channel is
+     *mV = (output/4096)*3.3, need some convertion to gauss (uT)
+     */
+
+    float a,b,c;
+    a = (data.x_BMAG / 4096)*3.3;
+    b = (data.y_BMAG / 4096)*3.3;
+    c = (data.z_BMAG / 4096)*3.3;
+    printf("z voltage:%f; y voltage:%f; x voltage:%f\n", a,b,c);
+
+
+    data.x_BMAG = ((data.x_BMAG / 4096)*3.3 - 1.65) / 244.6 / 3.3 / 0.0033 *100;
+    data.y_BMAG = ((data.y_BMAG / 4096)*3.3 - 1.65) / 244.6 / 3.3 / 0.0033 *100;
+    data.z_BMAG = ((data.z_BMAG / 4096)*3.3 - 1.65) / 244.6 / 3.3 / 0.0033 *100;
+
 
     ADS7841_driver_deinit();
 

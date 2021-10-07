@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-
+#define DEBUG 1 //new add
 #if defined(TARGET_MCU)
 #include "watchdog.h"
 #include "mcu.h"
@@ -58,11 +58,11 @@ int main(void)
     watchdog_start();
 #endif /* #if defined(DEBUG) */
 
-    OBC_IF_config(OBC_IF_PHY_CFG_UART);
-    IMU_init();
-    MAGTOM_init();
-    RW_init();
-    MQTR_init();
+    OBC_IF_config(OBC_IF_PHY_CFG_EMULATED);
+    //IMU_init();
+    //MAGTOM_init();
+    //RW_init();
+    //MQTR_init();
     pulldown_unused_floating_pins();
     enable_interrupts();
 
@@ -71,10 +71,12 @@ int main(void)
 #endif /* #if defined(TARGET_MCU) */
 
 
-    for (;;)
+    while (1)
     {
+        puts("loop start\n");
         if (OBC_IF_dataRxFlag_read() == OBC_IF_DATA_RX_FLAG_SET)
         {
+            puts("T1\n");
             /* get command json string from OBC interface */
             OCB_IF_get_command_string(msg, sizeof(msg));
 
@@ -108,7 +110,7 @@ int main(void)
             }
             OBC_IF_dataRxFlag_write(OBC_IF_DATA_RX_FLAG_CLR);
         }
-
+        puts("loop close1\n");
 #if defined(TARGET_MCU) && !defined(DEBUG)
         watchdog_kick();
 #endif /* #if defined(TARGET_MCU) && !defined(DEBUG)*/

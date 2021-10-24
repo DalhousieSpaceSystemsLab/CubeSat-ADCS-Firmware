@@ -154,7 +154,7 @@ MAGTOM_measurement_t MAGTOM_get_measurement(void)
     a = (data.x_BMAG / 4096)*3.3;
     b = (data.y_BMAG / 4096)*3.3;
     c = (data.z_BMAG / 4096)*3.3;
-    printf("z voltage:%f; y voltage:%f; x voltage:%f\n", a,b,c);
+    //printf("z voltage:%f; y voltage:%f; x voltage:%f\n", a,b,c);
 
 
     data.x_BMAG = ((data.x_BMAG / 4096)*3.3 - 1.65) / 244.6 / 3.3 / 0.0033 *100;

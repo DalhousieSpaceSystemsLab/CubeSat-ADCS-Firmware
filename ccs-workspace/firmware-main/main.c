@@ -17,6 +17,7 @@
 
 #include "obc_interface.h"
 #include "jsons.h"
+#include <uart.h>
 
 #define UART_RX_MSG_DELIM '!'
 #define UART_BUFLEN 200u
@@ -43,6 +44,7 @@ uint8_t caller_rxbuf[200];
 
 
 
+
 static void pulldown_unused_floating_pins(void);
 
 
@@ -58,7 +60,7 @@ int main(void)
     watchdog_start();
 #endif /* #if defined(DEBUG) */
 
-    OBC_IF_config(OBC_IF_PHY_CFG_EMULATED);
+    OBC_IF_config(OBC_IF_PHY_CFG_UART);
     //IMU_init();
     //MAGTOM_init();
     //RW_init();

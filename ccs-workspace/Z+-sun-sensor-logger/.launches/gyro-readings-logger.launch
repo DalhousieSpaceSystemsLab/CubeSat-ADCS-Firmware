@@ -5,7 +5,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.MSP430F5529.ccxml.TI MSP430 USB1/MSP430" value="${build_artifact:gyro-readings-logger}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.MSP430F5529.ccxml.TI MSP430 USB1/MSP430" value="gyro-readings-logger"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:gyro-readings-logger}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.MSP430F5529.ccxml.TI MSP430 USB1/MSP430" value="C:\Users\Jasper Grant\Documents\CubeSat-ADCS-Firmware\ccs-workspace\gyro-readings-logger\Debug\gyro-readings-logger.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.MSP430F5529.ccxml.TI MSP430 USB1/MSP430" value="H:\DSS Firmware\ccs-workspace\gyro-readings-logger\Debug\gyro-readings-logger.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/gyro-readings-logger"/>
 </listAttribute>

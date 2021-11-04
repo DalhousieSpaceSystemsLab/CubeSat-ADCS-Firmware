@@ -68,13 +68,13 @@ int main()
 
     FILE *out;
     out = fopen ("magtomout.txt","w");
-    puts("Hello, world!\n");
+    //puts("Hello, world!\n");
     uart_printf("Hello, world!\n");
     int i = 0;
-    for (i = 0; i < 1000; i++)
+    while(1)
     {
         magtom_readings = MAGTOM_get_measurement();
-        //uart_printf("%f %f %f\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
+        uart_printf("%f %f %f\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
         //printf("Z:%f Y:%f X:%f\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
         //fprintf(out,"%f %f %f\n\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
 

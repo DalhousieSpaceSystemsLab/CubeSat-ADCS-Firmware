@@ -69,8 +69,17 @@ buffer_instance_handle ringbuf_ctor_new(unsigned int size)
     assert(ringbuf != NULL);
 
     ringbuf->buf.start = malloc(size);
-    assert(ringbuf->buf.start != NULL);
-    memset(ringbuf->buf.start, 0, size);
+    //assert(ringbuf->buf.start != NULL);
+    /*memset(ringbuf->buf.start, 0, 250);
+    memset(ringbuf->buf.start, 0, 260);
+    memset(ringbuf->buf.start, 0, 270);*/
+    memset(ringbuf->buf.start, 0, 280);
+    /*memset(ringbuf->buf.start, 0, 290);
+    memset(ringbuf->buf.start, 0, 300);*/
+
+    /*very weird, Line 71 allocated 500 size, but when memset size£¾~280, program will restart
+    i guess it is buffer available size issue, but currently unable to solve it - Yiming*/
+
     ringbuf->in_ptr  = ringbuf->buf.start;
     ringbuf->out_ptr = ringbuf->buf.start;
 

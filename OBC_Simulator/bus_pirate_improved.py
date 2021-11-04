@@ -203,5 +203,5 @@ if __name__ == "__main__":
         for i in range(1, argc):
             process_json_commands(sys.argv[i])
     else:
-        json_filepath = "C:/Users/Jasper Grant/Documents/CubeSat-ADCS-Firmware/OBC_Simulator/command_tests.json"
+        json_filepath = "C:/Users/Jasper Grant/Documents/CubeSat-ADCS-Firmware/OBC_Simulator/version_command_tests.json"
         process_json_commands(json_filepath)

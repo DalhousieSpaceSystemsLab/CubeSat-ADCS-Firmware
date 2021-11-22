@@ -50,6 +50,7 @@ void delay_ms(uint32_t ms);         /* @todo Makes sense to move this function t
 
 /* IMU API*/
 int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data);
+int8_t IMU_get_magno(imu_sensor_data_t *magno_data);
 int8_t IMU_self_test(void);
 int8_t IMU_get_offsets(imu_sensor_offsets_t *offset);
 int8_t IMU_set_offsets(const imu_fast_off_comp_t *foc_conf, const imu_sensor_offsets_t *offset);

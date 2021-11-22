@@ -66,8 +66,8 @@ int main()
 {
     int8_t rslt;
 
-    //imu_sensor_data_t gyro_readings = {0};
-    bmi_aux_data magnetometer_data = 0;
+    imu_sensor_data_t magno_readings = {0};
+
 
     WDTCTL = WDTPW + WDTHOLD;
 
@@ -76,14 +76,14 @@ int main()
     rslt = IMU_init();
 
     uart_init();
-    bmi160_aux_init(bmi160_aux_data); //This function needs proper arguments
+    bmi160_aux_init(&imu_dev); //This function needs proper arguments
         __bis_SR_register(GIE);
     while (rslt == 0 )
         {
-            //rslt = IMU_get_gyro(&gyro_readings);
-            rslt = bmi160_aux_read(uint8_t reg_addr, &magnetometer_data, uint16_t len, bmi160_aux_data); //This function needs proper arguments
+            rslt = IMU_get_magno(&magno_readings);
 
-        uart_printf("%d\n", magnetometer);
+
+        //uart_printf("%d\n", magnetometer);
 
 
     }

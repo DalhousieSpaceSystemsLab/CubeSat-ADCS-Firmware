@@ -2,7 +2,7 @@ import serial
 import time
 import datetime
 
-s = serial.Serial(port='COM14', baudrate=115200)
+s = serial.Serial(port='COM8', baudrate=115200)
 s.flush()
 s.write(bytes(str('m') + '\n','ascii')) # enter mode select
 time.sleep(0.1)

@@ -1,81 +1,2821 @@
-(function(g){var window=this;'use strict';var uJa=function(a,b){var c=(b-a.i)/(a.l-a.i);if(0>=c)return 0;if(1<=c)return 1;for(var d=0,e=1,f=0,h=0;8>h;h++){f=g.Jn(a,c);var l=(g.Jn(a,c+1E-6)-f)/1E-6;if(1E-6>Math.abs(f-b))return c;if(1E-6>Math.abs(l))break;else f<b?d=c:e=c,c-=(f-b)/l}for(h=0;1E-6<Math.abs(f-b)&&8>h;h++)f<b?(d=c,c=(c+e)/2):(e=c,c=(c+d)/2),f=g.Jn(a,c);return c},t3=function(){return{D:"svg",
-U:{height:"100%",version:"1.1",viewBox:"0 0 110 26",width:"100%"},S:[{D:"path",Mb:!0,K:"ytp-svg-fill",U:{d:"M 16.68,.99 C 13.55,1.03 7.02,1.16 4.99,1.68 c -1.49,.4 -2.59,1.6 -2.99,3 -0.69,2.7 -0.68,8.31 -0.68,8.31 0,0 -0.01,5.61 .68,8.31 .39,1.5 1.59,2.6 2.99,3 2.69,.7 13.40,.68 13.40,.68 0,0 10.70,.01 13.40,-0.68 1.5,-0.4 2.59,-1.6 2.99,-3 .69,-2.7 .68,-8.31 .68,-8.31 0,0 .11,-5.61 -0.68,-8.31 -0.4,-1.5 -1.59,-2.6 -2.99,-3 C 29.11,.98 18.40,.99 18.40,.99 c 0,0 -0.67,-0.01 -1.71,0 z m 72.21,.90 0,21.28 2.78,0 .31,-1.37 .09,0 c .3,.5 .71,.88 1.21,1.18 .5,.3 1.08,.40 1.68,.40 1.1,0 1.99,-0.49 2.49,-1.59 .5,-1.1 .81,-2.70 .81,-4.90 l 0,-2.40 c 0,-1.6 -0.11,-2.90 -0.31,-3.90 -0.2,-0.89 -0.5,-1.59 -1,-2.09 -0.5,-0.4 -1.10,-0.59 -1.90,-0.59 -0.59,0 -1.18,.19 -1.68,.49 -0.49,.3 -1.01,.80 -1.21,1.40 l 0,-7.90 -3.28,0 z m -49.99,.78 3.90,13.90 .18,6.71 3.31,0 0,-6.71 3.87,-13.90 -3.37,0 -1.40,6.31 c -0.4,1.89 -0.71,3.19 -0.81,3.99 l -0.09,0 c -0.2,-1.1 -0.51,-2.4 -0.81,-3.99 l -1.37,-6.31 -3.40,0 z m 29.59,0 0,2.71 3.40,0 0,17.90 3.28,0 0,-17.90 3.40,0 c 0,0 .00,-2.71 -0.09,-2.71 l -9.99,0 z m -53.49,5.12 8.90,5.18 -8.90,5.09 0,-10.28 z m 89.40,.09 c -1.7,0 -2.89,.59 -3.59,1.59 -0.69,.99 -0.99,2.60 -0.99,4.90 l 0,2.59 c 0,2.2 .30,3.90 .99,4.90 .7,1.1 1.8,1.59 3.5,1.59 1.4,0 2.38,-0.3 3.18,-1 .7,-0.7 1.09,-1.69 1.09,-3.09 l 0,-0.5 -2.90,-0.21 c 0,1 -0.08,1.6 -0.28,2 -0.1,.4 -0.5,.62 -1,.62 -0.3,0 -0.61,-0.11 -0.81,-0.31 -0.2,-0.3 -0.30,-0.59 -0.40,-1.09 -0.1,-0.5 -0.09,-1.21 -0.09,-2.21 l 0,-0.78 5.71,-0.09 0,-2.62 c 0,-1.6 -0.10,-2.78 -0.40,-3.68 -0.2,-0.89 -0.71,-1.59 -1.31,-1.99 -0.7,-0.4 -1.48,-0.59 -2.68,-0.59 z m -50.49,.09 c -1.09,0 -2.01,.18 -2.71,.68 -0.7,.4 -1.2,1.12 -1.49,2.12 -0.3,1 -0.5,2.27 -0.5,3.87 l 0,2.21 c 0,1.5 .10,2.78 .40,3.78 .2,.9 .70,1.62 1.40,2.12 .69,.5 1.71,.68 2.81,.78 1.19,0 2.08,-0.28 2.78,-0.68 .69,-0.4 1.09,-1.09 1.49,-2.09 .39,-1 .49,-2.30 .49,-3.90 l 0,-2.21 c 0,-1.6 -0.2,-2.87 -0.49,-3.87 -0.3,-0.89 -0.8,-1.62 -1.49,-2.12 -0.7,-0.5 -1.58,-0.68 -2.68,-0.68 z m 12.18,.09 0,11.90 c -0.1,.3 -0.29,.48 -0.59,.68 -0.2,.2 -0.51,.31 -0.81,.31 -0.3,0 -0.58,-0.10 -0.68,-0.40 -0.1,-0.3 -0.18,-0.70 -0.18,-1.40 l 0,-10.99 -3.40,0 0,11.21 c 0,1.4 .18,2.39 .68,3.09 .49,.7 1.21,1 2.21,1 1.4,0 2.48,-0.69 3.18,-2.09 l .09,0 .31,1.78 2.59,0 0,-14.99 c 0,0 -3.40,.00 -3.40,-0.09 z m 17.31,0 0,11.90 c -0.1,.3 -0.29,.48 -0.59,.68 -0.2,.2 -0.51,.31 -0.81,.31 -0.3,0 -0.58,-0.10 -0.68,-0.40 -0.1,-0.3 -0.21,-0.70 -0.21,-1.40 l 0,-10.99 -3.40,0 0,11.21 c 0,1.4 .21,2.39 .71,3.09 .5,.7 1.18,1 2.18,1 1.39,0 2.51,-0.69 3.21,-2.09 l .09,0 .28,1.78 2.62,0 0,-14.99 c 0,0 -3.40,.00 -3.40,-0.09 z m 20.90,2.09 c .4,0 .58,.11 .78,.31 .2,.3 .30,.59 .40,1.09 .1,.5 .09,1.21 .09,2.21 l 0,1.09 -2.5,0 0,-1.09 c 0,-1 -0.00,-1.71 .09,-2.21 0,-0.4 .11,-0.8 .31,-1 .2,-0.3 .51,-0.40 .81,-0.40 z m -50.49,.12 c .5,0 .8,.18 1,.68 .19,.5 .28,1.30 .28,2.40 l 0,4.68 c 0,1.1 -0.08,1.90 -0.28,2.40 -0.2,.5 -0.5,.68 -1,.68 -0.5,0 -0.79,-0.18 -0.99,-0.68 -0.2,-0.5 -0.31,-1.30 -0.31,-2.40 l 0,-4.68 c 0,-1.1 .11,-1.90 .31,-2.40 .2,-0.5 .49,-0.68 .99,-0.68 z m 39.68,.09 c .3,0 .61,.10 .81,.40 .2,.3 .27,.67 .37,1.37 .1,.6 .12,1.51 .12,2.71 l .09,1.90 c 0,1.1 .00,1.99 -0.09,2.59 -0.1,.6 -0.19,1.08 -0.49,1.28 -0.2,.3 -0.50,.40 -0.90,.40 -0.3,0 -0.51,-0.08 -0.81,-0.18 -0.2,-0.1 -0.39,-0.29 -0.59,-0.59 l 0,-8.5 c .1,-0.4 .29,-0.7 .59,-1 .3,-0.3 .60,-0.40 .90,-0.40 z"}}]}},
-u3=function(a){g.F.call(this);
-this.callback=a;this.u=new g.In(0,0,.4,0,.2,1,1,1);this.delay=new g.kn(this.next,window,this);this.startTime=this.duration=this.l=this.i=NaN;g.G(this,this.delay)},v3=function(a){g.V.call(this,{D:"div",
-K:"ytp-related-on-error-overlay"});var b=this;this.api=a;this.C=this.i=0;this.B=new g.UL(this);this.u=[];this.suggestionData=[];this.containerWidth=0;this.title=new g.V({D:"h2",K:"ytp-related-title",oa:"{{title}}"});this.previous=new g.V({D:"button",Ca:["ytp-button","ytp-previous"],U:{"aria-label":"Show previous suggested videos"},S:[g.UJ()]});this.L=new u3(function(f){b.suggestions.element.scrollLeft=-f});
-this.tileWidth=this.l=0;this.G=!0;this.next=new g.V({D:"button",Ca:["ytp-button","ytp-next"],U:{"aria-label":"Show more suggested videos"},S:[g.VJ()]});g.G(this,this.B);a=a.T();this.J=a.l;g.G(this,this.title);this.title.ya(this.element);this.suggestions=new g.V({D:"div",K:"ytp-suggestions"});g.G(this,this.suggestions);this.suggestions.ya(this.element);g.G(this,this.previous);this.previous.ya(this.element);this.previous.Pa("click",this.JL,this);g.G(this,this.L);for(var c=0;16>c;c++){var d=new g.V({D:"a",
-K:"ytp-suggestion-link",U:{href:"{{link}}",target:a.G,"aria-label":"{{aria_label}}"},S:[{D:"div",K:"ytp-suggestion-image",S:[{D:"div",U:{"data-is-live":"{{is_live}}"},K:"ytp-suggestion-duration",oa:"{{duration}}"}]},{D:"div",K:"ytp-suggestion-title",U:{title:"{{hover_title}}"},oa:"{{title}}"},{D:"div",K:"ytp-suggestion-author",oa:"{{views_or_author}}"}]});g.G(this,d);d.ya(this.suggestions.element);var e=d.Ba("ytp-suggestion-link");g.ig(e,"transitionDelay",c/20+"s");this.B.N(e,"click",g.Pa(this.KL,
-c));this.u.push(d)}g.G(this,this.next);this.next.ya(this.element);this.next.Pa("click",this.IL,this);this.B.N(this.api,"videodatachange",this.ib);this.resize(this.api.Xa().getPlayerSize());this.ib();this.show()},w3=function(a){a.next.element.style.bottom=a.C+"px";
-a.previous.element.style.bottom=a.C+"px";var b=a.l,c=a.containerWidth-a.suggestionData.length*(a.tileWidth+a.i);g.L(a.element,"ytp-scroll-min",0<=b);g.L(a.element,"ytp-scroll-max",b<=c)},wJa=function(a){for(var b=0;b<a.suggestionData.length;b++){var c=b,d=a.suggestionData[b].bb();
-c=a.u[c];var e=d.shortViewCount?d.shortViewCount:d.author,f=d.Zl();g.vD(a.api.T())&&(f=g.Hd(f,g.hN("emb_rel_err")));c.element.style.display="";var h=c.Ba("ytp-suggestion-title");g.Gn.test(d.title)?h.dir="rtl":vJa.test(d.title)&&(h.dir="ltr");h=c.Ba("ytp-suggestion-author");g.Gn.test(e)?h.dir="rtl":vJa.test(e)&&(h.dir="ltr");h=d.isLivePlayback?"Live":d.lengthSeconds?g.MK(d.lengthSeconds):"";c.update({views_or_author:e,duration:h,link:f,hover_title:d.title,title:d.title,aria_label:d.Br||null,is_live:d.isLivePlayback});
-c=c.Ba("ytp-suggestion-image");d=d.Be();c.style.backgroundImage=d?"url("+d+")":""}for(;b<a.u.length;b++)a.u[b].element.style.display="none";w3(a)},x3=function(a){g.IM.call(this,a);
-var b=this,c=a.T(),d={D:"svg",U:{fill:"#fff",height:"100%",viewBox:"0 0 24 24",width:"100%"},S:[{D:"path",U:{d:"M0 0h24v24H0V0z",fill:"none"}},{D:"path",U:{d:"M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"}}]};g.GD(c)&&(d={D:"svg",U:{fill:"none",height:"100%",viewBox:"0 0 25 25",
-width:"100%"},S:[{D:"g",U:{"clip-path":"url(#clip0)",fill:"#fff"},S:[{D:"path",U:{d:"M12.57.98C6.21.98 1.05 6.14 1.05 12.5c0 6.36 5.16 11.52 11.52 11.52 6.36 0 11.52-5.16 11.52-11.52C24.09 6.14 18.93.98 12.57.98zm0 18.34c-3.77 0-6.82-3.05-6.82-6.82 0-3.77 3.05-6.82 6.82-6.82 3.77 0 6.82 3.05 6.82 6.82 0 3.77-3.05 6.82-6.82 6.82z"}},{D:"path",U:{d:"M12.57 6.52c-3.29 0-5.98 2.68-5.98 5.98 0 3.3 2.68 5.98 5.98 5.98 3.3 0 5.98-2.68 5.98-5.98 0-3.3-2.69-5.98-5.98-5.98zm-2.25 9.38V9.1l5.88 3.4-5.88 3.4z"}}]},
-{D:"defs",S:[{D:"clipPath",U:{id:"clip0"},S:[{D:"path",U:{d:"M0 0h24v24H0z",fill:"#fff",transform:"translate(.57 .5)"}}]}]}]});c=new g.V({D:"a",K:"ytp-small-redirect",U:{href:g.jE(c),target:c.G,"aria-label":"Visit YouTube to search for more videos"},S:[d]});c.ya(this.element);g.G(this,c);this.i=new v3(a);this.i.ya(this.element);g.G(this,this.i);this.N(a,"videodatachange",function(){b.show()});
-this.resize(this.api.Xa().getPlayerSize())},xJa=function(a,b){a.Ba("ytp-error-content").style.paddingTop="0px";
-var c=a.Ba("ytp-error-content"),d=c.clientHeight;a.i.resize(b,b.height-d);c.style.paddingTop=(b.height-a.i.element.clientHeight)/2-d/2+"px"},yJa=function(a,b){var c,d,e,f,h;
-b.reason&&(y3(b.reason)?h=g.fw(b.reason):h=g.JM(g.ew(b.reason)),a.Wc(h,"content"));var l;b.subreason&&(y3(b.subreason)?l=g.fw(b.subreason):l=g.JM(g.ew(b.subreason)),a.Wc(l,"subreason"));if(b.proceedButton&&b.proceedButton.buttonRenderer&&(h=a.Ba("ytp-error-content-wrap-subreason"),l=b.proceedButton.buttonRenderer,b=g.Ee("A"),l.text&&l.text.simpleText)){var m=l.text.simpleText;b.textContent=m;a:{for(var n=(h||document).getElementsByTagName("A"),p=0;p<n.length;p++)if(n[p].textContent===m){m=!0;break a}m=
-!1}m||(m=null===(d=null===(c=null===l||void 0===l?void 0:l.navigationEndpoint)||void 0===c?void 0:c.urlEndpoint)||void 0===d?void 0:d.url,l=null===(f=null===(e=null===l||void 0===l?void 0:l.navigationEndpoint)||void 0===e?void 0:e.urlEndpoint)||void 0===f?void 0:f.target,m&&b.setAttribute("href",m),l&&b.setAttribute("target",l),g.R(a.api.T().experiments,"embeds_enable_playability_on_web_preview")?(a=g.Ee("DIV"),a.appendChild(b),h.appendChild(a)):h.appendChild(b))}},y3=function(a){if(a.runs)for(var b=
-0;b<a.runs.length;b++)if(a.runs[b].navigationEndpoint)return!0;
-return!1},z3=function(a,b){g.V.call(this,{D:"a",
-Ca:["ytp-impression-link"],U:{target:"{{target}}",href:"{{url}}","aria-label":"Watch on YouTube"},S:[{D:"div",K:"ytp-impression-link-content",U:{"aria-hidden":"true"},S:[{D:"div",K:"ytp-impression-link-text",oa:"Watch on"},{D:"div",K:"ytp-impression-link-logo",S:[t3()]}]}]});this.api=a;this.l=b;this.Qa("target",a.T().G);this.api.Yb(this.element,this,96714);this.N(this.api,"presentingplayerstatechange",this.Gg);this.N(this.api,"videoplayerreset",this.i);this.N(this.element,"click",this.onClick);this.i()},
-A3=function(a){g.V.call(this,{D:"div",
-K:"ytp-muted-autoplay-endscreen-overlay",S:[{D:"div",K:"ytp-muted-autoplay-end-panel",S:[{D:"div",K:"ytp-muted-autoplay-end-text",oa:"{{text}}"}]}]});this.api=a;this.u=this.Ba("ytp-muted-autoplay-end-panel");this.i=new g.BM(this.api);g.G(this,this.i);this.i.ya(this.u,0);this.api.Yb(this.element,this,52428);this.N(this.api,"presentingplayerstatechange",this.l);this.Pa("click",this.onClick);this.hide()},B3=function(a){g.V.call(this,{D:"div",
-K:"ytp-muted-autoplay-overlay",S:[{D:"div",K:"ytp-muted-autoplay-bottom-buttons",S:[{D:"button",Ca:["ytp-muted-autoplay-equalizer","ytp-button"],S:[{D:"div",Ca:["ytp-muted-autoplay-equalizer-icon"],S:[{D:"svg",U:{height:"100%",version:"1.1",viewBox:"-4 -4 24 24",width:"100%"},S:[{D:"g",U:{fill:"#fff"},S:[{D:"rect",K:"ytp-equalizer-bar-left",U:{height:"9",width:"4",x:"1",y:"7"}},{D:"rect",K:"ytp-equalizer-bar-middle",U:{height:"14",width:"4",x:"6",y:"2"}},{D:"rect",K:"ytp-equalizer-bar-right",U:{height:"12",
-width:"4",x:"11",y:"4"}}]}]}]}]}]}]});this.api=a;this.bottomButtons=this.Ba("ytp-muted-autoplay-bottom-buttons");this.Ba("ytp-muted-autoplay-equalizer");this.u=new g.J(this.l,4E3,this);a.Yb(this.element,this,39306);this.N(a,"presentingplayerstatechange",this.i);this.N(a,"onMutedAutoplayStarts",this.i);this.Pa("click",this.onClick);this.hide()},C3=function(a,b){g.V.call(this,{D:"div",
-K:"ytp-pause-overlay"});var c=this;this.api=a;this.G=b;this.i=new g.UL(this);this.B=new g.yK(this,1E3,!1,100);this.u=[];this.suggestionData=[];this.containerWidth=0;this.C=!1;this.Y=0;this.title=new g.V({D:"h2",K:"ytp-related-title",oa:"{{title}}"});this.previous=new g.V({D:"button",Ca:["ytp-button","ytp-previous"],U:{"aria-label":"Show previous suggested videos"},S:[g.UJ()]});this.L=new u3(function(h){c.suggestions.element.scrollLeft=-h});
-this.W=this.tileWidth=this.l=0;this.next=new g.V({D:"button",Ca:["ytp-button","ytp-next"],U:{"aria-label":"Show more suggested videos"},S:[g.VJ()]});this.expandButton=new g.V({D:"button",Ca:["ytp-button","ytp-expand"],oa:"More videos"});g.G(this,this.i);g.G(this,this.B);b=a.T();"0"===b.controlsType&&g.K(a.getRootNode(),"ytp-pause-overlay-controls-hidden");this.J=b.l;g.G(this,this.title);this.title.ya(this.element);this.suggestions=new g.V({D:"div",K:"ytp-suggestions"});g.G(this,this.suggestions);
-this.suggestions.ya(this.element);g.G(this,this.previous);this.previous.ya(this.element);this.previous.Pa("click",this.ML,this);a=g.nB||g.lg?{style:"will-change: opacity"}:void 0;g.G(this,this.L);for(var d=0;16>d;d++){var e=new g.V({D:"a",K:"ytp-suggestion-link",U:{href:"{{link}}",target:b.G,"aria-label":"{{aria_label}}"},S:[{D:"div",K:"ytp-suggestion-image"},{D:"div",K:"ytp-suggestion-overlay",U:a,S:[{D:"div",K:"ytp-suggestion-title",oa:"{{title}}"},{D:"div",K:"ytp-suggestion-author",oa:"{{author_and_views}}"},
-{D:"div",U:{"data-is-live":"{{is_live}}"},K:"ytp-suggestion-duration",oa:"{{duration}}"}]}]});g.G(this,e);e.ya(this.suggestions.element);var f=e.Ba("ytp-suggestion-link");g.ig(f,"transitionDelay",d/20+"s");this.i.N(f,"click",g.Pa(this.NL,d));this.u.push(e)}g.G(this,this.next);this.next.ya(this.element);this.next.Pa("click",this.LL,this);b=new g.V({D:"button",Ca:["ytp-button","ytp-collapse"],U:{"aria-label":"Hide more videos"},S:[{D:"svg",U:{height:"100%",viewBox:"0 0 16 16",width:"100%"},S:[{D:"path",
-U:{d:"M13 4L12 3 8 7 4 3 3 4 7 8 3 12 4 13 8 9 12 13 13 12 9 8z",fill:"#fff"}}]}]});g.G(this,b);b.ya(this.element);b.Pa("click",this.JP,this);g.G(this,this.expandButton);this.expandButton.ya(this.element);this.expandButton.Pa("click",this.KP,this);this.i.N(this.api,"appresize",this.rb);this.i.N(this.api,"fullscreentoggled",this.Wk);this.i.N(this.api,"presentingplayerstatechange",this.Dc);this.i.N(this.api,"videodatachange",this.ib);this.rb(this.api.Xa().getPlayerSize());this.ib()},D3=function(a){var b=
-a.G.oe()?32:16;
-b=a.W/2+b;a.next.element.style.bottom=b+"px";a.previous.element.style.bottom=b+"px";b=a.l;var c=a.containerWidth-a.suggestionData.length*(a.tileWidth+8);g.L(a.element,"ytp-scroll-min",0<=b);g.L(a.element,"ytp-scroll-max",b<=c)},AJa=function(a){for(var b=0;b<a.suggestionData.length;b++){var c=a.suggestionData[b].bb(),d=a.u[b],e=c.shortViewCount?c.author+" \u2022 "+c.shortViewCount:c.author;
-d.element.style.display="";zJa.test(c.title)&&(d.Ba("ytp-suggestion-title").dir="rtl");zJa.test(e)&&(d.Ba("ytp-suggestion-author").dir="rtl");var f=c.isLivePlayback?"Live":c.lengthSeconds?g.MK(c.lengthSeconds):"";var h=c.Zl();g.vD(a.api.T())&&(h=g.Hd(h,g.hN("emb_rel_pause")));d.update({author_and_views:e,duration:f,link:h,title:c.title,aria_label:c.Br||null,is_live:c.isLivePlayback});d=d.Ba("ytp-suggestion-image");c=c.Be();d.style.backgroundImage=c?"url("+c+")":""}for(;b<a.u.length;b++)a.u[b].element.style.display=
-"none";D3(a)},E3=function(a){var b=a.T();
-g.V.call(this,{D:"a",Ca:["ytp-watermark","yt-uix-sessionlink"],U:{target:b.G,href:"{{url}}","aria-label":g.xH("Watch on $WEBSITE",{WEBSITE:g.UD(b)}),"data-sessionlink":"feature=player-watermark"},S:[t3()]});this.api=a;this.i=null;this.l=!1;this.state=a.sb();a.Yb(this.element,this,76758);this.N(a,"videodatachange",this.YC);this.N(a,"videodatachange",this.ib);this.N(a,"presentingplayerstatechange",this.OL);this.N(a,"appresize",this.rb);b=this.state;this.state!==b&&(this.state=b);this.YC();this.ib();
-this.rb(a.Xa().getPlayerSize())},F3=function(a){g.eM.call(this,a);
-this.I=a;this.l=new g.UL(this);g.G(this,this.l);this.load()},zJa=/^[\u0591-\u06ef\u06fa-\u08ff\u200f\ud802-\ud803\ud83a-\ud83b\ufb1d-\ufdff\ufe70-\ufefc]/,vJa=/^[^\u0591-\u06ef\u06fa-\u08ff\u200f\ud802-\ud803\ud83a-\ud83b\ufb1d-\ufdff\ufe70-\ufefc]*[A-Za-z\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u02b8\u0300-\u0590\u0900-\u1fff\u200e\u2c00-\ud801\ud804-\ud839\ud83c-\udbff\uf900-\ufb1c\ufe00-\ufe6f\ufefd-\uffff]/;
-g.v(u3,g.F);u3.prototype.start=function(a,b,c){this.i=a;this.l=b;this.duration=c;this.startTime=(0,g.O)();this.next()};
-u3.prototype.next=function(){var a=(0,g.O)()-this.startTime;var b=this.u;a=uJa(b,a/this.duration);if(0==a)b=b.C;else if(1==a)b=b.L;else{var c=g.ee(b.C,b.G,a),d=g.ee(b.G,b.J,a);b=g.ee(b.J,b.L,a);c=g.ee(c,d,a);d=g.ee(d,b,a);b=g.ee(c,d,a)}b=g.ce(b,0,1);this.callback((this.l-this.i)*b+this.i);1>b&&this.delay.start()};g.v(v3,g.V);g.k=v3.prototype;g.k.hide=function(){this.G=!0;g.V.prototype.hide.call(this)};
-g.k.show=function(){this.G=!1;g.V.prototype.show.call(this)};
-g.k.isHidden=function(){return this.G};
-g.k.IL=function(){this.scrollTo(this.l-this.containerWidth)};
-g.k.JL=function(){this.scrollTo(this.l+this.containerWidth)};
-g.k.KL=function(a,b){a=this.suggestionData[a];var c=a.Hd;g.DM(b,this.api,this.J,c||void 0)&&this.api.Ui(a.bb().videoId,c,a.getPlaylistId())};
-g.k.resize=function(a,b){var c=this.api.T(),d=16/9,e=650<=a.width,f=480>a.width||290>a.height,h=Math.min(this.suggestionData.length,this.u.length);if(150>=Math.min(a.width,a.height)||0===h||!c.jb)this.hide();else{var l;if(e){var m=l=28;this.i=16}else this.i=m=l=8;if(f){var n=6;e=14;var p=12;f=24;c=12}else n=8,e=18,p=16,f=36,c=16;a=a.width-(48+l+m);l=Math.ceil(a/150);l=Math.min(3,l);l=a/l-this.i;m=Math.floor(l/d);b&&m+100>b&&50<l&&(m=Math.max(b,50/d),l=Math.ceil(a/(d*(m-100)+this.i)),l=a/l-this.i,
-m=Math.floor(l/d));50>l||g.EL(this.api)?this.hide():this.show();for(b=0;b<h;b++){d=this.u[b];var r=d.Ba("ytp-suggestion-image");r.style.width=l+"px";r.style.height=m+"px";d.Ba("ytp-suggestion-title").style.width=l+"px";d.Ba("ytp-suggestion-author").style.width=l+"px";d=d.Ba("ytp-suggestion-duration");d.style.display=d&&100>l?"none":""}h=e+n+p+4;this.C=h+c+(m-f)/2;this.suggestions.element.style.height=m+h+"px";this.tileWidth=l;this.containerWidth=a;this.l=0;this.suggestions.element.scrollLeft=-0;w3(this)}};
-g.k.ib=function(){var a=this,b=this.api.getVideoData(),c=this.api.T();this.J=b.C?!1:c.l;if(b.suggestions){var d=g.Je(b.suggestions,function(e){return e&&!e.list});
-this.suggestionData=g.Mc(d,function(e){e=g.yO(c,e);g.G(a,e);return e})}else this.suggestionData.length=0;
-wJa(this);b.C?this.title.update({title:g.xH("More videos from $DNI_RELATED_CHANNEL",{DNI_RELATED_CHANNEL:b.author})}):this.title.update({title:"More videos on YouTube"})};
-g.k.scrollTo=function(a){a=g.ce(a,this.containerWidth-this.suggestionData.length*(this.tileWidth+this.i),0);this.L.start(this.l,a,1E3);this.l=a;w3(this)};g.v(x3,g.IM);x3.prototype.show=function(){g.IM.prototype.show.call(this);xJa(this,this.api.Xa().getPlayerSize())};
-x3.prototype.resize=function(a){g.IM.prototype.resize.call(this,a);xJa(this,a);g.L(this.element,"related-on-error-overlay-visible",!this.i.isHidden())};
-x3.prototype.l=function(a){g.IM.prototype.l.call(this,a);var b=this.api.getVideoData();if(b.gz||b.playerErrorMessageRenderer)(a=b.gz)?yJa(this,a):b.playerErrorMessageRenderer&&yJa(this,b.playerErrorMessageRenderer);else{var c;a.Ah&&(b.fn?y3(b.fn)?c=g.fw(b.fn):c=g.JM(g.ew(b.fn)):c=g.JM(a.Ah),this.Wc(c,"subreason"))}};g.v(z3,g.V);z3.prototype.Gg=function(){this.api.sb().isCued()||(this.hide(),this.api.gb(this.element,!1))};
-z3.prototype.i=function(){var a=this.api.getVideoData(),b=this.api.T(),c=this.api.getVideoData().C,d=b.ob,e=!b.jb,f=this.l.Ee();b=g.GD(b);d||f||c||e||b||!a.videoId?(this.hide(),this.api.gb(this.element,!1)):(a=g.Hd(this.api.getVideoUrl(),g.hN("emb_imp_woyt")),this.Qa("url",a),this.show())};
-z3.prototype.onClick=function(a){var b=g.Hd(this.api.getVideoUrl(),g.hN("emb_imp_woyt"));g.EM(b,this.api,a);this.api.Fb(this.element)};
-z3.prototype.show=function(){this.api.sb().isCued()&&(g.V.prototype.show.call(this),this.api.Is(this.element)&&this.api.gb(this.element,!0))};g.v(A3,g.V);A3.prototype.l=function(){var a=this.api.sb(),b=this.api.getVideoData();g.R(this.api.T().experiments,"embeds_enable_muted_autoplay")&&b.mutedAutoplay&&(g.T(a,2)&&!this.ub?(this.show(),this.i.show(),a=this.api.getVideoData(),this.Qa("text",a.dK),g.L(this.element,"ytp-muted-autoplay-show-end-panel",!0),this.api.gb(this.element,this.ub),this.api.La("onMutedAutoplayEnds")):this.hide())};
-A3.prototype.onClick=function(){var a=this.api.getVideoData(),b=this.api.getCurrentTime();a.mutedAutoplay=!1;a.endSeconds=NaN;g.LF(a);this.api.loadVideoById(a.videoId,b);this.api.Fb(this.element);this.hide()};g.v(B3,g.V);B3.prototype.i=function(){var a=this.api.sb(),b=this.api.getVideoData();g.R(this.api.T().experiments,"embeds_enable_muted_autoplay")&&b.mutedAutoplay&&!g.T(a,2)?this.ub||(g.V.prototype.show.call(this),this.u.start(),this.api.gb(this.element,this.ub)):this.hide()};
-B3.prototype.l=function(){g.L(this.element,"ytp-muted-autoplay-hide-watermark",!0)};
-B3.prototype.onClick=function(){var a=this.api.getVideoData(),b=this.api.getCurrentTime();a.mutedAutoplay=!1;a.endSeconds=NaN;g.LF(a);this.api.loadVideoById(a.videoId,b);this.api.Fb(this.element)};g.v(C3,g.V);g.k=C3.prototype;g.k.hide=function(){g.yn(this.api.getRootNode(),"ytp-expand-pause-overlay");g.V.prototype.hide.call(this)};
-g.k.JP=function(){this.C=!0;g.yn(this.api.getRootNode(),"ytp-expand-pause-overlay");this.expandButton.focus()};
-g.k.KP=function(){this.C=!1;g.K(this.api.getRootNode(),"ytp-expand-pause-overlay")};
-g.k.LL=function(){this.scrollTo(this.l-this.containerWidth)};
-g.k.ML=function(){this.scrollTo(this.l+this.containerWidth)};
-g.k.NL=function(a,b){if(1E3>(0,g.O)()-this.Y)g.$p(b),document.activeElement.blur();else{a=this.suggestionData[a];var c=a.Hd;g.DM(b,this.api,this.J,c||void 0)&&this.api.Ui(a.bb().videoId,c,a.getPlaylistId())}};
-g.k.Wk=function(){this.rb(this.api.Xa().getPlayerSize())};
-g.k.Dc=function(a){g.T(a.state,1)||g.T(a.state,16)||g.T(a.state,32)||(g.T(a.state,4)&&!g.T(a.state,2)?this.suggestionData.length&&(this.C||(g.K(this.api.getRootNode(),"ytp-expand-pause-overlay"),D3(this)),this.B.show(),this.Y=(0,g.O)()):this.B.hide())};
-g.k.rb=function(a){var b=16/9,c=this.G.oe();a=a.width-(c?112:58);c=Math.ceil(a/(c?320:192));c=(a-8*c)/c;b=Math.floor(c/b);for(var d=0;d<this.u.length;d++){var e=this.u[d].Ba("ytp-suggestion-image");e.style.width=c+"px";e.style.height=b+"px"}this.suggestions.element.style.height=b+"px";this.tileWidth=c;this.W=b;this.containerWidth=a;this.l=0;this.suggestions.element.scrollLeft=-0;D3(this)};
-g.k.ib=function(){var a=this,b=this.api.T(),c=this.api.getVideoData();this.J=c.C?!1:b.l;if(c.suggestions){var d=g.Je(c.suggestions,function(e){return e&&!e.list});
-this.suggestionData=g.Mc(d,function(e){e=g.yO(b,e);g.G(a,e);return e})}else this.suggestionData.length=0;
-AJa(this);c.C?this.title.update({title:g.xH("More videos from $DNI_RELATED_CHANNEL",{DNI_RELATED_CHANNEL:c.author})}):this.title.update({title:"More videos"})};
-g.k.scrollTo=function(a){a=g.ce(a,this.containerWidth-this.suggestionData.length*(this.tileWidth+8),0);this.L.start(this.l,a,1E3);this.l=a;D3(this)};g.v(E3,g.V);g.k=E3.prototype;g.k.YC=function(){var a=this.api.getVideoData(),b=this.api.getVideoData(1).C,c=this.api.T();a=(a.mutedAutoplay||c.ob&&!g.T(this.state,2))&&!(b&&c.pfpChazalUi);g.PJ(this,a);this.api.gb(this.element,a)};
-g.k.OL=function(a){a=a.state;this.state!==a&&(this.state=a);this.YC()};
-g.k.ib=function(){if(this.api.getVideoData().videoId){var a=this.api.getVideoUrl(!0,!1,!1,!0);this.Qa("url",a);this.i||(this.i=this.Pa("click",this.onClick))}else this.i&&(this.Qa("url",null),this.hc(this.i),this.i=null)};
-g.k.onClick=function(a){var b=this.api.getVideoUrl(!g.NK(a),!1,!0,!0);g.EM(b,this.api,a);this.api.Fb(this.element)};
-g.k.rb=function(a){if((a=480>a.width)&&!this.l||!a&&this.l){var b=new g.V(t3()),c=this.Ba("ytp-watermark");g.L(c,"ytp-watermark-small",a);g.Ge(c);b.ya(c);this.l=a}};g.v(F3,g.eM);g.k=F3.prototype;g.k.Qh=function(){return!1};
-g.k.create=function(){var a,b=this.I.T(),c=g.xL(this.I),d=null===(a=this.I.getVideoData())||void 0===a?void 0:a.clientPlaybackNonce;d&&g.Uw("cpn",d);b.jb&&(this.C=new C3(this.I,c),g.G(this,this.C),g.HL(this.I,this.C.element,4));g.R(b.experiments,"embeds_enable_muted_autoplay")&&(this.i=new B3(this.I),g.G(this,this.i),g.HL(this.I,this.i.element,4),this.B=new A3(this.I),g.G(this,this.B),g.HL(this.I,this.B.element,4));if(b.ob||this.i)this.watermark=new E3(this.I),g.G(this,this.watermark),g.HL(this.I,
-this.watermark.element,7);g.R(b.experiments,"embeds_impression_link")&&(this.u=new z3(this.I,c),g.G(this,this.u),g.HL(this.I,this.u.element,7));this.l.N(this.I,"appresize",this.rb);this.l.N(this.I,"presentingplayerstatechange",this.Gg);this.l.N(this.I,"videodatachange",this.tT);this.l.N(this.I,"onMutedAutoplayStarts",this.xQ);this.Lb(this.I.sb());this.player.ud("embed")};
-g.k.rb=function(){var a=this.I.Xa().getPlayerSize();this.Rd&&this.Rd.resize(a)};
-g.k.Gg=function(a){this.Lb(a.state)};
-g.k.Lb=function(a){g.T(a,128)?(this.Rd||(this.Rd=new x3(this.I),g.G(this,this.Rd),g.HL(this.I,this.Rd.element,4)),this.Rd.l(a.getData()),this.Rd.show(),g.K(this.I.getRootNode(),"ytp-embed-error")):this.Rd&&(this.Rd.dispose(),this.Rd=null,g.yn(this.I.getRootNode(),"ytp-embed-error"))};
-g.k.xQ=function(){this.I.getVideoData().mutedAutoplay&&this.i&&this.watermark&&this.watermark.ya(this.i.bottomButtons,0)};
-g.k.tT=function(){var a=this.I.getVideoData();this.watermark&&this.i&&!a.mutedAutoplay&&g.Le(this.i.element,this.watermark.element)&&g.HL(this.I,this.watermark.element,7)};g.pM.embed=F3;})(_yt_player);
+const BUILD = {"allRenderFn":false,"cmpDidLoad":true,"cmpShouldUpdate":false,"cmpDidUnload":true,"cmpDidUpdate":true,"cmpDidRender":true,"cmpWillLoad":true,"cmpWillUpdate":true,"cmpWillRender":false,"connectedCallback":true,"disconnectedCallback":true,"element":false,"event":true,"hasRenderFn":true,"lifecycle":true,"asyncLoading":true,"hostListener":true,"hostListenerTargetWindow":true,"hostListenerTargetDocument":true,"hostListenerTargetBody":false,"hostListenerTargetParent":false,"hostListenerTarget":true,"member":true,"method":true,"mode":false,"noVdomRender":false,"observeAttribute":true,"prop":true,"propBoolean":true,"propNumber":true,"propString":true,"propMutable":true,"reflect":true,"scoped":false,"shadowDom":true,"shadowDelegatesFocus":false,"slot":true,"slotRelocation":true,"state":true,"style":true,"svg":true,"updatable":true,"vdomAttribute":true,"vdomXlink":true,"vdomClass":true,"vdomFunctional":false,"vdomKey":true,"vdomListener":true,"vdomPropOrAttr":true,"vdomRef":true,"vdomRender":true,"vdomStyle":true,"vdomText":true,"watchCallback":true,"taskQueue":true,"lazyLoad":true,"hydrateServerSide":false,"cssVarShim":true,"initializeNextTick":true,"hydrateClientSide":false,"isDebug":false,"isDev":true,"devTools":true,"profile":true,"hotModuleReplacement":true,"constructableCSS":false,"cssAnnotations":true,"appendChildSlotFix":false,"cloneNodeFix":false,"dynamicImportShim":true,"lifecycleDOMEvents":false,"safari10":true,"shadowDomShim":true,"hydratedAttribute":false,"hydratedClass":true};
+const NAMESPACE = 'gc-components';
+
+let queueCongestion = 0;
+let queuePending = false;
+let i = 0;
+let scopeId;
+let contentRef;
+let hostTagName;
+let useNativeShadowDom = false;
+let checkSlotFallbackVisibility = false;
+let checkSlotRelocate = false;
+let isSvgMode = false;
+let renderingElement = null;
+const win = typeof window !== 'undefined' ? window : {};
+const CSS = BUILD.cssVarShim ? win.CSS : null;
+const doc = win.document || { head: {} };
+const H = (win.HTMLElement || class {
+});
+const plt = {
+    $flags$: 0,
+    $resourcesUrl$: '',
+    jmp: (h) => h(),
+    raf: (h) => requestAnimationFrame(h),
+    ael: (el, eventName, listener, opts) => el.addEventListener(eventName, listener, opts),
+    rel: (el, eventName, listener, opts) => el.removeEventListener(eventName, listener, opts),
+};
+const supportsShadowDom = BUILD.shadowDomShim ? (BUILD.shadowDom) ? /*@__PURE__*/ (() => (doc.head.attachShadow + '').indexOf('[native') > -1)() : false : true;
+const supportsListenerOptions = /*@__PURE__*/ (() => {
+    let supportsListenerOptions = false;
+    try {
+        doc.addEventListener('e', null, Object.defineProperty({}, 'passive', {
+            get() { supportsListenerOptions = true; }
+        }));
+    }
+    catch (e) { }
+    return supportsListenerOptions;
+})();
+const promiseResolve = (v) => Promise.resolve(v);
+const supportsConstructibleStylesheets = BUILD.constructableCSS ? /*@__PURE__*/ (() => {
+    try {
+        new CSSStyleSheet();
+        return true;
+    }
+    catch (e) { }
+    return false;
+})() : false;
+const Context = {};
+const hostRefs = new WeakMap();
+const getHostRef = (ref) => hostRefs.get(ref);
+const registerInstance = (lazyInstance, hostRef) => hostRefs.set(hostRef.$lazyInstance$ = lazyInstance, hostRef);
+const registerHost = (elm) => {
+    const hostRef = {
+        $flags$: 0,
+        $hostElement$: elm,
+        $instanceValues$: new Map()
+    };
+    if (BUILD.isDev) {
+        hostRef.$renderCount$ = 0;
+    }
+    if (BUILD.method && BUILD.lazyLoad) {
+        hostRef.$onInstancePromise$ = new Promise(r => hostRef.$onInstanceResolve$ = r);
+    }
+    if (BUILD.asyncLoading) {
+        hostRef.$onReadyPromise$ = new Promise(r => hostRef.$onReadyResolve$ = r);
+        elm['s-p'] = [];
+        elm['s-rc'] = [];
+    }
+    return hostRefs.set(elm, hostRef);
+};
+const isMemberInElement = (elm, memberName) => memberName in elm;
+const STENCIL_DEV_MODE = ['%c[STENCIL-DEV-MODE]', 'color:#4c47ff;font-weight: bold'];
+const consoleDevError = (...m) => console.error(...STENCIL_DEV_MODE, ...m);
+const consoleDevWarn = (...m) => console.warn(...STENCIL_DEV_MODE, ...m);
+const consoleDevInfo = (...m) => console.info(...STENCIL_DEV_MODE, ...m);
+const consoleError = (e) => console.error(e);
+const moduleCache = /*@__PURE__*/ new Map();
+const loadModule = (cmpMeta, hostRef, hmrVersionId) => {
+    // loadModuleImport
+    const exportName = cmpMeta.$tagName$.replace(/-/g, '_');
+    const bundleId = ((BUILD.mode && typeof cmpMeta.$lazyBundleIds$ !== 'string')
+        ? cmpMeta.$lazyBundleIds$[hostRef.$modeName$]
+        : cmpMeta.$lazyBundleIds$);
+    const module = !BUILD.hotModuleReplacement ? moduleCache.get(bundleId) : false;
+    if (module) {
+        return module[exportName];
+    }
+    return __sc_import_gc_components(
+    /* webpackInclude: /\.entry\.js$/ */
+    /* webpackExclude: /\.system\.entry\.js$/ */
+    /* webpackMode: "lazy" */
+    `./${bundleId}.entry.js${BUILD.hotModuleReplacement && hmrVersionId ? '?s-hmr=' + hmrVersionId : ''}`).then(importedModule => {
+        if (!BUILD.hotModuleReplacement) {
+            moduleCache.set(bundleId, importedModule);
+        }
+        return importedModule[exportName];
+    }, consoleError);
+};
+const styles = new Map();
+const queueDomReads = [];
+const queueDomWrites = [];
+const queueDomWritesLow = [];
+const queueTask = (queue, write) => (cb) => {
+    queue.push(cb);
+    if (!queuePending) {
+        queuePending = true;
+        if (write && plt.$flags$ & 4 /* queueSync */) {
+            nextTick(flush);
+        }
+        else {
+            plt.raf(flush);
+        }
+    }
+};
+const consume = (queue) => {
+    for (let i = 0; i < queue.length; i++) {
+        try {
+            queue[i](performance.now());
+        }
+        catch (e) {
+            consoleError(e);
+        }
+    }
+    queue.length = 0;
+};
+const consumeTimeout = (queue, timeout) => {
+    let i = 0;
+    let ts = 0;
+    while (i < queue.length && (ts = performance.now()) < timeout) {
+        try {
+            queue[i++](ts);
+        }
+        catch (e) {
+            consoleError(e);
+        }
+    }
+    if (i === queue.length) {
+        queue.length = 0;
+    }
+    else if (i !== 0) {
+        queue.splice(0, i);
+    }
+};
+const flush = () => {
+    queueCongestion++;
+    // always force a bunch of medium callbacks to run, but still have
+    // a throttle on how many can run in a certain time
+    // DOM READS!!!
+    consume(queueDomReads);
+    const timeout = (plt.$flags$ & 6 /* queueMask */) === 2 /* appLoaded */
+        ? performance.now() + (10 * Math.ceil(queueCongestion * (1.0 / 22.0)))
+        : Infinity;
+    // DOM WRITES!!!
+    consumeTimeout(queueDomWrites, timeout);
+    consumeTimeout(queueDomWritesLow, timeout);
+    if (queueDomWrites.length > 0) {
+        queueDomWritesLow.push(...queueDomWrites);
+        queueDomWrites.length = 0;
+    }
+    if (queuePending = ((queueDomReads.length + queueDomWrites.length + queueDomWritesLow.length) > 0)) {
+        // still more to do yet, but we've run out of time
+        // let's let this thing cool off and try again in the next tick
+        plt.raf(flush);
+    }
+    else {
+        queueCongestion = 0;
+    }
+};
+const nextTick = /*@__PURE__*/ (cb) => promiseResolve().then(cb);
+const readTask = /*@__PURE__*/ queueTask(queueDomReads, false);
+const writeTask = /*@__PURE__*/ queueTask(queueDomWrites, true);
+const Build = {
+    isDev: BUILD.isDev ? true : false,
+    isBrowser: true
+};
+/**
+ * Default style mode id
+ */
+/**
+ * Reusable empty obj/array
+ * Don't add values to these!!
+ */
+const EMPTY_OBJ = {};
+/**
+ * Namespaces
+ */
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const HTML_NS = 'http://www.w3.org/1999/xhtml';
+const isDef = (v) => v != null;
+const isComplexType = (o) => {
+    // https://jsperf.com/typeof-fn-object/5
+    o = typeof o;
+    return o === 'object' || o === 'function';
+};
+const getDynamicImportFunction = (namespace) => `__sc_import_${namespace.replace(/\s|-/g, '_')}`;
+const patchEsm = () => {
+    // @ts-ignore
+    if (BUILD.cssVarShim && !(CSS && CSS.supports && CSS.supports('color', 'var(--c)'))) {
+        // @ts-ignore
+        return __sc_import_gc_components(/* webpackChunkName: "stencil-polyfills-css-shim" */ './css-shim-8775d9ad-556f0cc2.js').then(() => {
+            if (plt.$cssShim$ = win.__cssshim) {
+                return plt.$cssShim$.i();
+            }
+            else {
+                // for better minification
+                return 0;
+            }
+        });
+    }
+    return promiseResolve();
+};
+const patchBrowser = () => {
+    // NOTE!! This fn cannot use async/await!
+    if (BUILD.isDev) {
+        consoleDevInfo('Stencil is running in the development mode.');
+    }
+    if (BUILD.cssVarShim) {
+        // shim css vars
+        plt.$cssShim$ = win.__cssshim;
+    }
+    if (BUILD.cloneNodeFix) {
+        // opted-in to polyfill cloneNode() for slot polyfilled components
+        patchCloneNodeFix(H.prototype);
+    }
+    if (BUILD.profile && !performance.mark) {
+        // not all browsers support performance.mark/measure (Safari 10)
+        performance.mark = performance.measure = () => { };
+        performance.getEntriesByName = () => [];
+    }
+    // @ts-ignore
+    const scriptElm = (BUILD.scriptDataOpts || BUILD.safari10 || BUILD.dynamicImportShim) ?
+        Array.from(doc.querySelectorAll('script')).find(s => (new RegExp(`\/${NAMESPACE}(\\.esm)?\\.js($|\\?|#)`).test(s.src) ||
+            s.getAttribute('data-stencil-namespace') === NAMESPACE)) : null;
+    const importMeta = "";
+    const opts = BUILD.scriptDataOpts ? scriptElm['data-opts'] || {} : {};
+    if (BUILD.safari10 && 'onbeforeload' in scriptElm && !history.scrollRestoration /* IS_ESM_BUILD */) {
+        // Safari < v11 support: This IF is true if it's Safari below v11.
+        // This fn cannot use async/await since Safari didn't support it until v11,
+        // however, Safari 10 did support modules. Safari 10 also didn't support "nomodule",
+        // so both the ESM file and nomodule file would get downloaded. Only Safari
+        // has 'onbeforeload' in the script, and "history.scrollRestoration" was added
+        // to Safari in v11. Return a noop then() so the async/await ESM code doesn't continue.
+        // IS_ESM_BUILD is replaced at build time so this check doesn't happen in systemjs builds.
+        return { then() { } };
+    }
+    if (!BUILD.safari10 && importMeta !== '') {
+        opts.resourcesUrl = new URL('.', importMeta).href;
+    }
+    else if (BUILD.dynamicImportShim || BUILD.safari10) {
+        opts.resourcesUrl = new URL('.', new URL(scriptElm.getAttribute('data-resources-url') || scriptElm.src, win.location.href)).href;
+        patchDynamicImport(opts.resourcesUrl, scriptElm);
+        if (BUILD.dynamicImportShim && !win.customElements) {
+            // module support, but no custom elements support (Old Edge)
+            // @ts-ignore
+            return __sc_import_gc_components(/* webpackChunkName: "stencil-polyfills-dom" */ './dom-76cc7c7d-0a082895.js').then(() => opts);
+        }
+    }
+    return promiseResolve(opts);
+};
+const patchDynamicImport = (base, orgScriptElm) => {
+    const importFunctionName = getDynamicImportFunction(NAMESPACE);
+    try {
+        // test if this browser supports dynamic imports
+        // There is a caching issue in V8, that breaks using import() in Function
+        // By generating a random string, we can workaround it
+        // Check https://bugs.chromium.org/p/v8/issues/detail?id=9558 for more info
+        win[importFunctionName] = new Function('w', `return import(w);//${Math.random()}`);
+    }
+    catch (e) {
+        // this shim is specifically for browsers that do support "esm" imports
+        // however, they do NOT support "dynamic" imports
+        // basically this code is for old Edge, v18 and below
+        const moduleMap = new Map();
+        win[importFunctionName] = (src) => {
+            const url = new URL(src, base).href;
+            let mod = moduleMap.get(url);
+            if (!mod) {
+                const script = doc.createElement('script');
+                script.type = 'module';
+                script.crossOrigin = orgScriptElm.crossOrigin;
+                script.src = URL.createObjectURL(new Blob([`import * as m from '${url}'; window.${importFunctionName}.m = m;`], { type: 'application/javascript' }));
+                mod = new Promise(resolve => {
+                    script.onload = () => {
+                        resolve(win[importFunctionName].m);
+                        script.remove();
+                    };
+                });
+                moduleMap.set(url, mod);
+                doc.head.appendChild(script);
+            }
+            return mod;
+        };
+    }
+};
+const patchCloneNodeFix = (HTMLElementPrototype) => {
+    const nativeCloneNodeFn = HTMLElementPrototype.cloneNode;
+    HTMLElementPrototype.cloneNode = function (deep) {
+        if (this.nodeName === 'TEMPLATE') {
+            return nativeCloneNodeFn.call(this, deep);
+        }
+        const clonedNode = nativeCloneNodeFn.call(this, false);
+        const srcChildNodes = this.childNodes;
+        if (deep) {
+            for (let i = 0; i < srcChildNodes.length; i++) {
+                // Node.ATTRIBUTE_NODE === 2, and checking because IE11
+                if (srcChildNodes[i].nodeType !== 2) {
+                    clonedNode.appendChild(srcChildNodes[i].cloneNode(true));
+                }
+            }
+        }
+        return clonedNode;
+    };
+};
+const CONTENT_REF_ID = 'r';
+const ORG_LOCATION_ID = 'o';
+const SLOT_NODE_ID = 's';
+const TEXT_NODE_ID = 't';
+const HYDRATE_ID = 's-id';
+const HYDRATED_STYLE_ID = 'sty-id';
+const HYDRATE_CHILD_ID = 'c-id';
+const HYDRATED_CSS = '{visibility:hidden}.hydrated{visibility:inherit}';
+const XLINK_NS = 'http://www.w3.org/1999/xlink';
+const createTime = (fnName, tagName = '') => {
+    if (BUILD.profile) {
+        const key = `st:${fnName}:${tagName}:${i++}`;
+        // Start
+        performance.mark(key);
+        // End
+        return () => performance.measure(`[Stencil] ${fnName}() <${tagName}>`, key);
+    }
+    else {
+        return () => { return; };
+    }
+};
+const uniqueTime = (key, measureText) => {
+    if (BUILD.profile) {
+        if (performance.getEntriesByName(key).length === 0) {
+            performance.mark(key);
+        }
+        return () => {
+            if (performance.getEntriesByName(measureText).length === 0) {
+                performance.measure(measureText, key);
+            }
+        };
+    }
+    else {
+        return () => { return; };
+    }
+};
+const inspect = (ref) => {
+    const hostRef = getHostRef(ref);
+    if (!hostRef) {
+        return undefined;
+    }
+    const flags = hostRef.$flags$;
+    const hostElement = hostRef.$hostElement$;
+    return {
+        renderCount: hostRef.$renderCount$,
+        flags: {
+            hasRendered: !!(flags & 2 /* hasRendered */),
+            hasConnected: !!(flags & 1 /* hasConnected */),
+            isWaitingForChildren: !!(flags & 4 /* isWaitingForChildren */),
+            isConstructingInstance: !!(flags & 8 /* isConstructingInstance */),
+            isQueuedForUpdate: !!(flags & 16 /* isQueuedForUpdate */),
+            hasInitializedComponent: !!(flags & 32 /* hasInitializedComponent */),
+            hasLoadedComponent: !!(flags & 64 /* hasLoadedComponent */),
+            isWatchReady: !!(flags & 128 /* isWatchReady */),
+            isListenReady: !!(flags & 256 /* isListenReady */),
+            needsRerender: !!(flags & 512 /* needsRerender */),
+        },
+        instanceValues: hostRef.$instanceValues$,
+        ancestorComponent: hostRef.$ancestorComponent$,
+        hostElement,
+        lazyInstance: hostRef.$lazyInstance$,
+        vnode: hostRef.$vnode$,
+        modeName: hostRef.$modeName$,
+        onReadyPromise: hostRef.$onReadyPromise$,
+        onReadyResolve: hostRef.$onReadyResolve$,
+        onInstancePromise: hostRef.$onInstancePromise$,
+        onInstanceResolve: hostRef.$onInstanceResolve$,
+        onRenderResolve: hostRef.$onRenderResolve$,
+        queuedListeners: hostRef.$queuedListeners$,
+        rmListeners: hostRef.$rmListeners$,
+        ['s-id']: hostElement['s-id'],
+        ['s-cr']: hostElement['s-cr'],
+        ['s-lr']: hostElement['s-lr'],
+        ['s-p']: hostElement['s-p'],
+        ['s-rc']: hostElement['s-rc'],
+        ['s-sc']: hostElement['s-sc'],
+    };
+};
+const installDevTools = () => {
+    if (BUILD.devTools) {
+        const stencil = win.stencil = win.stencil || {};
+        const originalInspect = stencil.inspect;
+        stencil.inspect = (ref) => {
+            let result = inspect(ref);
+            if (!result && typeof originalInspect === 'function') {
+                result = originalInspect(ref);
+            }
+            return result;
+        };
+    }
+};
+const rootAppliedStyles = new WeakMap();
+const registerStyle = (scopeId, cssText, allowCS) => {
+    let style = styles.get(scopeId);
+    if (supportsConstructibleStylesheets && allowCS) {
+        style = (style || new CSSStyleSheet());
+        style.replace(cssText);
+    }
+    else {
+        style = cssText;
+    }
+    styles.set(scopeId, style);
+};
+const addStyle = (styleContainerNode, cmpMeta, mode, hostElm) => {
+    let scopeId = BUILD.mode ? getScopeId(cmpMeta.$tagName$, mode) : getScopeId(cmpMeta.$tagName$);
+    let style = styles.get(scopeId);
+    // if an element is NOT connected then getRootNode() will return the wrong root node
+    // so the fallback is to always use the document for the root node in those cases
+    styleContainerNode = (styleContainerNode.nodeType === 11 /* DocumentFragment */ ? styleContainerNode : doc);
+    if (BUILD.mode && !style) {
+        scopeId = getScopeId(cmpMeta.$tagName$);
+        style = styles.get(scopeId);
+    }
+    if (style) {
+        if (typeof style === 'string') {
+            styleContainerNode = styleContainerNode.head || styleContainerNode;
+            let appliedStyles = rootAppliedStyles.get(styleContainerNode);
+            let styleElm;
+            if (!appliedStyles) {
+                rootAppliedStyles.set(styleContainerNode, appliedStyles = new Set());
+            }
+            if (!appliedStyles.has(scopeId)) {
+                if (BUILD.hydrateClientSide && styleContainerNode.host && (styleElm = styleContainerNode.querySelector(`[${HYDRATED_STYLE_ID}="${scopeId}"]`))) {
+                    // This is only happening on native shadow-dom, do not needs CSS var shim
+                    styleElm.innerHTML = style;
+                }
+                else {
+                    if (BUILD.cssVarShim && plt.$cssShim$) {
+                        styleElm = plt.$cssShim$.createHostStyle(hostElm, scopeId, style, !!(cmpMeta.$flags$ & 10 /* needsScopedEncapsulation */));
+                        const newScopeId = styleElm['s-sc'];
+                        if (newScopeId) {
+                            scopeId = newScopeId;
+                            // we don't want to add this styleID to the appliedStyles Set
+                            // since the cssVarShim might need to apply several different
+                            // stylesheets for the same component
+                            appliedStyles = null;
+                        }
+                    }
+                    else {
+                        styleElm = doc.createElement('style');
+                        styleElm.innerHTML = style;
+                    }
+                    if (BUILD.hydrateServerSide || BUILD.hotModuleReplacement) {
+                        styleElm.setAttribute(HYDRATED_STYLE_ID, scopeId);
+                    }
+                    styleContainerNode.insertBefore(styleElm, styleContainerNode.querySelector('link'));
+                }
+                if (appliedStyles) {
+                    appliedStyles.add(scopeId);
+                }
+            }
+        }
+        else if (BUILD.constructableCSS && !styleContainerNode.adoptedStyleSheets.includes(style)) {
+            styleContainerNode.adoptedStyleSheets = [...styleContainerNode.adoptedStyleSheets, style];
+        }
+    }
+    return scopeId;
+};
+const attachStyles = (elm, cmpMeta, mode) => {
+    const endAttachStyles = createTime('attachStyles', cmpMeta.$tagName$);
+    const scopeId = addStyle((BUILD.shadowDom && supportsShadowDom && elm.shadowRoot)
+        ? elm.shadowRoot
+        : elm.getRootNode(), cmpMeta, mode, elm);
+    if ((BUILD.shadowDom || BUILD.scoped) && BUILD.cssAnnotations && cmpMeta.$flags$ & 10 /* needsScopedEncapsulation */) {
+        // only required when we're NOT using native shadow dom (slot)
+        // or this browser doesn't support native shadow dom
+        // and this host element was NOT created with SSR
+        // let's pick out the inner content for slot projection
+        // create a node to represent where the original
+        // content was first placed, which is useful later on
+        // DOM WRITE!!
+        elm['s-sc'] = scopeId;
+        elm.classList.add(scopeId + '-h');
+        if (BUILD.scoped && cmpMeta.$flags$ & 2 /* scopedCssEncapsulation */) {
+            elm.classList.add(scopeId + '-s');
+        }
+    }
+    endAttachStyles();
+};
+const getScopeId = (tagName, mode) => 'sc-' + ((BUILD.mode && mode) ? tagName + '-' + mode : tagName);
+const convertScopedToShadow = (css) => css.replace(/\/\*!@([^\/]+)\*\/[^\{]+\{/g, '$1{');
+/**
+ * Production h() function based on Preact by
+ * Jason Miller (@developit)
+ * Licensed under the MIT License
+ * https://github.com/developit/preact/blob/master/LICENSE
+ *
+ * Modified for Stencil's compiler and vdom
+ */
+// const stack: any[] = [];
+// export function h(nodeName: string | d.FunctionalComponent, vnodeData: d.PropsType, child?: d.ChildType): d.VNode;
+// export function h(nodeName: string | d.FunctionalComponent, vnodeData: d.PropsType, ...children: d.ChildType[]): d.VNode;
+const h = (nodeName, vnodeData, ...children) => {
+    let child = null;
+    let key = null;
+    let slotName = null;
+    let simple = false;
+    let lastSimple = false;
+    let vNodeChildren = [];
+    const walk = (c) => {
+        for (let i = 0; i < c.length; i++) {
+            child = c[i];
+            if (Array.isArray(child)) {
+                walk(child);
+            }
+            else if (child != null && typeof child !== 'boolean') {
+                if (simple = typeof nodeName !== 'function' && !isComplexType(child)) {
+                    child = String(child);
+                }
+                else if (BUILD.isDev && child.$flags$ === undefined) {
+                    consoleDevError(`vNode passed as children has unexpected type.
+Make sure it's using the correct h() function.
+Empty objects can also be the cause, look for JSX comments that became objects.`);
+                }
+                if (simple && lastSimple) {
+                    // If the previous child was simple (string), we merge both
+                    vNodeChildren[vNodeChildren.length - 1].$text$ += child;
+                }
+                else {
+                    // Append a new vNode, if it's text, we create a text vNode
+                    vNodeChildren.push(simple ? newVNode(null, child) : child);
+                }
+                lastSimple = simple;
+            }
+        }
+    };
+    walk(children);
+    if (vnodeData) {
+        if (BUILD.isDev && nodeName === 'input') {
+            validateInputProperties(vnodeData);
+        }
+        // normalize class / classname attributes
+        if (BUILD.vdomKey && vnodeData.key) {
+            key = vnodeData.key;
+        }
+        if (BUILD.slotRelocation && vnodeData.name) {
+            slotName = vnodeData.name;
+        }
+        if (BUILD.vdomClass) {
+            const classData = vnodeData.className || vnodeData.class;
+            if (classData) {
+                vnodeData.class = typeof classData !== 'object'
+                    ? classData
+                    : Object.keys(classData)
+                        .filter(k => classData[k])
+                        .join(' ');
+            }
+        }
+    }
+    if (BUILD.isDev && vNodeChildren.some(isHost)) {
+        consoleDevError(`The <Host> must be the single root component. Make sure:
+- You are NOT using hostData() and <Host> in the same component.
+- <Host> is used once, and it's the single root component of the render() function.`);
+    }
+    if (BUILD.vdomFunctional && typeof nodeName === 'function') {
+        // nodeName is a functional component
+        return nodeName(vnodeData, vNodeChildren, vdomFnUtils);
+    }
+    const vnode = newVNode(nodeName, null);
+    vnode.$attrs$ = vnodeData;
+    if (vNodeChildren.length > 0) {
+        vnode.$children$ = vNodeChildren;
+    }
+    if (BUILD.vdomKey) {
+        vnode.$key$ = key;
+    }
+    if (BUILD.slotRelocation) {
+        vnode.$name$ = slotName;
+    }
+    return vnode;
+};
+const newVNode = (tag, text) => {
+    const vnode = {
+        $flags$: 0,
+        $tag$: tag,
+        $text$: text,
+        $elm$: null,
+        $children$: null
+    };
+    if (BUILD.vdomAttribute) {
+        vnode.$attrs$ = null;
+    }
+    if (BUILD.vdomKey) {
+        vnode.$key$ = null;
+    }
+    if (BUILD.slotRelocation) {
+        vnode.$name$ = null;
+    }
+    return vnode;
+};
+const Host = {};
+const isHost = (node) => node && node.$tag$ === Host;
+const vdomFnUtils = {
+    'forEach': (children, cb) => children.map(convertToPublic).forEach(cb),
+    'map': (children, cb) => children.map(convertToPublic).map(cb).map(convertToPrivate)
+};
+const convertToPublic = (node) => {
+    return {
+        vattrs: node.$attrs$,
+        vchildren: node.$children$,
+        vkey: node.$key$,
+        vname: node.$name$,
+        vtag: node.$tag$,
+        vtext: node.$text$
+    };
+};
+const convertToPrivate = (node) => {
+    const vnode = newVNode(node.vtag, node.vtext);
+    vnode.$attrs$ = node.vattrs;
+    vnode.$children$ = node.vchildren;
+    vnode.$key$ = node.vkey;
+    vnode.$name$ = node.vname;
+    return vnode;
+};
+const validateInputProperties = (vnodeData) => {
+    const props = Object.keys(vnodeData);
+    const typeIndex = props.indexOf('type');
+    const minIndex = props.indexOf('min');
+    const maxIndex = props.indexOf('max');
+    const stepIndex = props.indexOf('min');
+    const value = props.indexOf('value');
+    if (value < typeIndex || value < minIndex || value < maxIndex || value < stepIndex) {
+        consoleDevWarn(`The "value" prop of <input> should be set after "min", "max", "type" and "step"`);
+    }
+};
+/**
+ * Production setAccessor() function based on Preact by
+ * Jason Miller (@developit)
+ * Licensed under the MIT License
+ * https://github.com/developit/preact/blob/master/LICENSE
+ *
+ * Modified for Stencil's compiler and vdom
+ */
+const setAccessor = (elm, memberName, oldValue, newValue, isSvg, flags) => {
+    if (oldValue !== newValue) {
+        let isProp = isMemberInElement(elm, memberName);
+        let ln = memberName.toLowerCase();
+        if (BUILD.vdomClass && memberName === 'class') {
+            const classList = elm.classList;
+            const oldClasses = parseClassList(oldValue);
+            const newClasses = parseClassList(newValue);
+            classList.remove(...oldClasses.filter(c => c && !newClasses.includes(c)));
+            classList.add(...newClasses.filter(c => c && !oldClasses.includes(c)));
+        }
+        else if (BUILD.vdomStyle && memberName === 'style') {
+            // update style attribute, css properties and values
+            if (BUILD.updatable) {
+                for (const prop in oldValue) {
+                    if (!newValue || newValue[prop] == null) {
+                        if (!BUILD.hydrateServerSide && prop.includes('-')) {
+                            elm.style.removeProperty(prop);
+                        }
+                        else {
+                            elm.style[prop] = '';
+                        }
+                    }
+                }
+            }
+            for (const prop in newValue) {
+                if (!oldValue || newValue[prop] !== oldValue[prop]) {
+                    if (!BUILD.hydrateServerSide && prop.includes('-')) {
+                        elm.style.setProperty(prop, newValue[prop]);
+                    }
+                    else {
+                        elm.style[prop] = newValue[prop];
+                    }
+                }
+            }
+        }
+        else if (BUILD.vdomKey && memberName === 'key')
+            ;
+        else if (BUILD.vdomRef && memberName === 'ref') {
+            // minifier will clean this up
+            if (newValue) {
+                newValue(elm);
+            }
+        }
+        else if (BUILD.vdomListener &&
+            (BUILD.lazyLoad
+                ? !isProp
+                : !elm.__lookupSetter__(memberName)) &&
+            memberName[0] === 'o' && memberName[1] === 'n') {
+            // Event Handlers
+            // so if the member name starts with "on" and the 3rd characters is
+            // a capital letter, and it's not already a member on the element,
+            // then we're assuming it's an event listener
+            if (memberName[2] === '-') {
+                // on- prefixed events
+                // allows to be explicit about the dom event to listen without any magic
+                // under the hood:
+                // <my-cmp on-click> // listens for "click"
+                // <my-cmp on-Click> // listens for "Click"
+                // <my-cmp on-ionChange> // listens for "ionChange"
+                // <my-cmp on-EVENTS> // listens for "EVENTS"
+                memberName = memberName.slice(3);
+            }
+            else if (isMemberInElement(win, ln)) {
+                // standard event
+                // the JSX attribute could have been "onMouseOver" and the
+                // member name "onmouseover" is on the window's prototype
+                // so let's add the listener "mouseover", which is all lowercased
+                memberName = ln.slice(2);
+            }
+            else {
+                // custom event
+                // the JSX attribute could have been "onMyCustomEvent"
+                // so let's trim off the "on" prefix and lowercase the first character
+                // and add the listener "myCustomEvent"
+                // except for the first character, we keep the event name case
+                memberName = ln[2] + memberName.slice(3);
+            }
+            if (oldValue) {
+                plt.rel(elm, memberName, oldValue, false);
+            }
+            if (newValue) {
+                plt.ael(elm, memberName, newValue, false);
+            }
+        }
+        else if (BUILD.vdomPropOrAttr) {
+            // Set property if it exists and it's not a SVG
+            const isComplex = isComplexType(newValue);
+            if ((isProp || (isComplex && newValue !== null)) && !isSvg) {
+                try {
+                    if (!elm.tagName.includes('-')) {
+                        let n = newValue == null ? '' : newValue;
+                        // Workaround for Safari, moving the <input> caret when re-assigning the same valued
+                        if (memberName === 'list') {
+                            isProp = false;
+                            // tslint:disable-next-line: triple-equals
+                        }
+                        else if (oldValue == null || elm[memberName] != n) {
+                            elm[memberName] = n;
+                        }
+                    }
+                    else {
+                        elm[memberName] = newValue;
+                    }
+                }
+                catch (e) { }
+            }
+            /**
+             * Need to manually update attribute if:
+             * - memberName is not an attribute
+             * - if we are rendering the host element in order to reflect attribute
+             * - if it's a SVG, since properties might not work in <svg>
+             * - if the newValue is null/undefined or 'false'.
+             */
+            let xlink = false;
+            if (BUILD.vdomXlink) {
+                if (ln !== (ln = ln.replace(/^xlink\:?/, ''))) {
+                    memberName = ln;
+                    xlink = true;
+                }
+            }
+            if (newValue == null || newValue === false) {
+                if (BUILD.vdomXlink && xlink) {
+                    elm.removeAttributeNS(XLINK_NS, memberName);
+                }
+                else {
+                    elm.removeAttribute(memberName);
+                }
+            }
+            else if ((!isProp || (flags & 4 /* isHost */) || isSvg) && !isComplex) {
+                newValue = newValue === true ? '' : newValue;
+                if (BUILD.vdomXlink && xlink) {
+                    elm.setAttributeNS(XLINK_NS, memberName, newValue);
+                }
+                else {
+                    elm.setAttribute(memberName, newValue);
+                }
+            }
+        }
+    }
+};
+const parseClassListRegex = /\s/;
+const parseClassList = (value) => (!value) ? [] : value.split(parseClassListRegex);
+const updateElement = (oldVnode, newVnode, isSvgMode, memberName) => {
+    // if the element passed in is a shadow root, which is a document fragment
+    // then we want to be adding attrs/props to the shadow root's "host" element
+    // if it's not a shadow root, then we add attrs/props to the same element
+    const elm = (newVnode.$elm$.nodeType === 11 /* DocumentFragment */ && newVnode.$elm$.host) ? newVnode.$elm$.host : newVnode.$elm$;
+    const oldVnodeAttrs = (oldVnode && oldVnode.$attrs$) || EMPTY_OBJ;
+    const newVnodeAttrs = newVnode.$attrs$ || EMPTY_OBJ;
+    if (BUILD.updatable) {
+        // remove attributes no longer present on the vnode by setting them to undefined
+        for (memberName in oldVnodeAttrs) {
+            if (!(memberName in newVnodeAttrs)) {
+                setAccessor(elm, memberName, oldVnodeAttrs[memberName], undefined, isSvgMode, newVnode.$flags$);
+            }
+        }
+    }
+    // add new & update changed attributes
+    for (memberName in newVnodeAttrs) {
+        setAccessor(elm, memberName, oldVnodeAttrs[memberName], newVnodeAttrs[memberName], isSvgMode, newVnode.$flags$);
+    }
+};
+const createElm = (oldParentVNode, newParentVNode, childIndex, parentElm) => {
+    // tslint:disable-next-line: prefer-const
+    let newVNode = newParentVNode.$children$[childIndex];
+    let i = 0;
+    let elm;
+    let childNode;
+    let oldVNode;
+    if (BUILD.slotRelocation && !useNativeShadowDom) {
+        // remember for later we need to check to relocate nodes
+        checkSlotRelocate = true;
+        if (newVNode.$tag$ === 'slot') {
+            if (scopeId) {
+                // scoped css needs to add its scoped id to the parent element
+                parentElm.classList.add(scopeId + '-s');
+            }
+            newVNode.$flags$ |= (newVNode.$children$)
+                // slot element has fallback content
+                // still create an element that "mocks" the slot element
+                ? 2 /* isSlotFallback */
+                // slot element does not have fallback content
+                // create an html comment we'll use to always reference
+                // where actual slot content should sit next to
+                : 1 /* isSlotReference */;
+        }
+    }
+    if (BUILD.isDev && newVNode.$elm$) {
+        consoleError(`The JSX ${newVNode.$text$ !== null ? `"${newVNode.$text$}" text` : `"${newVNode.$tag$}" element`} node should not be shared within the same renderer. The renderer caches element lookups in order to improve performance. However, a side effect from this is that the exact same JSX node should not be reused. For more information please see https://stenciljs.com/docs/templating-jsx#avoid-shared-jsx-nodes`);
+    }
+    if (BUILD.vdomText && newVNode.$text$ !== null) {
+        // create text node
+        elm = newVNode.$elm$ = doc.createTextNode(newVNode.$text$);
+    }
+    else if (BUILD.slotRelocation && newVNode.$flags$ & 1 /* isSlotReference */) {
+        // create a slot reference node
+        elm = newVNode.$elm$ = (BUILD.isDebug || BUILD.hydrateServerSide) ? slotReferenceDebugNode(newVNode) : doc.createTextNode('');
+    }
+    else {
+        if (BUILD.svg && !isSvgMode) {
+            isSvgMode = newVNode.$tag$ === 'svg';
+        }
+        // create element
+        elm = newVNode.$elm$ = ((BUILD.svg)
+            ? doc.createElementNS(isSvgMode ? SVG_NS : HTML_NS, (BUILD.slotRelocation && newVNode.$flags$ & 2 /* isSlotFallback */) ? 'slot-fb' : newVNode.$tag$)
+            : doc.createElement((BUILD.slotRelocation && newVNode.$flags$ & 2 /* isSlotFallback */) ? 'slot-fb' : newVNode.$tag$));
+        if (BUILD.svg && isSvgMode && newVNode.$tag$ === 'foreignObject') {
+            isSvgMode = false;
+        }
+        // add css classes, attrs, props, listeners, etc.
+        if (BUILD.vdomAttribute) {
+            updateElement(null, newVNode, isSvgMode);
+        }
+        if ((BUILD.shadowDom || BUILD.scoped) && isDef(scopeId) && elm['s-si'] !== scopeId) {
+            // if there is a scopeId and this is the initial render
+            // then let's add the scopeId as a css class
+            elm.classList.add((elm['s-si'] = scopeId));
+        }
+        if (newVNode.$children$) {
+            for (i = 0; i < newVNode.$children$.length; ++i) {
+                // create the node
+                childNode = createElm(oldParentVNode, newVNode, i, elm);
+                // return node could have been null
+                if (childNode) {
+                    // append our new node
+                    elm.appendChild(childNode);
+                }
+            }
+        }
+        if (BUILD.svg) {
+            if (newVNode.$tag$ === 'svg') {
+                // Only reset the SVG context when we're exiting <svg> element
+                isSvgMode = false;
+            }
+            else if (elm.tagName === 'foreignObject') {
+                // Reenter SVG context when we're exiting <foreignObject> element
+                isSvgMode = true;
+            }
+        }
+    }
+    if (BUILD.slotRelocation) {
+        elm['s-hn'] = hostTagName;
+        if (newVNode.$flags$ & (2 /* isSlotFallback */ | 1 /* isSlotReference */)) {
+            // remember the content reference comment
+            elm['s-sr'] = true;
+            // remember the content reference comment
+            elm['s-cr'] = contentRef;
+            // remember the slot name, or empty string for default slot
+            elm['s-sn'] = newVNode.$name$ || '';
+            // check if we've got an old vnode for this slot
+            oldVNode = oldParentVNode && oldParentVNode.$children$ && oldParentVNode.$children$[childIndex];
+            if (oldVNode && oldVNode.$tag$ === newVNode.$tag$ && oldParentVNode.$elm$) {
+                // we've got an old slot vnode and the wrapper is being replaced
+                // so let's move the old slot content back to it's original location
+                putBackInOriginalLocation(oldParentVNode.$elm$, false);
+            }
+        }
+    }
+    return elm;
+};
+const putBackInOriginalLocation = (parentElm, recursive) => {
+    plt.$flags$ |= 1 /* isTmpDisconnected */;
+    const oldSlotChildNodes = parentElm.childNodes;
+    for (let i = oldSlotChildNodes.length - 1; i >= 0; i--) {
+        const childNode = oldSlotChildNodes[i];
+        if (childNode['s-hn'] !== hostTagName && childNode['s-ol']) {
+            // // this child node in the old element is from another component
+            // // remove this node from the old slot's parent
+            // childNode.remove();
+            // and relocate it back to it's original location
+            parentReferenceNode(childNode).insertBefore(childNode, referenceNode(childNode));
+            // remove the old original location comment entirely
+            // later on the patch function will know what to do
+            // and move this to the correct spot in need be
+            childNode['s-ol'].remove();
+            childNode['s-ol'] = undefined;
+            checkSlotRelocate = true;
+        }
+        if (recursive) {
+            putBackInOriginalLocation(childNode, recursive);
+        }
+    }
+    plt.$flags$ &= ~1 /* isTmpDisconnected */;
+};
+const addVnodes = (parentElm, before, parentVNode, vnodes, startIdx, endIdx) => {
+    let containerElm = ((BUILD.slotRelocation && parentElm['s-cr'] && parentElm['s-cr'].parentNode) || parentElm);
+    let childNode;
+    if (BUILD.shadowDom && containerElm.shadowRoot && containerElm.tagName === hostTagName) {
+        containerElm = containerElm.shadowRoot;
+    }
+    for (; startIdx <= endIdx; ++startIdx) {
+        if (vnodes[startIdx]) {
+            childNode = createElm(null, parentVNode, startIdx, parentElm);
+            if (childNode) {
+                vnodes[startIdx].$elm$ = childNode;
+                containerElm.insertBefore(childNode, BUILD.slotRelocation ? referenceNode(before) : before);
+            }
+        }
+    }
+};
+const removeVnodes = (vnodes, startIdx, endIdx, vnode, elm) => {
+    for (; startIdx <= endIdx; ++startIdx) {
+        if (vnode = vnodes[startIdx]) {
+            elm = vnode.$elm$;
+            callNodeRefs(vnode);
+            if (BUILD.slotRelocation) {
+                // we're removing this element
+                // so it's possible we need to show slot fallback content now
+                checkSlotFallbackVisibility = true;
+                if (elm['s-ol']) {
+                    // remove the original location comment
+                    elm['s-ol'].remove();
+                }
+                else {
+                    // it's possible that child nodes of the node
+                    // that's being removed are slot nodes
+                    putBackInOriginalLocation(elm, true);
+                }
+            }
+            // remove the vnode's element from the dom
+            elm.remove();
+        }
+    }
+};
+const updateChildren = (parentElm, oldCh, newVNode, newCh) => {
+    let oldStartIdx = 0;
+    let newStartIdx = 0;
+    let idxInOld = 0;
+    let i = 0;
+    let oldEndIdx = oldCh.length - 1;
+    let oldStartVnode = oldCh[0];
+    let oldEndVnode = oldCh[oldEndIdx];
+    let newEndIdx = newCh.length - 1;
+    let newStartVnode = newCh[0];
+    let newEndVnode = newCh[newEndIdx];
+    let node;
+    let elmToMove;
+    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+        if (oldStartVnode == null) {
+            // Vnode might have been moved left
+            oldStartVnode = oldCh[++oldStartIdx];
+        }
+        else if (oldEndVnode == null) {
+            oldEndVnode = oldCh[--oldEndIdx];
+        }
+        else if (newStartVnode == null) {
+            newStartVnode = newCh[++newStartIdx];
+        }
+        else if (newEndVnode == null) {
+            newEndVnode = newCh[--newEndIdx];
+        }
+        else if (isSameVnode(oldStartVnode, newStartVnode)) {
+            patch(oldStartVnode, newStartVnode);
+            oldStartVnode = oldCh[++oldStartIdx];
+            newStartVnode = newCh[++newStartIdx];
+        }
+        else if (isSameVnode(oldEndVnode, newEndVnode)) {
+            patch(oldEndVnode, newEndVnode);
+            oldEndVnode = oldCh[--oldEndIdx];
+            newEndVnode = newCh[--newEndIdx];
+        }
+        else if (isSameVnode(oldStartVnode, newEndVnode)) {
+            // Vnode moved right
+            if (BUILD.slotRelocation && (oldStartVnode.$tag$ === 'slot' || newEndVnode.$tag$ === 'slot')) {
+                putBackInOriginalLocation(oldStartVnode.$elm$.parentNode, false);
+            }
+            patch(oldStartVnode, newEndVnode);
+            parentElm.insertBefore(oldStartVnode.$elm$, oldEndVnode.$elm$.nextSibling);
+            oldStartVnode = oldCh[++oldStartIdx];
+            newEndVnode = newCh[--newEndIdx];
+        }
+        else if (isSameVnode(oldEndVnode, newStartVnode)) {
+            // Vnode moved left
+            if (BUILD.slotRelocation && (oldStartVnode.$tag$ === 'slot' || newEndVnode.$tag$ === 'slot')) {
+                putBackInOriginalLocation(oldEndVnode.$elm$.parentNode, false);
+            }
+            patch(oldEndVnode, newStartVnode);
+            parentElm.insertBefore(oldEndVnode.$elm$, oldStartVnode.$elm$);
+            oldEndVnode = oldCh[--oldEndIdx];
+            newStartVnode = newCh[++newStartIdx];
+        }
+        else {
+            // createKeyToOldIdx
+            idxInOld = -1;
+            if (BUILD.vdomKey) {
+                for (i = oldStartIdx; i <= oldEndIdx; ++i) {
+                    if (oldCh[i] && oldCh[i].$key$ !== null && oldCh[i].$key$ === newStartVnode.$key$) {
+                        idxInOld = i;
+                        break;
+                    }
+                }
+            }
+            if (BUILD.vdomKey && idxInOld >= 0) {
+                elmToMove = oldCh[idxInOld];
+                if (elmToMove.$tag$ !== newStartVnode.$tag$) {
+                    node = createElm(oldCh && oldCh[newStartIdx], newVNode, idxInOld, parentElm);
+                }
+                else {
+                    patch(elmToMove, newStartVnode);
+                    oldCh[idxInOld] = undefined;
+                    node = elmToMove.$elm$;
+                }
+                newStartVnode = newCh[++newStartIdx];
+            }
+            else {
+                // new element
+                node = createElm(oldCh && oldCh[newStartIdx], newVNode, newStartIdx, parentElm);
+                newStartVnode = newCh[++newStartIdx];
+            }
+            if (node) {
+                if (BUILD.slotRelocation) {
+                    parentReferenceNode(oldStartVnode.$elm$).insertBefore(node, referenceNode(oldStartVnode.$elm$));
+                }
+                else {
+                    oldStartVnode.$elm$.parentNode.insertBefore(node, oldStartVnode.$elm$);
+                }
+            }
+        }
+    }
+    if (oldStartIdx > oldEndIdx) {
+        addVnodes(parentElm, (newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].$elm$), newVNode, newCh, newStartIdx, newEndIdx);
+    }
+    else if (BUILD.updatable && newStartIdx > newEndIdx) {
+        removeVnodes(oldCh, oldStartIdx, oldEndIdx);
+    }
+};
+const isSameVnode = (vnode1, vnode2) => {
+    // compare if two vnode to see if they're "technically" the same
+    // need to have the same element tag, and same key to be the same
+    if (vnode1.$tag$ === vnode2.$tag$) {
+        if (BUILD.slotRelocation && vnode1.$tag$ === 'slot') {
+            return vnode1.$name$ === vnode2.$name$;
+        }
+        if (BUILD.vdomKey) {
+            return vnode1.$key$ === vnode2.$key$;
+        }
+        return true;
+    }
+    return false;
+};
+const referenceNode = (node) => {
+    // this node was relocated to a new location in the dom
+    // because of some other component's slot
+    // but we still have an html comment in place of where
+    // it's original location was according to it's original vdom
+    return (node && node['s-ol']) || node;
+};
+const parentReferenceNode = (node) => (node['s-ol'] ? node['s-ol'] : node).parentNode;
+const patch = (oldVNode, newVNode) => {
+    const elm = newVNode.$elm$ = oldVNode.$elm$;
+    const oldChildren = oldVNode.$children$;
+    const newChildren = newVNode.$children$;
+    const tag = newVNode.$tag$;
+    const text = newVNode.$text$;
+    let defaultHolder;
+    if (!BUILD.vdomText || text === null) {
+        if (BUILD.svg) {
+            // test if we're rendering an svg element, or still rendering nodes inside of one
+            // only add this to the when the compiler sees we're using an svg somewhere
+            isSvgMode = (tag === 'svg')
+                ? true
+                : (tag === 'foreignObject')
+                    ? false
+                    : isSvgMode;
+        }
+        // element node
+        if (BUILD.vdomAttribute || BUILD.reflect) {
+            if (BUILD.slot && tag === 'slot')
+                ;
+            else {
+                // either this is the first render of an element OR it's an update
+                // AND we already know it's possible it could have changed
+                // this updates the element's css classes, attrs, props, listeners, etc.
+                updateElement(oldVNode, newVNode, isSvgMode);
+            }
+        }
+        if (BUILD.updatable && oldChildren !== null && newChildren !== null) {
+            // looks like there's child vnodes for both the old and new vnodes
+            updateChildren(elm, oldChildren, newVNode, newChildren);
+        }
+        else if (newChildren !== null) {
+            // no old child vnodes, but there are new child vnodes to add
+            if (BUILD.updatable && BUILD.vdomText && oldVNode.$text$ !== null) {
+                // the old vnode was text, so be sure to clear it out
+                elm.textContent = '';
+            }
+            // add the new vnode children
+            addVnodes(elm, null, newVNode, newChildren, 0, newChildren.length - 1);
+        }
+        else if (BUILD.updatable && oldChildren !== null) {
+            // no new child vnodes, but there are old child vnodes to remove
+            removeVnodes(oldChildren, 0, oldChildren.length - 1);
+        }
+        if (BUILD.svg && isSvgMode && tag === 'svg') {
+            isSvgMode = false;
+        }
+    }
+    else if (BUILD.vdomText && BUILD.slotRelocation && (defaultHolder = elm['s-cr'])) {
+        // this element has slotted content
+        defaultHolder.parentNode.textContent = text;
+    }
+    else if (BUILD.vdomText && oldVNode.$text$ !== text) {
+        // update the text content for the text only vnode
+        // and also only if the text is different than before
+        elm.data = text;
+    }
+};
+const updateFallbackSlotVisibility = (elm) => {
+    // tslint:disable-next-line: prefer-const
+    let childNodes = elm.childNodes;
+    let childNode;
+    let i;
+    let ilen;
+    let j;
+    let slotNameAttr;
+    let nodeType;
+    for (i = 0, ilen = childNodes.length; i < ilen; i++) {
+        childNode = childNodes[i];
+        if (childNode.nodeType === 1 /* ElementNode */) {
+            if (childNode['s-sr']) {
+                // this is a slot fallback node
+                // get the slot name for this slot reference node
+                slotNameAttr = childNode['s-sn'];
+                // by default always show a fallback slot node
+                // then hide it if there are other slots in the light dom
+                childNode.hidden = false;
+                for (j = 0; j < ilen; j++) {
+                    if (childNodes[j]['s-hn'] !== childNode['s-hn']) {
+                        // this sibling node is from a different component
+                        nodeType = childNodes[j].nodeType;
+                        if (slotNameAttr !== '') {
+                            // this is a named fallback slot node
+                            if (nodeType === 1 /* ElementNode */ && slotNameAttr === childNodes[j].getAttribute('slot')) {
+                                childNode.hidden = true;
+                                break;
+                            }
+                        }
+                        else {
+                            // this is a default fallback slot node
+                            // any element or text node (with content)
+                            // should hide the default fallback slot node
+                            if (nodeType === 1 /* ElementNode */ || (nodeType === 3 /* TextNode */ && childNodes[j].textContent.trim() !== '')) {
+                                childNode.hidden = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            // keep drilling down
+            updateFallbackSlotVisibility(childNode);
+        }
+    }
+};
+const relocateNodes = [];
+const relocateSlotContent = (elm) => {
+    // tslint:disable-next-line: prefer-const
+    let childNode;
+    let node;
+    let hostContentNodes;
+    let slotNameAttr;
+    let relocateNodeData;
+    let j;
+    let i = 0;
+    let childNodes = elm.childNodes;
+    let ilen = childNodes.length;
+    for (; i < ilen; i++) {
+        childNode = childNodes[i];
+        if (childNode['s-sr'] && (node = childNode['s-cr'])) {
+            // first got the content reference comment node
+            // then we got it's parent, which is where all the host content is in now
+            hostContentNodes = node.parentNode.childNodes;
+            slotNameAttr = childNode['s-sn'];
+            for (j = hostContentNodes.length - 1; j >= 0; j--) {
+                node = hostContentNodes[j];
+                if (!node['s-cn'] && !node['s-nr'] && node['s-hn'] !== childNode['s-hn']) {
+                    // let's do some relocating to its new home
+                    // but never relocate a content reference node
+                    // that is suppose to always represent the original content location
+                    if (isNodeLocatedInSlot(node, slotNameAttr)) {
+                        // it's possible we've already decided to relocate this node
+                        relocateNodeData = relocateNodes.find(r => r.$nodeToRelocate$ === node);
+                        // made some changes to slots
+                        // let's make sure we also double check
+                        // fallbacks are correctly hidden or shown
+                        checkSlotFallbackVisibility = true;
+                        node['s-sn'] = node['s-sn'] || slotNameAttr;
+                        if (relocateNodeData) {
+                            // previously we never found a slot home for this node
+                            // but turns out we did, so let's remember it now
+                            relocateNodeData.$slotRefNode$ = childNode;
+                        }
+                        else {
+                            // add to our list of nodes to relocate
+                            relocateNodes.push({
+                                $slotRefNode$: childNode,
+                                $nodeToRelocate$: node,
+                            });
+                        }
+                        if (node['s-sr']) {
+                            relocateNodes.forEach(relocateNode => {
+                                if (isNodeLocatedInSlot(relocateNode.$nodeToRelocate$, node['s-sn'])) {
+                                    relocateNodeData = relocateNodes.find(r => r.$nodeToRelocate$ === node);
+                                    if (relocateNodeData) {
+                                        relocateNode.$slotRefNode$ = relocateNodeData.$slotRefNode$;
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    else if (!relocateNodes.some(r => r.$nodeToRelocate$ === node)) {
+                        // so far this element does not have a slot home, not setting slotRefNode on purpose
+                        // if we never find a home for this element then we'll need to hide it
+                        relocateNodes.push({
+                            $nodeToRelocate$: node,
+                        });
+                    }
+                }
+            }
+        }
+        if (childNode.nodeType === 1 /* ElementNode */) {
+            relocateSlotContent(childNode);
+        }
+    }
+};
+const isNodeLocatedInSlot = (nodeToRelocate, slotNameAttr) => {
+    if (nodeToRelocate.nodeType === 1 /* ElementNode */) {
+        if (nodeToRelocate.getAttribute('slot') === null && slotNameAttr === '') {
+            return true;
+        }
+        if (nodeToRelocate.getAttribute('slot') === slotNameAttr) {
+            return true;
+        }
+        return false;
+    }
+    if (nodeToRelocate['s-sn'] === slotNameAttr) {
+        return true;
+    }
+    return slotNameAttr === '';
+};
+const callNodeRefs = (vNode) => {
+    if (BUILD.vdomRef) {
+        vNode.$attrs$ && vNode.$attrs$.ref && vNode.$attrs$.ref(null);
+        vNode.$children$ && vNode.$children$.forEach(callNodeRefs);
+    }
+};
+const renderVdom = (hostElm, hostRef, cmpMeta, renderFnResults) => {
+    hostTagName = hostElm.tagName;
+    // <Host> runtime check
+    if (BUILD.isDev && Array.isArray(renderFnResults) && renderFnResults.some(isHost)) {
+        throw new Error(`The <Host> must be the single root component.
+Looks like the render() function of "${hostTagName.toLowerCase()}" is returning an array that contains the <Host>.
+
+The render() function should look like this instead:
+
+render() {
+  // Do not return an array
+  return (
+    <Host>{content}</Host>
+  );
+}
+`);
+    }
+    const oldVNode = hostRef.$vnode$ || newVNode(null, null);
+    const rootVnode = isHost(renderFnResults)
+        ? renderFnResults
+        : h(null, null, renderFnResults);
+    if (BUILD.reflect && cmpMeta.$attrsToReflect$) {
+        rootVnode.$attrs$ = rootVnode.$attrs$ || {};
+        cmpMeta.$attrsToReflect$.forEach(([propName, attribute]) => rootVnode.$attrs$[attribute] = hostElm[propName]);
+    }
+    rootVnode.$tag$ = null;
+    rootVnode.$flags$ |= 4 /* isHost */;
+    hostRef.$vnode$ = rootVnode;
+    rootVnode.$elm$ = oldVNode.$elm$ = (BUILD.shadowDom ? hostElm.shadowRoot || hostElm : hostElm);
+    if (BUILD.scoped || BUILD.shadowDom) {
+        scopeId = hostElm['s-sc'];
+    }
+    if (BUILD.slotRelocation) {
+        contentRef = hostElm['s-cr'];
+        useNativeShadowDom = supportsShadowDom && (cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) !== 0;
+        // always reset
+        checkSlotFallbackVisibility = false;
+    }
+    // synchronous patch
+    patch(oldVNode, rootVnode);
+    if (BUILD.slotRelocation) {
+        if (checkSlotRelocate) {
+            relocateSlotContent(rootVnode.$elm$);
+            let relocateData;
+            let nodeToRelocate;
+            let orgLocationNode;
+            let parentNodeRef;
+            let insertBeforeNode;
+            let refNode;
+            let i = 0;
+            for (; i < relocateNodes.length; i++) {
+                relocateData = relocateNodes[i];
+                nodeToRelocate = relocateData.$nodeToRelocate$;
+                if (!nodeToRelocate['s-ol']) {
+                    // add a reference node marking this node's original location
+                    // keep a reference to this node for later lookups
+                    orgLocationNode = (BUILD.isDebug || BUILD.hydrateServerSide)
+                        ? originalLocationDebugNode(nodeToRelocate)
+                        : doc.createTextNode('');
+                    orgLocationNode['s-nr'] = nodeToRelocate;
+                    nodeToRelocate.parentNode.insertBefore((nodeToRelocate['s-ol'] = orgLocationNode), nodeToRelocate);
+                }
+            }
+            // while we're moving nodes around existing nodes, temporarily disable
+            // the disconnectCallback from working
+            plt.$flags$ |= 1 /* isTmpDisconnected */;
+            for (i = 0; i < relocateNodes.length; i++) {
+                relocateData = relocateNodes[i];
+                nodeToRelocate = relocateData.$nodeToRelocate$;
+                if (relocateData.$slotRefNode$) {
+                    // by default we're just going to insert it directly
+                    // after the slot reference node
+                    parentNodeRef = relocateData.$slotRefNode$.parentNode;
+                    insertBeforeNode = relocateData.$slotRefNode$.nextSibling;
+                    orgLocationNode = nodeToRelocate['s-ol'];
+                    while (orgLocationNode = orgLocationNode.previousSibling) {
+                        refNode = orgLocationNode['s-nr'];
+                        if (refNode &&
+                            refNode['s-sn'] === nodeToRelocate['s-sn'] &&
+                            parentNodeRef === refNode.parentNode) {
+                            refNode = refNode.nextSibling;
+                            if (!refNode || !refNode['s-nr']) {
+                                insertBeforeNode = refNode;
+                                break;
+                            }
+                        }
+                    }
+                    if ((!insertBeforeNode && parentNodeRef !== nodeToRelocate.parentNode) ||
+                        (nodeToRelocate.nextSibling !== insertBeforeNode)) {
+                        // we've checked that it's worth while to relocate
+                        // since that the node to relocate
+                        // has a different next sibling or parent relocated
+                        if (nodeToRelocate !== insertBeforeNode) {
+                            if (!nodeToRelocate['s-hn'] && nodeToRelocate['s-ol']) {
+                                // probably a component in the index.html that doesn't have it's hostname set
+                                nodeToRelocate['s-hn'] = nodeToRelocate['s-ol'].parentNode.nodeName;
+                            }
+                            // add it back to the dom but in its new home
+                            parentNodeRef.insertBefore(nodeToRelocate, insertBeforeNode);
+                        }
+                    }
+                }
+                else {
+                    // this node doesn't have a slot home to go to, so let's hide it
+                    if (nodeToRelocate.nodeType === 1 /* ElementNode */) {
+                        nodeToRelocate.hidden = true;
+                    }
+                }
+            }
+            // done moving nodes around
+            // allow the disconnect callback to work again
+            plt.$flags$ &= ~1 /* isTmpDisconnected */;
+        }
+        if (checkSlotFallbackVisibility) {
+            updateFallbackSlotVisibility(rootVnode.$elm$);
+        }
+        // always reset
+        relocateNodes.length = 0;
+    }
+};
+// slot comment debug nodes only created with the `--debug` flag
+// otherwise these nodes are text nodes w/out content
+const slotReferenceDebugNode = (slotVNode) => doc.createComment(`<slot${slotVNode.$name$ ?
+    (' name="' + slotVNode.$name$) + '"' :
+    ''}> (host=${hostTagName.toLowerCase()})`);
+const originalLocationDebugNode = (nodeToRelocate) => doc.createComment(`org-location for ` +
+    (nodeToRelocate.localName ?
+        `<${nodeToRelocate.localName}> (host=${nodeToRelocate['s-hn']})` :
+        `[${nodeToRelocate.textContent}]`));
+const attachToAncestor = (hostRef, ancestorComponent) => {
+    if (BUILD.asyncLoading && ancestorComponent && !hostRef.$onRenderResolve$) {
+        ancestorComponent['s-p'].push(new Promise(r => hostRef.$onRenderResolve$ = r));
+    }
+};
+const scheduleUpdate = (elm, hostRef, cmpMeta, isInitialLoad) => {
+    if (BUILD.taskQueue && BUILD.updatable) {
+        hostRef.$flags$ |= 16 /* isQueuedForUpdate */;
+    }
+    if (BUILD.asyncLoading && hostRef.$flags$ & 4 /* isWaitingForChildren */) {
+        hostRef.$flags$ |= 512 /* needsRerender */;
+        return;
+    }
+    const endSchedule = createTime('scheduleUpdate', cmpMeta.$tagName$);
+    const ancestorComponent = hostRef.$ancestorComponent$;
+    const instance = BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+    const update = () => updateComponent(elm, hostRef, cmpMeta, instance, isInitialLoad);
+    attachToAncestor(hostRef, ancestorComponent);
+    let promise;
+    if (isInitialLoad) {
+        if (BUILD.lazyLoad && BUILD.hostListener) {
+            hostRef.$flags$ |= 256 /* isListenReady */;
+            if (hostRef.$queuedListeners$) {
+                hostRef.$queuedListeners$.forEach(([methodName, event]) => safeCall(instance, methodName, event));
+                hostRef.$queuedListeners$ = null;
+            }
+        }
+        emitLifecycleEvent(elm, 'componentWillLoad');
+        if (BUILD.cmpWillLoad) {
+            promise = safeCall(instance, 'componentWillLoad');
+        }
+    }
+    else {
+        emitLifecycleEvent(elm, 'componentWillUpdate');
+        if (BUILD.cmpWillUpdate) {
+            promise = safeCall(instance, 'componentWillUpdate');
+        }
+    }
+    emitLifecycleEvent(elm, 'componentWillRender');
+    if (BUILD.cmpWillRender) {
+        promise = then(promise, () => safeCall(instance, 'componentWillRender'));
+    }
+    endSchedule();
+    // there is no ancestorc omponent or the ancestor component
+    // has already fired off its lifecycle update then
+    // fire off the initial update
+    return then(promise, BUILD.taskQueue
+        ? () => writeTask(update)
+        : update);
+};
+const updateComponent = (elm, hostRef, cmpMeta, instance, isInitialLoad) => {
+    // updateComponent
+    const endUpdate = createTime('update', cmpMeta.$tagName$);
+    const rc = elm['s-rc'];
+    if (BUILD.style && isInitialLoad) {
+        // DOM WRITE!
+        attachStyles(elm, cmpMeta, hostRef.$modeName$);
+    }
+    const endRender = createTime('render', cmpMeta.$tagName$);
+    if (BUILD.isDev) {
+        hostRef.$flags$ |= 1024 /* devOnRender */;
+    }
+    if (BUILD.hasRenderFn || BUILD.reflect) {
+        if (BUILD.vdomRender || BUILD.reflect) {
+            // looks like we've got child nodes to render into this host element
+            // or we need to update the css class/attrs on the host element
+            // DOM WRITE!
+            renderVdom(elm, hostRef, cmpMeta, callRender(instance, elm));
+        }
+        else {
+            elm.textContent = callRender(instance, elm);
+        }
+    }
+    if (BUILD.cssVarShim && plt.$cssShim$) {
+        plt.$cssShim$.updateHost(elm);
+    }
+    if (BUILD.isDev) {
+        hostRef.$renderCount$++;
+        hostRef.$flags$ &= ~1024 /* devOnRender */;
+    }
+    if (BUILD.updatable && BUILD.taskQueue) {
+        hostRef.$flags$ &= ~16 /* isQueuedForUpdate */;
+    }
+    if (BUILD.hydrateServerSide) {
+        try {
+            // manually connected child components during server-side hydrate
+            serverSideConnected(elm);
+            if (isInitialLoad) {
+                // using only during server-side hydrate
+                if (cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+                    elm['s-en'] = '';
+                }
+                else if (cmpMeta.$flags$ & 2 /* scopedCssEncapsulation */) {
+                    elm['s-en'] = 'c';
+                }
+            }
+        }
+        catch (e) {
+            consoleError(e);
+        }
+    }
+    if (BUILD.updatable || BUILD.lazyLoad) {
+        hostRef.$flags$ |= 2 /* hasRendered */;
+    }
+    if (BUILD.asyncLoading && rc) {
+        // ok, so turns out there are some child host elements
+        // waiting on this parent element to load
+        // let's fire off all update callbacks waiting
+        rc.forEach(cb => cb());
+        elm['s-rc'] = undefined;
+    }
+    endRender();
+    endUpdate();
+    if (BUILD.asyncLoading) {
+        const childrenPromises = elm['s-p'];
+        const postUpdate = () => postUpdateComponent(elm, hostRef, cmpMeta);
+        if (childrenPromises.length === 0) {
+            postUpdate();
+        }
+        else {
+            Promise.all(childrenPromises).then(postUpdate);
+            hostRef.$flags$ |= 4 /* isWaitingForChildren */;
+            childrenPromises.length = 0;
+        }
+    }
+    else {
+        postUpdateComponent(elm, hostRef, cmpMeta);
+    }
+};
+const callRender = (instance, elm) => {
+    try {
+        renderingElement = elm;
+        instance = (BUILD.allRenderFn) ? instance.render() : (instance.render && instance.render());
+    }
+    catch (e) {
+        consoleError(e);
+    }
+    renderingElement = null;
+    return instance;
+};
+const getRenderingElement = () => renderingElement;
+const postUpdateComponent = (elm, hostRef, cmpMeta) => {
+    const endPostUpdate = createTime('postUpdate', cmpMeta.$tagName$);
+    const instance = BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+    const ancestorComponent = hostRef.$ancestorComponent$;
+    if (BUILD.cmpDidRender) {
+        if (BUILD.isDev) {
+            hostRef.$flags$ |= 1024 /* devOnRender */;
+        }
+        safeCall(instance, 'componentDidRender');
+        if (BUILD.isDev) {
+            hostRef.$flags$ &= ~1024 /* devOnRender */;
+        }
+    }
+    emitLifecycleEvent(elm, 'componentDidRender');
+    if (!(hostRef.$flags$ & 64 /* hasLoadedComponent */)) {
+        hostRef.$flags$ |= 64 /* hasLoadedComponent */;
+        if (BUILD.asyncLoading && BUILD.cssAnnotations) {
+            // DOM WRITE!
+            addHydratedFlag(elm);
+        }
+        if (BUILD.cmpDidLoad) {
+            if (BUILD.isDev) {
+                hostRef.$flags$ |= 2048 /* devOnDidLoad */;
+            }
+            safeCall(instance, 'componentDidLoad');
+            if (BUILD.isDev) {
+                hostRef.$flags$ &= ~2048 /* devOnDidLoad */;
+            }
+        }
+        emitLifecycleEvent(elm, 'componentDidLoad');
+        endPostUpdate();
+        if (BUILD.asyncLoading) {
+            hostRef.$onReadyResolve$(elm);
+            if (!ancestorComponent) {
+                appDidLoad(cmpMeta.$tagName$);
+            }
+        }
+    }
+    else {
+        if (BUILD.cmpDidUpdate) {
+            // we've already loaded this component
+            // fire off the user's componentDidUpdate method (if one was provided)
+            // componentDidUpdate runs AFTER render() has been called
+            // and all child components have finished updating
+            if (BUILD.isDev) {
+                hostRef.$flags$ |= 1024 /* devOnRender */;
+            }
+            safeCall(instance, 'componentDidUpdate');
+            if (BUILD.isDev) {
+                hostRef.$flags$ &= ~1024 /* devOnRender */;
+            }
+        }
+        emitLifecycleEvent(elm, 'componentDidUpdate');
+        endPostUpdate();
+    }
+    if (BUILD.hotModuleReplacement) {
+        elm['s-hmr-load'] && elm['s-hmr-load']();
+    }
+    if (BUILD.method && BUILD.lazyLoad) {
+        hostRef.$onInstanceResolve$(elm);
+    }
+    // load events fire from bottom to top
+    // the deepest elements load first then bubbles up
+    if (BUILD.asyncLoading) {
+        if (hostRef.$onRenderResolve$) {
+            hostRef.$onRenderResolve$();
+            hostRef.$onRenderResolve$ = undefined;
+        }
+        if (hostRef.$flags$ & 512 /* needsRerender */) {
+            nextTick(() => scheduleUpdate(elm, hostRef, cmpMeta, false));
+        }
+        hostRef.$flags$ &= ~(4 /* isWaitingForChildren */ | 512 /* needsRerender */);
+    }
+    // ( •_•)
+    // ( •_•)>⌐■-■
+    // (⌐■_■)
+};
+const forceUpdate = (elm, cmpMeta) => {
+    if (BUILD.updatable) {
+        const hostRef = getHostRef(elm);
+        const isConnected = hostRef.$hostElement$.isConnected;
+        if (isConnected && (hostRef.$flags$ & (2 /* hasRendered */ | 16 /* isQueuedForUpdate */)) === 2 /* hasRendered */) {
+            scheduleUpdate(elm, hostRef, cmpMeta, false);
+        }
+        // Returns "true" when the forced update was successfully scheduled
+        return isConnected;
+    }
+    return false;
+};
+const appDidLoad = (who) => {
+    // on appload
+    // we have finish the first big initial render
+    if (BUILD.cssAnnotations) {
+        addHydratedFlag(doc.documentElement);
+    }
+    if (!BUILD.hydrateServerSide) {
+        plt.$flags$ |= 2 /* appLoaded */;
+    }
+    emitLifecycleEvent(doc, 'appload');
+    if (BUILD.profile) {
+        performance.measure(`[Stencil] ${NAMESPACE} initial load (by ${who})`, 'st:app:start');
+    }
+};
+const safeCall = (instance, method, arg) => {
+    if (instance && instance[method]) {
+        try {
+            return instance[method](arg);
+        }
+        catch (e) {
+            consoleError(e);
+        }
+    }
+    return undefined;
+};
+const then = (promise, thenFn) => {
+    return promise && promise.then ? promise.then(thenFn) : thenFn();
+};
+const emitLifecycleEvent = (elm, lifecycleName) => {
+    if (BUILD.lifecycleDOMEvents) {
+        elm.dispatchEvent(new CustomEvent('stencil_' + lifecycleName, { 'bubbles': true, 'composed': true }));
+    }
+};
+const addHydratedFlag = (elm) => BUILD.hydratedClass ?
+    elm.classList.add('hydrated') :
+    BUILD.hydratedAttribute ?
+        elm.setAttribute('hydrated', '') :
+        undefined;
+const serverSideConnected = (elm) => {
+    const children = elm.children;
+    if (children != null) {
+        for (let i = 0, ii = children.length; i < ii; i++) {
+            const childElm = children[i];
+            if (typeof childElm.connectedCallback === 'function') {
+                childElm.connectedCallback();
+            }
+            serverSideConnected(childElm);
+        }
+    }
+};
+const cloneNodeFix = (HostElementPrototype) => {
+    const orgCloneNode = HostElementPrototype.cloneNode;
+    HostElementPrototype.cloneNode = function (deep) {
+        const srcNode = this;
+        const isShadowDom = BUILD.shadowDom ? srcNode.shadowRoot && supportsShadowDom : false;
+        const clonedNode = orgCloneNode.call(srcNode, isShadowDom ? deep : false);
+        if (BUILD.slot && !isShadowDom && deep) {
+            let i = 0;
+            let slotted;
+            for (; i < srcNode.childNodes.length; i++) {
+                slotted = srcNode.childNodes[i]['s-nr'];
+                if (slotted) {
+                    if (BUILD.appendChildSlotFix && clonedNode.__appendChild) {
+                        clonedNode.__appendChild(slotted.cloneNode(true));
+                    }
+                    else {
+                        clonedNode.appendChild(slotted.cloneNode(true));
+                    }
+                }
+            }
+        }
+        return clonedNode;
+    };
+};
+const appendChildSlotFix = (HostElementPrototype) => {
+    HostElementPrototype.__appendChild = HostElementPrototype.appendChild;
+    HostElementPrototype.appendChild = function (newChild) {
+        const slotName = newChild['s-sn'] = getSlotName(newChild);
+        const slotNode = getHostSlotNode(this, slotName);
+        if (slotNode) {
+            const slotChildNodes = getHostSlotChildNodes(slotNode, slotName);
+            const appendAfter = slotChildNodes[slotChildNodes.length - 1];
+            return appendAfter.parentNode.insertBefore(newChild, appendAfter.nextSibling);
+        }
+        return this.__appendChild(newChild);
+    };
+};
+const getSlotName = (node) => (node['s-sn']) ||
+    (node.nodeType === 1 && node.getAttribute('slot')) || '';
+const getHostSlotNode = (elm, slotName) => {
+    let childNodes = elm.childNodes;
+    let i = 0;
+    let childNode;
+    for (; i < childNodes.length; i++) {
+        childNode = childNodes[i];
+        if (childNode['s-sr'] && childNode['s-sn'] === slotName) {
+            return childNode;
+        }
+        childNode = getHostSlotNode(childNode, slotName);
+        if (childNode) {
+            return childNode;
+        }
+    }
+    return null;
+};
+const getHostSlotChildNodes = (n, slotName) => {
+    const childNodes = [n];
+    while ((n = n.nextSibling) && n['s-sn'] === slotName) {
+        childNodes.push(n);
+    }
+    return childNodes;
+};
+const addEventListeners = (elm, hostRef, listeners) => {
+    hostRef.$queuedListeners$ = hostRef.$queuedListeners$ || [];
+    const removeFns = listeners.map(([flags, name, method]) => {
+        const target = (BUILD.hostListenerTarget ? getHostListenerTarget(elm, flags) : elm);
+        const handler = hostListenerProxy(hostRef, method);
+        const opts = hostListenerOpts(flags);
+        plt.ael(target, name, handler, opts);
+        return () => plt.rel(target, name, handler, opts);
+    });
+    return () => removeFns.forEach(fn => fn());
+};
+const hostListenerProxy = (hostRef, methodName) => {
+    return (ev) => {
+        if (BUILD.lazyLoad) {
+            if (hostRef.$flags$ & 256 /* isListenReady */) {
+                // instance is ready, let's call it's member method for this event
+                hostRef.$lazyInstance$[methodName](ev);
+            }
+            else {
+                hostRef.$queuedListeners$.push([methodName, ev]);
+            }
+        }
+        else {
+            hostRef.$hostElement$[methodName](ev);
+        }
+    };
+};
+const getHostListenerTarget = (elm, flags) => {
+    if (BUILD.hostListenerTargetDocument && flags & 4 /* TargetDocument */)
+        return doc;
+    if (BUILD.hostListenerTargetWindow && flags & 8 /* TargetWindow */)
+        return win;
+    if (BUILD.hostListenerTargetBody && flags & 32 /* TargetBody */)
+        return doc.body;
+    if (BUILD.hostListenerTargetParent && flags & 16 /* TargetParent */)
+        return elm.parentElement;
+    return elm;
+};
+const hostListenerOpts = (flags) => supportsListenerOptions ?
+    {
+        'passive': (flags & 1 /* Passive */) !== 0,
+        'capture': (flags & 2 /* Capture */) !== 0,
+    }
+    : (flags & 2 /* Capture */) !== 0;
+const initializeClientHydrate = (hostElm, tagName, hostId, hostRef) => {
+    const endHydrate = createTime('hydrateClient', tagName);
+    const shadowRoot = hostElm.shadowRoot;
+    const childRenderNodes = [];
+    const slotNodes = [];
+    const shadowRootNodes = (BUILD.shadowDom && shadowRoot ? [] : null);
+    const vnode = hostRef.$vnode$ = newVNode(tagName, null);
+    if (!plt.$orgLocNodes$) {
+        initializeDocumentHydrate(doc.body, plt.$orgLocNodes$ = new Map());
+    }
+    hostElm[HYDRATE_ID] = hostId;
+    hostElm.removeAttribute(HYDRATE_ID);
+    clientHydrate(vnode, childRenderNodes, slotNodes, shadowRootNodes, hostElm, hostElm, hostId);
+    childRenderNodes.forEach(c => {
+        const orgLocationId = c.$hostId$ + '.' + c.$nodeId$;
+        const orgLocationNode = plt.$orgLocNodes$.get(orgLocationId);
+        const node = c.$elm$;
+        if (orgLocationNode && (supportsShadowDom && orgLocationNode['s-en'] === '')) {
+            orgLocationNode.parentNode.insertBefore(node, orgLocationNode.nextSibling);
+        }
+        if (!shadowRoot) {
+            node['s-hn'] = tagName;
+            if (orgLocationNode) {
+                node['s-ol'] = orgLocationNode;
+                node['s-ol']['s-nr'] = node;
+            }
+        }
+        plt.$orgLocNodes$.delete(orgLocationId);
+    });
+    if (BUILD.shadowDom && shadowRoot) {
+        shadowRootNodes.forEach(shadowRootNode => {
+            if (shadowRootNode) {
+                shadowRoot.appendChild(shadowRootNode);
+            }
+        });
+    }
+    endHydrate();
+};
+const clientHydrate = (parentVNode, childRenderNodes, slotNodes, shadowRootNodes, hostElm, node, hostId) => {
+    let childNodeType;
+    let childIdSplt;
+    let childVNode;
+    let i;
+    if (node.nodeType === 1 /* ElementNode */) {
+        childNodeType = node.getAttribute(HYDRATE_CHILD_ID);
+        if (childNodeType) {
+            // got the node data from the element's attribute
+            // `${hostId}.${nodeId}.${depth}.${index}`
+            childIdSplt = childNodeType.split('.');
+            if (childIdSplt[0] === hostId || childIdSplt[0] === '0') {
+                childVNode = {
+                    $flags$: 0,
+                    $hostId$: childIdSplt[0],
+                    $nodeId$: childIdSplt[1],
+                    $depth$: childIdSplt[2],
+                    $index$: childIdSplt[3],
+                    $tag$: node.tagName.toLowerCase(),
+                    $elm$: node,
+                    $attrs$: null,
+                    $children$: null,
+                    $key$: null,
+                    $name$: null,
+                    $text$: null
+                };
+                childRenderNodes.push(childVNode);
+                node.removeAttribute(HYDRATE_CHILD_ID);
+                // this is a new child vnode
+                // so ensure its parent vnode has the vchildren array
+                if (!parentVNode.$children$) {
+                    parentVNode.$children$ = [];
+                }
+                // add our child vnode to a specific index of the vnode's children
+                parentVNode.$children$[childVNode.$index$] = childVNode;
+                // this is now the new parent vnode for all the next child checks
+                parentVNode = childVNode;
+                if (shadowRootNodes && childVNode.$depth$ === '0') {
+                    shadowRootNodes[childVNode.$index$] = childVNode.$elm$;
+                }
+            }
+        }
+        // recursively drill down, end to start so we can remove nodes
+        for (i = node.childNodes.length - 1; i >= 0; i--) {
+            clientHydrate(parentVNode, childRenderNodes, slotNodes, shadowRootNodes, hostElm, node.childNodes[i], hostId);
+        }
+        if (node.shadowRoot) {
+            // keep drilling down through the shadow root nodes
+            for (i = node.shadowRoot.childNodes.length - 1; i >= 0; i--) {
+                clientHydrate(parentVNode, childRenderNodes, slotNodes, shadowRootNodes, hostElm, node.shadowRoot.childNodes[i], hostId);
+            }
+        }
+    }
+    else if (node.nodeType === 8 /* CommentNode */) {
+        // `${COMMENT_TYPE}.${hostId}.${nodeId}.${depth}.${index}`
+        childIdSplt = node.nodeValue.split('.');
+        if (childIdSplt[1] === hostId || childIdSplt[1] === '0') {
+            // comment node for either the host id or a 0 host id
+            childNodeType = childIdSplt[0];
+            childVNode = {
+                $flags$: 0,
+                $hostId$: childIdSplt[1],
+                $nodeId$: childIdSplt[2],
+                $depth$: childIdSplt[3],
+                $index$: childIdSplt[4],
+                $elm$: node,
+                $attrs$: null,
+                $children$: null,
+                $key$: null,
+                $name$: null,
+                $tag$: null,
+                $text$: null
+            };
+            if (childNodeType === TEXT_NODE_ID) {
+                childVNode.$elm$ = node.nextSibling;
+                if (childVNode.$elm$ && childVNode.$elm$.nodeType === 3 /* TextNode */) {
+                    childVNode.$text$ = childVNode.$elm$.textContent;
+                    childRenderNodes.push(childVNode);
+                    // remove the text comment since it's no longer needed
+                    node.remove();
+                    if (!parentVNode.$children$) {
+                        parentVNode.$children$ = [];
+                    }
+                    parentVNode.$children$[childVNode.$index$] = childVNode;
+                    if (shadowRootNodes && childVNode.$depth$ === '0') {
+                        shadowRootNodes[childVNode.$index$] = childVNode.$elm$;
+                    }
+                }
+            }
+            else if (childVNode.$hostId$ === hostId) {
+                // this comment node is specifcally for this host id
+                if (childNodeType === SLOT_NODE_ID) {
+                    // `${SLOT_NODE_ID}.${hostId}.${nodeId}.${depth}.${index}.${slotName}`;
+                    childVNode.$tag$ = 'slot';
+                    if (childIdSplt[5]) {
+                        node['s-sn'] = childVNode.$name$ = childIdSplt[5];
+                    }
+                    else {
+                        node['s-sn'] = '';
+                    }
+                    node['s-sr'] = true;
+                    if (BUILD.shadowDom && shadowRootNodes) {
+                        // browser support shadowRoot and this is a shadow dom component
+                        // create an actual slot element
+                        childVNode.$elm$ = doc.createElement(childVNode.$tag$);
+                        if (childVNode.$name$) {
+                            // add the slot name attribute
+                            childVNode.$elm$.setAttribute('name', childVNode.$name$);
+                        }
+                        // insert the new slot element before the slot comment
+                        node.parentNode.insertBefore(childVNode.$elm$, node);
+                        // remove the slot comment since it's not needed for shadow
+                        node.remove();
+                        if (childVNode.$depth$ === '0') {
+                            shadowRootNodes[childVNode.$index$] = childVNode.$elm$;
+                        }
+                    }
+                    slotNodes.push(childVNode);
+                    if (!parentVNode.$children$) {
+                        parentVNode.$children$ = [];
+                    }
+                    parentVNode.$children$[childVNode.$index$] = childVNode;
+                }
+                else if (childNodeType === CONTENT_REF_ID) {
+                    // `${CONTENT_REF_ID}.${hostId}`;
+                    if (BUILD.shadowDom && shadowRootNodes) {
+                        // remove the content ref comment since it's not needed for shadow
+                        node.remove();
+                    }
+                    else if (BUILD.slotRelocation) {
+                        hostElm['s-cr'] = node;
+                        node['s-cn'] = true;
+                    }
+                }
+            }
+        }
+    }
+    else if (parentVNode && parentVNode.$tag$ === 'style') {
+        const vnode = newVNode(null, node.textContent);
+        vnode.$elm$ = node;
+        vnode.$index$ = '0';
+        parentVNode.$children$ = [vnode];
+    }
+};
+const initializeDocumentHydrate = (node, orgLocNodes) => {
+    if (node.nodeType === 1 /* ElementNode */) {
+        let i = 0;
+        for (; i < node.childNodes.length; i++) {
+            initializeDocumentHydrate(node.childNodes[i], orgLocNodes);
+        }
+        if (node.shadowRoot) {
+            for (i = 0; i < node.shadowRoot.childNodes.length; i++) {
+                initializeDocumentHydrate(node.shadowRoot.childNodes[i], orgLocNodes);
+            }
+        }
+    }
+    else if (node.nodeType === 8 /* CommentNode */) {
+        const childIdSplt = node.nodeValue.split('.');
+        if (childIdSplt[0] === ORG_LOCATION_ID) {
+            orgLocNodes.set(childIdSplt[1] + '.' + childIdSplt[2], node);
+            node.nodeValue = '';
+            // useful to know if the original location is
+            // the root light-dom of a shadow dom component
+            node['s-en'] = childIdSplt[3];
+        }
+    }
+};
+const parsePropertyValue = (propValue, propType) => {
+    // ensure this value is of the correct prop type
+    if (propValue != null && !isComplexType(propValue)) {
+        if (BUILD.propBoolean && propType & 4 /* Boolean */) {
+            // per the HTML spec, any string value means it is a boolean true value
+            // but we'll cheat here and say that the string "false" is the boolean false
+            return (propValue === 'false' ? false : propValue === '' || !!propValue);
+        }
+        if (BUILD.propNumber && propType & 2 /* Number */) {
+            // force it to be a number
+            return parseFloat(propValue);
+        }
+        if (BUILD.propString && propType & 1 /* String */) {
+            // could have been passed as a number or boolean
+            // but we still want it as a string
+            return String(propValue);
+        }
+        // redundant return here for better minification
+        return propValue;
+    }
+    // not sure exactly what type we want
+    // so no need to change to a different type
+    return propValue;
+};
+const getValue = (ref, propName) => getHostRef(ref).$instanceValues$.get(propName);
+const setValue = (ref, propName, newVal, cmpMeta) => {
+    // check our new property value against our internal value
+    const hostRef = getHostRef(ref);
+    const elm = BUILD.lazyLoad ? hostRef.$hostElement$ : ref;
+    const oldVal = hostRef.$instanceValues$.get(propName);
+    const flags = hostRef.$flags$;
+    const instance = BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+    newVal = parsePropertyValue(newVal, cmpMeta.$members$[propName][0]);
+    if (newVal !== oldVal && (!BUILD.lazyLoad || !(flags & 8 /* isConstructingInstance */) || oldVal === undefined)) {
+        // gadzooks! the property's value has changed!!
+        // set our new value!
+        hostRef.$instanceValues$.set(propName, newVal);
+        if (BUILD.isDev) {
+            if (hostRef.$flags$ & 1024 /* devOnRender */) {
+                consoleDevWarn(`The state/prop "${propName}" changed during rendering. This can potentially lead to infinite-loops and other bugs.`, '\nElement', elm, '\nNew value', newVal, '\nOld value', oldVal);
+            }
+            else if (hostRef.$flags$ & 2048 /* devOnDidLoad */) {
+                consoleDevWarn(`The state/prop "${propName}" changed during "componentDidLoad()", this triggers extra re-renders, try to setup on "componentWillLoad()"`, '\nElement', elm, '\nNew value', newVal, '\nOld value', oldVal);
+            }
+        }
+        if (!BUILD.lazyLoad || instance) {
+            // get an array of method names of watch functions to call
+            if (BUILD.watchCallback && cmpMeta.$watchers$ && flags & 128 /* isWatchReady */) {
+                const watchMethods = cmpMeta.$watchers$[propName];
+                if (watchMethods) {
+                    // this instance is watching for when this property changed
+                    watchMethods.forEach(watchMethodName => {
+                        try {
+                            // fire off each of the watch methods that are watching this property
+                            instance[watchMethodName](newVal, oldVal, propName);
+                        }
+                        catch (e) {
+                            consoleError(e);
+                        }
+                    });
+                }
+            }
+            if (BUILD.updatable && (flags & (2 /* hasRendered */ | 16 /* isQueuedForUpdate */)) === 2 /* hasRendered */) {
+                if (BUILD.cmpShouldUpdate && instance.componentShouldUpdate) {
+                    if (instance.componentShouldUpdate(newVal, oldVal, propName) === false) {
+                        return;
+                    }
+                }
+                // looks like this value actually changed, so we've got work to do!
+                // but only if we've already rendered, otherwise just chill out
+                // queue that we need to do an update, but don't worry about queuing
+                // up millions cuz this function ensures it only runs once
+                scheduleUpdate(elm, hostRef, cmpMeta, false);
+            }
+        }
+    }
+};
+const proxyComponent = (Cstr, cmpMeta, flags) => {
+    if (BUILD.member && cmpMeta.$members$) {
+        if (BUILD.watchCallback && Cstr.watchers) {
+            cmpMeta.$watchers$ = Cstr.watchers;
+        }
+        // It's better to have a const than two Object.entries()
+        const members = Object.entries(cmpMeta.$members$);
+        const prototype = Cstr.prototype;
+        members.forEach(([memberName, [memberFlags]]) => {
+            if ((BUILD.prop || BUILD.state) && ((memberFlags & 31 /* Prop */) ||
+                ((!BUILD.lazyLoad || flags & 2 /* proxyState */) &&
+                    (memberFlags & 32 /* State */)))) {
+                // proxyComponent - prop
+                Object.defineProperty(prototype, memberName, {
+                    get() {
+                        // proxyComponent, get value
+                        return getValue(this, memberName);
+                    },
+                    set(newValue) {
+                        if (
+                        // only during dev time
+                        (BUILD.isDev) &&
+                            // we are proxing the instance (not element)
+                            (flags & 1 /* isElementConstructor */) === 0 &&
+                            // the member is a non-mutable prop
+                            (memberFlags & (31 /* Prop */ | 1024 /* Mutable */)) === 31 /* Prop */) {
+                            consoleDevWarn(`@Prop() "${memberName}" on "${cmpMeta.$tagName$}" cannot be modified.\nFurther information: https://stenciljs.com/docs/properties#prop-mutability`);
+                        }
+                        // proxyComponent, set value
+                        setValue(this, memberName, newValue, cmpMeta);
+                    },
+                    configurable: true,
+                    enumerable: true
+                });
+            }
+            else if (BUILD.lazyLoad && BUILD.method && (flags & 1 /* isElementConstructor */) && (memberFlags & 64 /* Method */)) {
+                // proxyComponent - method
+                Object.defineProperty(prototype, memberName, {
+                    value(...args) {
+                        const ref = getHostRef(this);
+                        return ref.$onInstancePromise$.then(() => ref.$lazyInstance$[memberName](...args));
+                    }
+                });
+            }
+        });
+        if (BUILD.observeAttribute && (!BUILD.lazyLoad || flags & 1 /* isElementConstructor */)) {
+            const attrNameToPropName = new Map();
+            prototype.attributeChangedCallback = function (attrName, _oldValue, newValue) {
+                plt.jmp(() => {
+                    const propName = attrNameToPropName.get(attrName);
+                    this[propName] = newValue === null && typeof this[propName] === 'boolean'
+                        ? false
+                        : newValue;
+                });
+            };
+            // create an array of attributes to observe
+            // and also create a map of html attribute name to js property name
+            Cstr.observedAttributes = members
+                .filter(([_, m]) => m[0] & 15 /* HasAttribute */) // filter to only keep props that should match attributes
+                .map(([propName, m]) => {
+                const attrName = m[1] || propName;
+                attrNameToPropName.set(attrName, propName);
+                if (BUILD.reflect && m[0] & 512 /* ReflectAttr */) {
+                    cmpMeta.$attrsToReflect$.push([propName, attrName]);
+                }
+                return attrName;
+            });
+        }
+    }
+    return Cstr;
+};
+const modeResolutionChain = [];
+const computeMode = (elm) => modeResolutionChain.map(h => h(elm)).find(m => !!m);
+// Public
+const setMode = (handler) => modeResolutionChain.push(handler);
+const getMode = (ref) => getHostRef(ref).$modeName$;
+const initializeComponent = async (elm, hostRef, cmpMeta, hmrVersionId, Cstr) => {
+    // initializeComponent
+    if ((BUILD.lazyLoad || BUILD.style) && (hostRef.$flags$ & 32 /* hasInitializedComponent */) === 0) {
+        // we haven't initialized this element yet
+        hostRef.$flags$ |= 32 /* hasInitializedComponent */;
+        if (BUILD.mode && hostRef.$modeName$ == null) {
+            // initializeComponent
+            // looks like mode wasn't set as a property directly yet
+            // first check if there's an attribute
+            // next check the app's global
+            hostRef.$modeName$ = typeof cmpMeta.$lazyBundleIds$ !== 'string' ? computeMode(elm) : '';
+        }
+        if (BUILD.hydrateServerSide && hostRef.$modeName$) {
+            elm.setAttribute('s-mode', hostRef.$modeName$);
+        }
+        if (BUILD.lazyLoad) {
+            // lazy loaded components
+            // request the component's implementation to be
+            // wired up with the host element
+            Cstr = loadModule(cmpMeta, hostRef, hmrVersionId);
+            if (Cstr.then) {
+                // Await creates a micro-task avoid if possible
+                const endLoad = uniqueTime(`st:load:${cmpMeta.$tagName$}:${hostRef.$modeName$}`, `[Stencil] Load module for <${cmpMeta.$tagName$}>`);
+                Cstr = await Cstr;
+                endLoad();
+            }
+            if ((BUILD.isDev || BUILD.isDebug) && !Cstr) {
+                throw new Error(`Constructor for "${cmpMeta.$tagName$}#${hostRef.$modeName$}" was not found`);
+            }
+            if (BUILD.member && !Cstr.isProxied) {
+                // we'eve never proxied this Constructor before
+                // let's add the getters/setters to its prototype before
+                // the first time we create an instance of the implementation
+                if (BUILD.watchCallback) {
+                    cmpMeta.$watchers$ = Cstr.watchers;
+                }
+                proxyComponent(Cstr, cmpMeta, 2 /* proxyState */);
+                Cstr.isProxied = true;
+            }
+            const endNewInstance = createTime('createInstance', cmpMeta.$tagName$);
+            // ok, time to construct the instance
+            // but let's keep track of when we start and stop
+            // so that the getters/setters don't incorrectly step on data
+            if (BUILD.member) {
+                hostRef.$flags$ |= 8 /* isConstructingInstance */;
+            }
+            // construct the lazy-loaded component implementation
+            // passing the hostRef is very important during
+            // construction in order to directly wire together the
+            // host element and the lazy-loaded instance
+            try {
+                new Cstr(hostRef);
+            }
+            catch (e) {
+                consoleError(e);
+            }
+            if (BUILD.member) {
+                hostRef.$flags$ &= ~8 /* isConstructingInstance */;
+            }
+            if (BUILD.watchCallback) {
+                hostRef.$flags$ |= 128 /* isWatchReady */;
+            }
+            endNewInstance();
+            fireConnectedCallback(hostRef.$lazyInstance$);
+        }
+        else {
+            Cstr = elm.constructor;
+        }
+        const scopeId = BUILD.mode ? getScopeId(cmpMeta.$tagName$, hostRef.$modeName$) : getScopeId(cmpMeta.$tagName$);
+        if (BUILD.style && !styles.has(scopeId) && Cstr.style) {
+            const endRegisterStyles = createTime('registerStyles', cmpMeta.$tagName$);
+            // this component has styles but we haven't registered them yet
+            let style = Cstr.style;
+            if (BUILD.mode && typeof style !== 'string') {
+                style = style[hostRef.$modeName$];
+            }
+            if (!BUILD.hydrateServerSide && BUILD.shadowDom && BUILD.shadowDomShim && cmpMeta.$flags$ & 8 /* needsShadowDomShim */) {
+                style = await __sc_import_gc_components('./shadow-css-d7d058ec-d59cb009.js').then(m => m.scopeCss(style, scopeId, false));
+            }
+            registerStyle(scopeId, style, !!(cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */));
+            endRegisterStyles();
+        }
+    }
+    // we've successfully created a lazy instance
+    const ancestorComponent = hostRef.$ancestorComponent$;
+    const schedule = () => scheduleUpdate(elm, hostRef, cmpMeta, true);
+    if (BUILD.asyncLoading && ancestorComponent && ancestorComponent['s-rc']) {
+        // this is the intial load and this component it has an ancestor component
+        // but the ancestor component has NOT fired its will update lifecycle yet
+        // so let's just cool our jets and wait for the ancestor to continue first
+        // this will get fired off when the ancestor component
+        // finally gets around to rendering its lazy self
+        // fire off the initial update
+        ancestorComponent['s-rc'].push(schedule);
+    }
+    else {
+        schedule();
+    }
+};
+const fireConnectedCallback = (instance) => {
+    if (BUILD.lazyLoad && BUILD.connectedCallback) {
+        safeCall(instance, 'connectedCallback');
+    }
+};
+const connectedCallback = (elm, cmpMeta) => {
+    if ((plt.$flags$ & 1 /* isTmpDisconnected */) === 0) {
+        const endConnected = createTime('connectedCallback', cmpMeta.$tagName$);
+        // connectedCallback
+        const hostRef = getHostRef(elm);
+        if (BUILD.hostListener && cmpMeta.$listeners$) {
+            // initialize our event listeners on the host element
+            // we do this now so that we can listening to events that may
+            // have fired even before the instance is ready
+            hostRef.$rmListeners$ = addEventListeners(elm, hostRef, cmpMeta.$listeners$);
+        }
+        if (!(hostRef.$flags$ & 1 /* hasConnected */)) {
+            // first time this component has connected
+            hostRef.$flags$ |= 1 /* hasConnected */;
+            let hostId;
+            if (BUILD.hydrateClientSide) {
+                hostId = elm.getAttribute(HYDRATE_ID);
+                if (hostId) {
+                    if (BUILD.shadowDom && supportsShadowDom && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+                        const scopeId = BUILD.mode ? addStyle(elm.shadowRoot, cmpMeta, elm.getAttribute('s-mode')) : addStyle(elm.shadowRoot, cmpMeta);
+                        elm.classList.remove(scopeId + '-h', scopeId + '-s');
+                    }
+                    initializeClientHydrate(elm, cmpMeta.$tagName$, hostId, hostRef);
+                }
+            }
+            if (BUILD.slotRelocation && !hostId) {
+                // initUpdate
+                // if the slot polyfill is required we'll need to put some nodes
+                // in here to act as original content anchors as we move nodes around
+                // host element has been connected to the DOM
+                if ((BUILD.hydrateServerSide) ||
+                    (BUILD.slot && cmpMeta.$flags$ & 4 /* hasSlotRelocation */) ||
+                    (BUILD.shadowDom && cmpMeta.$flags$ & 8 /* needsShadowDomShim */)) {
+                    setContentReference(elm);
+                }
+            }
+            if (BUILD.asyncLoading) {
+                // find the first ancestor component (if there is one) and register
+                // this component as one of the actively loading child components for its ancestor
+                let ancestorComponent = elm;
+                while ((ancestorComponent = (ancestorComponent.parentNode || ancestorComponent.host))) {
+                    // climb up the ancestors looking for the first
+                    // component that hasn't finished its lifecycle update yet
+                    if ((BUILD.hydrateClientSide && ancestorComponent.nodeType === 1 /* ElementNode */ && ancestorComponent.hasAttribute('s-id')) ||
+                        (ancestorComponent['s-p'])) {
+                        // we found this components first ancestor component
+                        // keep a reference to this component's ancestor component
+                        attachToAncestor(hostRef, (hostRef.$ancestorComponent$ = ancestorComponent));
+                        break;
+                    }
+                }
+            }
+            // Lazy properties
+            // https://developers.google.com/web/fundamentals/web-components/best-practices#lazy-properties
+            if (BUILD.prop && BUILD.lazyLoad && !BUILD.hydrateServerSide && cmpMeta.$members$) {
+                Object.entries(cmpMeta.$members$).forEach(([memberName, [memberFlags]]) => {
+                    if (memberFlags & 31 /* Prop */ && elm.hasOwnProperty(memberName)) {
+                        const value = elm[memberName];
+                        delete elm[memberName];
+                        elm[memberName] = value;
+                    }
+                });
+            }
+            if (BUILD.initializeNextTick) {
+                // connectedCallback, taskQueue, initialLoad
+                // angular sets attribute AFTER connectCallback
+                // https://github.com/angular/angular/issues/18909
+                // https://github.com/angular/angular/issues/19940
+                nextTick(() => initializeComponent(elm, hostRef, cmpMeta));
+            }
+            else {
+                initializeComponent(elm, hostRef, cmpMeta);
+            }
+        }
+        fireConnectedCallback(hostRef.$lazyInstance$);
+        endConnected();
+    }
+};
+const setContentReference = (elm) => {
+    // only required when we're NOT using native shadow dom (slot)
+    // or this browser doesn't support native shadow dom
+    // and this host element was NOT created with SSR
+    // let's pick out the inner content for slot projection
+    // create a node to represent where the original
+    // content was first placed, which is useful later on
+    const contentRefElm = elm['s-cr'] = doc.createComment(BUILD.isDebug
+        ? `content-ref (host=${elm.localName})`
+        : '');
+    contentRefElm['s-cn'] = true;
+    elm.insertBefore(contentRefElm, elm.firstChild);
+};
+const disconnectedCallback = (elm) => {
+    if ((plt.$flags$ & 1 /* isTmpDisconnected */) === 0) {
+        const hostRef = getHostRef(elm);
+        const instance = BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+        if (BUILD.hostListener) {
+            if (hostRef.$rmListeners$) {
+                hostRef.$rmListeners$();
+                hostRef.$rmListeners$ = undefined;
+            }
+        }
+        // clear CSS var-shim tracking
+        if (BUILD.cssVarShim && plt.$cssShim$) {
+            plt.$cssShim$.removeHost(elm);
+        }
+        if (BUILD.lazyLoad && BUILD.disconnectedCallback) {
+            safeCall(instance, 'disconnectedCallback');
+        }
+        if (BUILD.cmpDidUnload) {
+            safeCall(instance, 'componentDidUnload');
+        }
+    }
+};
+function hmrStart(elm, cmpMeta, hmrVersionId) {
+    // ¯\_(ツ)_/¯
+    const hostRef = getHostRef(elm);
+    // reset state flags to only have been connected
+    hostRef.$flags$ = 1 /* hasConnected */;
+    // TODO
+    // detatch any event listeners that may have been added
+    // because we're not passing an exact event name it'll
+    // remove all of this element's event, which is good
+    // create a callback for when this component finishes hmr
+    elm['s-hmr-load'] = () => {
+        // finished hmr for this element
+        delete elm['s-hmr-load'];
+    };
+    // re-initialize the component
+    initializeComponent(elm, hostRef, cmpMeta, hmrVersionId);
+}
+const bootstrapLazy = (lazyBundles, options = {}) => {
+    if (BUILD.profile) {
+        performance.mark('st:app:start');
+    }
+    installDevTools();
+    const endBootstrap = createTime('bootstrapLazy');
+    const cmpTags = [];
+    const exclude = options.exclude || [];
+    const customElements = win.customElements;
+    const head = doc.head;
+    const metaCharset = /*@__PURE__*/ head.querySelector('meta[charset]');
+    const visibilityStyle = /*@__PURE__*/ doc.createElement('style');
+    const deferredConnectedCallbacks = [];
+    const styles = /*@__PURE__*/ doc.querySelectorAll(`[${HYDRATED_STYLE_ID}]`);
+    let appLoadFallback;
+    let isBootstrapping = true;
+    let i = 0;
+    Object.assign(plt, options);
+    plt.$resourcesUrl$ = new URL(options.resourcesUrl || './', doc.baseURI).href;
+    if (options.syncQueue) {
+        plt.$flags$ |= 4 /* queueSync */;
+    }
+    if (BUILD.hydrateClientSide) {
+        // If the app is already hydrated there is not point to disable the
+        // async queue. This will improve the first input delay
+        plt.$flags$ |= 2 /* appLoaded */;
+    }
+    if (BUILD.hydrateClientSide && BUILD.shadowDom) {
+        for (; i < styles.length; i++) {
+            registerStyle(styles[i].getAttribute(HYDRATED_STYLE_ID), convertScopedToShadow(styles[i].innerHTML), true);
+        }
+    }
+    lazyBundles.forEach(lazyBundle => lazyBundle[1].forEach(compactMeta => {
+        const cmpMeta = {
+            $flags$: compactMeta[0],
+            $tagName$: compactMeta[1],
+            $members$: compactMeta[2],
+            $listeners$: compactMeta[3],
+        };
+        if (BUILD.member) {
+            cmpMeta.$members$ = compactMeta[2];
+        }
+        if (BUILD.hostListener) {
+            cmpMeta.$listeners$ = compactMeta[3];
+        }
+        if (BUILD.reflect) {
+            cmpMeta.$attrsToReflect$ = [];
+        }
+        if (BUILD.watchCallback) {
+            cmpMeta.$watchers$ = {};
+        }
+        if (BUILD.shadowDom && !supportsShadowDom && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+            cmpMeta.$flags$ |= 8 /* needsShadowDomShim */;
+        }
+        const tagName = cmpMeta.$tagName$;
+        const HostElement = class extends HTMLElement {
+            // StencilLazyHost
+            constructor(self) {
+                // @ts-ignore
+                super(self);
+                self = this;
+                registerHost(self);
+                if (BUILD.shadowDom && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+                    // this component is using shadow dom
+                    // and this browser supports shadow dom
+                    // add the read-only property "shadowRoot" to the host element
+                    // adding the shadow root build conditionals to minimize runtime
+                    if (supportsShadowDom) {
+                        if (BUILD.shadowDelegatesFocus) {
+                            self.attachShadow({
+                                mode: 'open',
+                                delegatesFocus: !!(cmpMeta.$flags$ & 16 /* shadowDelegatesFocus */),
+                            });
+                        }
+                        else {
+                            self.attachShadow({ mode: 'open' });
+                        }
+                    }
+                    else if (!BUILD.hydrateServerSide && !('shadowRoot' in self)) {
+                        self.shadowRoot = self;
+                    }
+                }
+            }
+            connectedCallback() {
+                if (appLoadFallback) {
+                    clearTimeout(appLoadFallback);
+                    appLoadFallback = null;
+                }
+                if (isBootstrapping) {
+                    // connectedCallback will be processed once all components have been registered
+                    deferredConnectedCallbacks.push(this);
+                }
+                else {
+                    plt.jmp(() => connectedCallback(this, cmpMeta));
+                }
+            }
+            disconnectedCallback() {
+                plt.jmp(() => disconnectedCallback(this));
+            }
+            forceUpdate() {
+                forceUpdate(this, cmpMeta);
+            }
+            componentOnReady() {
+                return getHostRef(this).$onReadyPromise$;
+            }
+        };
+        if (BUILD.cloneNodeFix) {
+            cloneNodeFix(HostElement.prototype);
+        }
+        if (BUILD.appendChildSlotFix) {
+            appendChildSlotFix(HostElement.prototype);
+        }
+        if (BUILD.hotModuleReplacement) {
+            HostElement.prototype['s-hmr'] = function (hmrVersionId) {
+                hmrStart(this, cmpMeta, hmrVersionId);
+            };
+        }
+        cmpMeta.$lazyBundleIds$ = lazyBundle[0];
+        if (!exclude.includes(tagName) && !customElements.get(tagName)) {
+            cmpTags.push(tagName);
+            customElements.define(tagName, proxyComponent(HostElement, cmpMeta, 1 /* isElementConstructor */));
+        }
+    }));
+    if (BUILD.hydratedClass || BUILD.hydratedAttribute) {
+        visibilityStyle.innerHTML = cmpTags + HYDRATED_CSS;
+        visibilityStyle.setAttribute('data-styles', '');
+        head.insertBefore(visibilityStyle, metaCharset ? metaCharset.nextSibling : head.firstChild);
+    }
+    // Process deferred connectedCallbacks now all components have been registered
+    isBootstrapping = false;
+    if (deferredConnectedCallbacks.length > 0) {
+        deferredConnectedCallbacks.forEach(host => host.connectedCallback());
+    }
+    else {
+        if (BUILD.profile) {
+            plt.jmp(() => appLoadFallback = setTimeout(appDidLoad, 30, 'timeout'));
+        }
+        else {
+            plt.jmp(() => appLoadFallback = setTimeout(appDidLoad, 30));
+        }
+    }
+    // Fallback appLoad event
+    endBootstrap();
+};
+const defineCustomElement = (Cstr, compactMeta) => {
+    customElements.define(compactMeta[1], proxyCustomElement(Cstr, compactMeta));
+};
+const proxyCustomElement = (Cstr, compactMeta) => {
+    const cmpMeta = {
+        $flags$: compactMeta[0],
+        $tagName$: compactMeta[1],
+    };
+    if (BUILD.member) {
+        cmpMeta.$members$ = compactMeta[2];
+    }
+    if (BUILD.hostListener) {
+        cmpMeta.$listeners$ = compactMeta[3];
+    }
+    if (BUILD.watchCallback) {
+        cmpMeta.$watchers$ = Cstr.$watchers$;
+    }
+    if (BUILD.reflect) {
+        cmpMeta.$attrsToReflect$ = [];
+    }
+    if (BUILD.shadowDom && !supportsShadowDom && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+        cmpMeta.$flags$ |= 8 /* needsShadowDomShim */;
+    }
+    Object.assign(Cstr.prototype, {
+        forceUpdate() {
+            forceUpdate(this, cmpMeta);
+        },
+        connectedCallback() {
+            connectedCallback(this, cmpMeta);
+        },
+        disconnectedCallback() {
+            disconnectedCallback(this);
+        }
+    });
+    return proxyComponent(Cstr, cmpMeta, 1 /* isElementConstructor */ | 2 /* proxyState */);
+};
+const attachShadow = (el) => {
+    if (supportsShadowDom) {
+        el.attachShadow({ mode: 'open' });
+    }
+    else {
+        el.shadowRoot = el;
+    }
+};
+const proxyNative = (Cstr, compactMeta) => {
+    const cmpMeta = {
+        $flags$: compactMeta[0],
+        $tagName$: compactMeta[1],
+        $members$: compactMeta[2],
+        $listeners$: compactMeta[3],
+        $watchers$: Cstr.$watchers$
+    };
+    if (BUILD.reflect) {
+        cmpMeta.$attrsToReflect$ = [];
+    }
+    if (BUILD.shadowDom && !supportsShadowDom && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+        cmpMeta.$flags$ |= 8 /* needsShadowDomShim */;
+    }
+    Object.assign(Cstr.prototype, {
+        forceUpdate() {
+            forceUpdate(this, cmpMeta);
+        },
+        connectedCallback() {
+            connectedCallback(this, cmpMeta);
+        },
+        disconnectedCallback() {
+            disconnectedCallback(this);
+        }
+    });
+    return proxyComponent(Cstr, cmpMeta, 1 /* isElementConstructor */ | 2 /* proxyState */);
+};
+const createEvent = (ref, name, flags) => {
+    const elm = getElement(ref);
+    return {
+        emit: (detail) => {
+            if (BUILD.isDev && !elm.isConnected) {
+                consoleDevWarn(`The "${name}" event was emitted, but the dispatcher node is no longer connected to the dom.`);
+            }
+            const ev = new (BUILD.hydrateServerSide ? win.CustomEvent : CustomEvent)(name, {
+                bubbles: !!(flags & 4 /* Bubbles */),
+                composed: !!(flags & 2 /* Composed */),
+                cancelable: !!(flags & 1 /* Cancellable */),
+                detail
+            });
+            elm.dispatchEvent(ev);
+            return ev;
+        }
+    };
+};
+const getAssetPath = (path) => {
+    const assetUrl = new URL(path, plt.$resourcesUrl$);
+    return (assetUrl.origin !== win.location.origin)
+        ? assetUrl.href
+        : assetUrl.pathname;
+};
+const getConnect = (_ref, tagName) => {
+    const componentOnReady = () => {
+        let elm = doc.querySelector(tagName);
+        if (!elm) {
+            elm = doc.createElement(tagName);
+            doc.body.appendChild(elm);
+        }
+        return typeof elm.componentOnReady === 'function' ? elm.componentOnReady() : Promise.resolve(elm);
+    };
+    const create = (...args) => {
+        return componentOnReady()
+            .then(el => el.create(...args));
+    };
+    return {
+        create,
+        componentOnReady,
+    };
+};
+const getContext = (_elm, context) => {
+    if (context in Context) {
+        return Context[context];
+    }
+    else if (context === 'window') {
+        return win;
+    }
+    else if (context === 'document') {
+        return doc;
+    }
+    else if (context === 'isServer' || context === 'isPrerender') {
+        return BUILD.hydrateServerSide ? true : false;
+    }
+    else if (context === 'isClient') {
+        return BUILD.hydrateServerSide ? false : true;
+    }
+    else if (context === 'resourcesUrl' || context === 'publicPath') {
+        return getAssetPath('.');
+    }
+    else if (context === 'queue') {
+        return {
+            write: writeTask,
+            read: readTask,
+            tick: {
+                then(cb) {
+                    return nextTick(cb);
+                }
+            }
+        };
+    }
+    return undefined;
+};
+const getElement = (ref) => BUILD.lazyLoad ? getHostRef(ref).$hostElement$ : ref;
+const insertVdomAnnotations = (doc) => {
+    if (doc != null) {
+        const docData = {
+            hostIds: 0,
+            rootLevelIds: 0
+        };
+        const orgLocationNodes = [];
+        parseVNodeAnnotations(doc, doc.body, docData, orgLocationNodes);
+        orgLocationNodes.forEach(orgLocationNode => {
+            if (orgLocationNode != null) {
+                const nodeRef = orgLocationNode['s-nr'];
+                let hostId = nodeRef['s-host-id'];
+                let nodeId = nodeRef['s-node-id'];
+                let childId = `${hostId}.${nodeId}`;
+                if (hostId == null) {
+                    hostId = 0;
+                    docData.rootLevelIds++;
+                    nodeId = docData.rootLevelIds;
+                    childId = `${hostId}.${nodeId}`;
+                    if (nodeRef.nodeType === 1 /* ElementNode */) {
+                        nodeRef.setAttribute(HYDRATE_CHILD_ID, childId);
+                    }
+                    else if (nodeRef.nodeType === 3 /* TextNode */) {
+                        if (hostId === 0) {
+                            const textContent = nodeRef.nodeValue.trim();
+                            if (textContent === '') {
+                                // useless whitespace node at the document root
+                                orgLocationNode.remove();
+                                return;
+                            }
+                        }
+                        const commentBeforeTextNode = doc.createComment(childId);
+                        commentBeforeTextNode.nodeValue = `${TEXT_NODE_ID}.${childId}`;
+                        nodeRef.parentNode.insertBefore(commentBeforeTextNode, nodeRef);
+                    }
+                }
+                let orgLocationNodeId = `${ORG_LOCATION_ID}.${childId}`;
+                const orgLocationParentNode = orgLocationNode.parentElement;
+                if (orgLocationParentNode) {
+                    if (orgLocationParentNode['s-en'] === '') {
+                        // ending with a "." means that the parent element
+                        // of this node's original location is a SHADOW dom element
+                        // and this node is apart of the root level light dom
+                        orgLocationNodeId += `.`;
+                    }
+                    else if (orgLocationParentNode['s-en'] === 'c') {
+                        // ending with a ".c" means that the parent element
+                        // of this node's original location is a SCOPED element
+                        // and this node is apart of the root level light dom
+                        orgLocationNodeId += `.c`;
+                    }
+                }
+                orgLocationNode.nodeValue = orgLocationNodeId;
+            }
+        });
+    }
+};
+const parseVNodeAnnotations = (doc, node, docData, orgLocationNodes) => {
+    if (node == null) {
+        return;
+    }
+    if (node['s-nr'] != null) {
+        orgLocationNodes.push(node);
+    }
+    if (node.nodeType === 1 /* ElementNode */) {
+        node.childNodes.forEach(childNode => {
+            const hostRef = getHostRef(childNode);
+            if (hostRef != null) {
+                const cmpData = {
+                    nodeIds: 0
+                };
+                insertVNodeAnnotations(doc, childNode, hostRef.$vnode$, docData, cmpData);
+            }
+            parseVNodeAnnotations(doc, childNode, docData, orgLocationNodes);
+        });
+    }
+};
+const insertVNodeAnnotations = (doc, hostElm, vnode, docData, cmpData) => {
+    if (vnode != null) {
+        const hostId = ++docData.hostIds;
+        hostElm.setAttribute(HYDRATE_ID, hostId);
+        if (hostElm['s-cr'] != null) {
+            hostElm['s-cr'].nodeValue = `${CONTENT_REF_ID}.${hostId}`;
+        }
+        if (vnode.$children$ != null) {
+            const depth = 0;
+            vnode.$children$.forEach((vnodeChild, index) => {
+                insertChildVNodeAnnotations(doc, vnodeChild, cmpData, hostId, depth, index);
+            });
+        }
+    }
+};
+const insertChildVNodeAnnotations = (doc, vnodeChild, cmpData, hostId, depth, index) => {
+    const childElm = vnodeChild.$elm$;
+    if (childElm == null) {
+        return;
+    }
+    const nodeId = cmpData.nodeIds++;
+    const childId = `${hostId}.${nodeId}.${depth}.${index}`;
+    childElm['s-host-id'] = hostId;
+    childElm['s-node-id'] = nodeId;
+    if (childElm.nodeType === 1 /* ElementNode */) {
+        childElm.setAttribute(HYDRATE_CHILD_ID, childId);
+    }
+    else if (childElm.nodeType === 3 /* TextNode */) {
+        const parentNode = childElm.parentNode;
+        if (parentNode.nodeName !== 'STYLE') {
+            const textNodeId = `${TEXT_NODE_ID}.${childId}`;
+            const commentBeforeTextNode = doc.createComment(textNodeId);
+            parentNode.insertBefore(commentBeforeTextNode, childElm);
+        }
+    }
+    else if (childElm.nodeType === 8 /* CommentNode */) {
+        if (childElm['s-sr']) {
+            const slotName = (childElm['s-sn'] || '');
+            const slotNodeId = `${SLOT_NODE_ID}.${childId}.${slotName}`;
+            childElm.nodeValue = slotNodeId;
+        }
+    }
+    if (vnodeChild.$children$ != null) {
+        const childDepth = depth + 1;
+        vnodeChild.$children$.forEach((vnode, index) => {
+            insertChildVNodeAnnotations(doc, vnode, cmpData, hostId, childDepth, index);
+        });
+    }
+};
+
+const globals = () => {
+};
+
+export { Host as H, patchEsm as a, bootstrapLazy as b, getElement as c, createEvent as d, getAssetPath as e, globals as g, h, patchBrowser as p, registerInstance as r };

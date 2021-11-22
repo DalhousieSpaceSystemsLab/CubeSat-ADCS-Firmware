@@ -289,6 +289,13 @@ int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data)
 
 #endif /* #if defined(BMX160) */
 }
+/*
+int8_t IMU_get_magno(imu_sensor_data_t *magno_data){
+    imu_sensor_data acc_data_dummy;
+
+    //rslt = bmi160_aux_read(uint8_t reg_addr, &magnetometer_data, uint16_t len, bmi160_sensor_data); //This function needs proper arguments
+    return bmi160_aux_read(BMI160_AUX_DATA_ADDR, &acc_dummy_data,magno_data, &imu_dev);
+}
 
 /*
  * @brief

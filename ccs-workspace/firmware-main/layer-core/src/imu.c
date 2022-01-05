@@ -96,6 +96,8 @@ int8_t IMU_init(void)
     imu_dev.id      = BMX160_I2C_ADDR;              /* Set I2C device address */
     imu_dev.intf    = BMX160_I2C_INTF;              /* Set 0 for I2C interface */
 
+
+
     rslt = bmi160_init(&imu_dev);
 
     if(rslt != 0)
@@ -125,9 +127,9 @@ int8_t IMU_init(void)
                                                               */
     /*
      * Selection of ODR affects bandwidth of the sensor.
-     * Frequency response is often represented as “bandwidth” in specification tables
+     * Frequency response is often represented as ï¿½ï¿½bandwidthï¿½ï¿½ in specification tables
      * for IMUs and gyroscopes. As a performance parameter, it represents the frequency
-     * at which the output magnitude drops to about 70% (–3 dB) of the actual magnitude
+     * at which the output magnitude drops to about 70% (ï¿½C3 dB) of the actual magnitude
      * of motion that the sensor is experiencing. In some cases, bandwidth may also be
      * defined by the frequency at which the output response lags the actual motion by
      * 90 degrees (for a 2-pole system).
@@ -142,6 +144,13 @@ int8_t IMU_init(void)
     /* Select the power mode of Gyroscope sensor */
     imu_dev.gyro_cfg.power      = BMI160_GYRO_NORMAL_MODE;
 
+
+    /* Configure the BMI160's auxiliary interface for the BMM150 */
+/*    imu_dev.aux_cfg.aux_sensor_enable = BMI160_ENABLE;
+    imu_dev.aux_cfg.aux_i2c_addr = BMI160_AUX_BMM150_I2C_ADDR;
+    imu_dev.aux_cfg.manual_enable = BMI160_ENABLE;
+    imu_dev.aux_cfg.aux_rd_burst_len = BMI160_AUX_READ_LEN_3;
+*/
     /* Set the sensor configuration */
     rslt = bmi160_set_sens_conf(&imu_dev);
 
@@ -289,14 +298,12 @@ int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data)
 
 #endif /* #if defined(BMX160) */
 }
-/*
+
 int8_t IMU_get_magno(imu_sensor_data_t *magno_data){
-    imu_sensor_data acc_data_dummy;
-
+    imu_sensor_data_t acc_data_dummy;
     //rslt = bmi160_aux_read(uint8_t reg_addr, &magnetometer_data, uint16_t len, bmi160_sensor_data); //This function needs proper arguments
-    return bmi160_aux_read(BMI160_AUX_DATA_ADDR, &acc_dummy_data,magno_data, &imu_dev);
+    return bmi160_aux_read(BMI160_AUX_DATA_ADDR, &acc_data_dummy,magno_data, &imu_dev);
 }
-
 /*
  * @brief
  */
@@ -364,9 +371,3 @@ void IMU_reset(void)
 
 #endif /* #if defined(BMX160) */
 }
-
-
-
-
-
-

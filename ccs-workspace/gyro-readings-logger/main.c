@@ -65,7 +65,7 @@ int main()
 
 {
     int8_t rslt;
-
+    puts("Hello, world!\n");
     imu_sensor_data_t gyro_readings = {0};
 
     WDTCTL = WDTPW + WDTHOLD;
@@ -73,7 +73,7 @@ int main()
     led_init();
 
     rslt = IMU_init();
-
+    printf("%d 123\n", rslt);
     uart_init();
     //bmi160_aux_init(const struct bmi160_dev *dev);
     __bis_SR_register(GIE);
@@ -83,7 +83,8 @@ int main()
         //rslt = bmi160_aux_read(uint8_t reg_addr, uint8_t *aux_data, uint16_t len, const struct bmi160_dev *dev)
 
         uart_printf("%d %d %d\n", gyro_readings.x, gyro_readings.y, gyro_readings.z);
-
+        puts("Hello, world!2\n");
+        printf("%d %d %d\n", gyro_readings.x, gyro_readings.y, gyro_readings.z);
 
     }
 

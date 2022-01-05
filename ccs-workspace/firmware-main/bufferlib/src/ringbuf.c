@@ -73,7 +73,7 @@ buffer_instance_handle ringbuf_ctor_new(unsigned int size)
     /*memset(ringbuf->buf.start, 0, 250);
     memset(ringbuf->buf.start, 0, 260);
     memset(ringbuf->buf.start, 0, 270);*/
-    memset(ringbuf->buf.start, 0, 280);
+    memset(ringbuf->buf.start, 0, 500);
     /*memset(ringbuf->buf.start, 0, 290);
     memset(ringbuf->buf.start, 0, 300);*/
 

@@ -1,0 +1,5 @@
+2021/12/17-12:24:04.016 3094 Log #3: 2 ops saved to Table #4 OK
+2021/12/17-12:24:04.017 3094 Archiving D:\DalLORIS\CubeSat-ADCS-Firmware\ccs-workspace\.jxbrowser.userdata\Default\Site Characteristics Database/000003.log: OK
+2021/12/17-12:24:04.017 3094 Table #4: 2 entries OK
+2021/12/17-12:24:04.018 3094 Archiving D:\DalLORIS\CubeSat-ADCS-Firmware\ccs-workspace\.jxbrowser.userdata\Default\Site Characteristics Database/MANIFEST-000001: OK
+2021/12/17-12:24:04.027 3094 **** Repaired leveldb D:\DalLORIS\CubeSat-ADCS-Firmware\ccs-workspace\.jxbrowser.userdata\Default\Site Characteristics Database; recovered 1 files; 191 bytes. Some data may have been lost. ****

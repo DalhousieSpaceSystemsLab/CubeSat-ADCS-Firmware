@@ -146,11 +146,11 @@ int8_t IMU_init(void)
 
 
     /* Configure the BMI160's auxiliary interface for the BMM150 */
-/*    imu_dev.aux_cfg.aux_sensor_enable = BMI160_ENABLE;
-    imu_dev.aux_cfg.aux_i2c_addr = BMI160_AUX_BMM150_I2C_ADDR;
+    imu_dev.aux_cfg.aux_sensor_enable = BMI160_ENABLE;
+    //imu_dev.aux_cfg.aux_i2c_addr = BMI160_AUX_BMM150_I2C_ADDR;
     imu_dev.aux_cfg.manual_enable = BMI160_ENABLE;
     imu_dev.aux_cfg.aux_rd_burst_len = BMI160_AUX_READ_LEN_3;
-*/
+
     /* Set the sensor configuration */
     rslt = bmi160_set_sens_conf(&imu_dev);
 
@@ -300,9 +300,9 @@ int8_t IMU_get_gyro(imu_sensor_data_t *gyro_data)
 }
 
 int8_t IMU_get_magno(imu_sensor_data_t *magno_data){
-    imu_sensor_data_t acc_data_dummy;
+    //imu_sensor_data_t acc_data_dummy;
     //rslt = bmi160_aux_read(uint8_t reg_addr, &magnetometer_data, uint16_t len, bmi160_sensor_data); //This function needs proper arguments
-    return bmi160_aux_read(BMI160_AUX_DATA_ADDR, &acc_data_dummy,magno_data, &imu_dev);
+    return bmi160_aux_read(BMI160_AUX_DATA_ADDR, &magno_data,8, &imu_dev);
 }
 /*
  * @brief

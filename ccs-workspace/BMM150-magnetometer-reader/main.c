@@ -74,15 +74,17 @@ int main()
     led_init();
 
     rslt = IMU_init();
-    printf("%d 123\n", rslt);
+    printf("%d initialization\n", rslt);
     uart_init();
     //bmi160_aux_init(&imu_dev); //This function needs proper arguments
         __bis_SR_register(GIE);
-    while (rslt == 0 )
+//    while (rslt == 0 )
+        while (1)
         {
             rslt = IMU_get_magno(&magno_readings);
             puts("Hello, world!2\n");
             printf("%d %d %d\n", magno_readings.x, magno_readings.y, magno_readings.z);
+            printf("%d round1\n", rslt);
         //uart_printf("%d\n", magnetometer);
 
 

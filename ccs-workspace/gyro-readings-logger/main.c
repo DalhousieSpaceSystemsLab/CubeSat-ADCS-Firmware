@@ -39,7 +39,7 @@
 #define UART_RX_MSG_DELIM '!'
 
 volatile uint8_t  uart_rxbuf[UART_BUFLEN];
-static volatile int uart_rx_delim_received;
+volatile int uart_rx_delim_received;
 static uint8_t uart_txbuf[UART_BUFLEN];
 volatile uint8_t *uart_rx_inptr;
 volatile uint8_t *uart_rx_outptr;
@@ -83,7 +83,6 @@ int main()
         //rslt = bmi160_aux_read(uint8_t reg_addr, uint8_t *aux_data, uint16_t len, const struct bmi160_dev *dev)
 
         uart_printf("%d %d %d\n", gyro_readings.x, gyro_readings.y, gyro_readings.z);
-
 
     }
 

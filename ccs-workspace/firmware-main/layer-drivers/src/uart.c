@@ -30,10 +30,14 @@ static receive_func uart_rx_cb;
 
 
 #define UART_BUFLEN 200u
+
+#define UART_RX_MSG_DELIM '!'
+
 extern volatile uint8_t  uart_rxbuf[UART_BUFLEN];
 extern volatile uint8_t *uart_rx_inptr;
 extern volatile uint8_t *uart_rx_outptr;
 
+extern volatile int uart_rx_delim_received;
 
 void uart_init(void)
 {
@@ -100,6 +104,38 @@ if (UCA0IFG & UCTXIFG)
         return 0;
 }
 
+int uart_receive_bytes(uint8_t *caller_buf, uint16_t caller_buflen)
+{
+    int retval      = 0;
+    int i           = 0;
+    int delim_found = 0;
+    do
+    {
+        caller_buf[i] = *uart_rx_outptr;
+        if (caller_buf[i] == '\0')
+        {
+            delim_found = 1;
+        }
+
+        uart_rx_outptr++;
+        if (uart_rx_outptr > uart_rxbuf + sizeof(uart_rxbuf))
+        {
+            uart_rx_outptr = uart_rxbuf;
+        }
+    } while (++i < caller_buflen && !delim_found);
+
+    if (!delim_found)
+    {
+        retval = -1;
+    }
+    else
+    {
+        retval = i;
+    }
+
+    return retval;
+}
+
 //******************************************************************************
 //***********************UART Interrupt Service Routine************************
 //******************************************************************************
@@ -111,22 +147,33 @@ void __attribute__ ((interrupt(USCI_A0_VECTOR))) USCI_A0_ISR (void)
 #else
 #error Compiler not supported!
 #endif
-//__interrupt_vec(USCI_A0_VECTOR) void USCI_A0_ISR(void)
 {
-
     /* See table 39-19 */
     switch (UCA0IV)
     {
         case 0x02: /* Receive buffer full */
         {
-            uart_rx_cb(UCA0RXBUF);
+            *uart_rx_inptr = UCA0RXBUF;
+
+            if (*uart_rx_inptr == UART_RX_MSG_DELIM)
+            {
+                *uart_rx_inptr         = '\0';
+                uart_rx_delim_received = 1;
+                printf("%d\n", uart_rx_delim_received);
+            }
+
+            if (++uart_rx_inptr > uart_rxbuf + sizeof(uart_rxbuf))
+            {
+                uart_rx_inptr = uart_rxbuf;
+            }
         }
         break;
         case 0x06: /* Start bit received */
         {
         }
         break;
-        case 0x08: /* Transmit complete (last bit was sent to PHY) */
+        case 0x08: /* Transmit complete (last bit was sent to PHY)
+                    */
         {
         }
         break;

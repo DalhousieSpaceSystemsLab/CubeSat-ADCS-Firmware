@@ -31,7 +31,7 @@
 #define UART_RX_MSG_DELIM '!'
 
 volatile uint8_t  uart_rxbuf[UART_BUFLEN];
-static volatile int uart_rx_delim_received;
+volatile int uart_rx_delim_received;
 static uint8_t uart_txbuf[UART_BUFLEN];
 volatile uint8_t *uart_rx_inptr;
 volatile uint8_t *uart_rx_outptr;
@@ -74,7 +74,7 @@ int main()
     while(1)
     {
         magtom_readings = MAGTOM_get_measurement();
-        uart_printf("%f %f %f\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
+        printf("%f %f %f\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
         //printf("Z:%f Y:%f X:%f\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
         //fprintf(out,"%f %f %f\n\n", magtom_readings.x_BMAG, magtom_readings.y_BMAG, magtom_readings.z_BMAG);
 

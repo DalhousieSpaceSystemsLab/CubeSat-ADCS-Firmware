@@ -18,6 +18,7 @@ extern "C"
 void uart_init(void);
 void uart_deinit(void);
 int uart_transmit(uint8_t *msg, uint_least16_t msglen);
+int uart_receive_bytes(uint8_t *caller_buf, uint16_t caller_buflen);
 
 #else
 

@@ -1,13 +1,13 @@
 /**
  * @file main.c
  *
- * @purpose IMU logger to be read by computer through USB port
+ * @purpose Main firmware for MSP430
  *
  * @author thomas christison (christisonthomas@gmail.com)
  * @modified by jasper grant (jasper.grant@dal.ca)
  * @brief
  * @version 0.1
- * @date 2021-07-19
+ * @date 2022-01-09
  *
  *
  * IMU Datasheet
@@ -66,27 +66,31 @@ int main()
 {
     int8_t rslt;
 
-    imu_sensor_data_t magno_readings = {0};
-
+    //imu_sensor_data_t gyro_readings = {0};
 
     WDTCTL = WDTPW + WDTHOLD;
 
-    led_init();
-
-    rslt = IMU_init();
+    rslt = 0;
 
     uart_init();
-    //bmi160_aux_init(&imu_dev); //This function needs proper arguments
-        __bis_SR_register(GIE);
-    while (rslt == 0 )
-        {
-            rslt = IMU_get_magno(&magno_readings);
+    __bis_SR_register(GIE);
+    puts("\nTransmission:\n");
+    while (rslt == 0 ){
+        if (uart_rx_delim_received){
+            uart_receive_bytes(caller_rxbuf, sizeof(caller_rxbuf));
+            puts("Bytes Received\n");
+            printf("%s", caller_rxbuf);
+            if(strcmp(caller_rxbuf, "read")){
+                uart_printf("Magnetometer and gyro written\r\n");
+            }
+            else if(strcmp(caller_rxbuf, "write")){
+                uart_printf("Magnetorquers successfully written\r\n");
+            }
+        }
+            uart_rx_delim_received = 0;
+            delay_ms(500);
 
 
-        //uart_printf("%d\n", magnetometer);
-
-
-    }
-
+        }
     return rslt;
 }

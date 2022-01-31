@@ -39,7 +39,7 @@
 #define UART_RX_MSG_DELIM '!'
 
 volatile uint8_t  uart_rxbuf[UART_BUFLEN];
-static volatile int uart_rx_delim_received;
+volatile int uart_rx_delim_received;
 static uint8_t uart_txbuf[UART_BUFLEN];
 volatile uint8_t *uart_rx_inptr;
 volatile uint8_t *uart_rx_outptr;
@@ -66,26 +66,26 @@ int main()
 {
     int8_t rslt;
 
-    imu_sensor_data_t gyro_readings = {0};
+    //imu_sensor_data_t gyro_readings = {0};
 
     WDTCTL = WDTPW + WDTHOLD;
-
-    led_init();
 
     rslt = 0;
 
     uart_init();
-    //bmi160_aux_init(const struct bmi160_dev *dev);
     __bis_SR_register(GIE);
     while (rslt == 0 )
-    {
-        //rslt = IMU_get_gyro(&gyro_readings);
-        //rslt = bmi160_aux_read(uint8_t reg_addr, uint8_t *aux_data, uint16_t len, const struct bmi160_dev *dev)
+        {
+            if (uart_rx_delim_received){
+                uart_receive_bytes(caller_rxbuf, sizeof(caller_rxbuf));
+                uart_printf("received: %s!", caller_rxbuf);
+                printf("%s", caller_rxbuf);
+                uart_rx_delim_received = 0;
+            }
+            delay_ms(500);
 
-        uart_printf("Hello World\n");
 
-
-    }
+        }
 
     return rslt;
 }

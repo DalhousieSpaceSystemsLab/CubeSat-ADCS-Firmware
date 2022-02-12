@@ -27,19 +27,20 @@
 
 #include <msp430.h>
 
-#include "imu.h"
+//#include "imu.h"
 #include "indicator_led.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include <uart.h>
+#include <test.h>
 
 #define UART_BUFLEN 200u
 
 #define UART_RX_MSG_DELIM '!'
 
 volatile uint8_t  uart_rxbuf[UART_BUFLEN];
-static volatile int uart_rx_delim_received;
+volatile int uart_rx_delim_received;
 static uint8_t uart_txbuf[UART_BUFLEN];
 volatile uint8_t *uart_rx_inptr;
 volatile uint8_t *uart_rx_outptr;
@@ -73,7 +74,7 @@ int main()
 
     led_init();
 
-    rslt = IMU_init();
+    //rslt = IMU_init();
     printf("%d initialization\n", rslt);
     uart_init();
     //bmi160_aux_init(&imu_dev); //This function needs proper arguments

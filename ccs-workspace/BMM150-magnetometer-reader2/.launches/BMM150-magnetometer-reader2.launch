@@ -4,6 +4,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.MSP430F5529.ccxml.TI MSP430 USB1/MSP430" value="${build_artifact:BMM150-magnetometer-reader2}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.MSP430F5529.ccxml.TI MSP430 USB1/MSP430" value="BMM150-magnetometer-reader2"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:BMM150-magnetometer-reader2}"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.MSP430F5529.ccxml.TI MSP430 USB1/MSP430" value="C:\Users\Jasper Grant\Documents\CubeSat-ADCS-Firmware\ccs-workspace\BMM150-magnetometer-reader2\Debug\BMM150-magnetometer-reader2.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/BMM150-magnetometer-reader2"/>
 </listAttribute>

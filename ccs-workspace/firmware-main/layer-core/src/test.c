@@ -39,6 +39,7 @@ int IMU_measurements_to_string(char *buf, unsigned int buflen, const imu_sensor_
 
 int8_t IMU_get_magno(imu_sensor_data_t *magno_data)
 {
+    IMU_init_i2c();
     bmi.id = BMI160_I2C_ADDR;
     bmi.read = IMU_I2C_bus_read;
     bmi.write = IMU_I2C_bus_write;
@@ -111,8 +112,8 @@ int8_t IMU_get_magno(imu_sensor_data_t *magno_data)
     uint8_t fifo_config = BMI160_FIFO_HEADER | BMI160_FIFO_AUX |  BMI160_FIFO_ACCEL | BMI160_FIFO_GYRO;
     rslt = bmi160_set_fifo_config(fifo_config, BMI160_ENABLE, &bmi);
     /* Check rslt for any error codes */
-
-    while(rslt != 0) {
+    int j = 0;
+    while(j!=10) {
         /* Wait for 100ms for the FIFO to fill */
         delay_ms(100);
 
@@ -138,6 +139,7 @@ int8_t IMU_get_magno(imu_sensor_data_t *magno_data)
             /* Copy the compensated magnetometer data */
             mag_data[i] = bmm.data;
         }
+        j = j + 1;
     }
 }
 

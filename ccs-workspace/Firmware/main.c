@@ -64,6 +64,13 @@ int main()
 
 
 {
+
+    //Variables used for communication
+
+    //Firmware version
+    char *fw_version = "2.5";
+
+
     int8_t rslt;
 
     //imu_sensor_data_t gyro_readings = {0};
@@ -76,14 +83,22 @@ int main()
     __bis_SR_register(GIE);
     puts("\nTransmission:\n");
     while (rslt == 0 ){
-        if (uart_rx_delim_received){
+        if (uart_rx_delim_received)
+        {
+            // caller_rxbuff becomes read message
             uart_receive_bytes(caller_rxbuf, sizeof(caller_rxbuf));
+
+            // To be removed?
             puts("Bytes Received\n");
             printf("%s", caller_rxbuf);
-            if(strcmp(caller_rxbuf, "read")){
-                uart_printf("Magnetometer and gyro written\r\n");
+
+            if(strcmp(caller_rxbuf, "{ \"fwVersion\" : \"read\"}"))
+            {
+                uart_printf("{ \"fwVersion\" : %s }\r\n",fw_version);
             }
-            else if(strcmp(caller_rxbuf, "write")){
+
+            else if(strcmp(caller_rxbuf, "write"))
+            {
                 uart_printf("Magnetorquers successfully written\r\n");
             }
         }

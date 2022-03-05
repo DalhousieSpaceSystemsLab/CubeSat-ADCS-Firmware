@@ -77,12 +77,13 @@ int main()
     uart_init();
     //bmi160_aux_init(const struct bmi160_dev *dev);
     __bis_SR_register(GIE);
+    puts("Hello");
     while (rslt == 0 )
     {
         rslt = IMU_get_gyro(&gyro_readings);
         //rslt = bmi160_aux_read(uint8_t reg_addr, uint8_t *aux_data, uint16_t len, const struct bmi160_dev *dev)
 
-        uart_printf("%d %d %d\n", gyro_readings.x, gyro_readings.y, gyro_readings.z);
+        printf("%d %d %d\n", gyro_readings.x, gyro_readings.y, gyro_readings.z);
 
     }
 

@@ -81,7 +81,7 @@ int main()
             puts("Bytes Received\n");
             printf("%s", caller_rxbuf);
             if(strcmp(caller_rxbuf, "read")){
-                uart_printf("Magnetometer and gyro written\r\n");
+                uart_\\printf("Magnetometer and gyro written\r\n");
             }
             else if(strcmp(caller_rxbuf, "write")){
                 uart_printf("Magnetorquers successfully written\r\n");

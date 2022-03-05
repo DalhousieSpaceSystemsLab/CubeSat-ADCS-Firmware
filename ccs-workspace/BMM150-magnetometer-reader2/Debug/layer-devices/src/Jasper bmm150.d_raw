@@ -1,0 +1,14 @@
+layer-devices/src/bmm150.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-devices/src/bmm150.c
+layer-devices/src/bmm150.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-devices/inc/bmm150.h
+layer-devices/src/bmm150.obj: C:\Users\Jasper\\ Grant\Documents\CubeSat-ADCS-Firmware\ccs-workspace\firmware-main\layer-devices\inc\bmm150_defs.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/stdint.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/_ti_config.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/linkage.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/_stdint40.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/sys/stdint.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/sys/cdefs.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/sys/_types.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/machine/_types.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/machine/_stdint.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/sys/_stdint.h
+layer-devices/src/bmm150.obj: X:/CCS10.3.1.00003_win64/features/include/stddef.h

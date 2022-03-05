@@ -1,0 +1,20 @@
+layer-devices/src/bmi160.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-devices/src/bmi160.c
+layer-devices/src/bmi160.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-devices/inc/bmi160.h
+layer-devices/src/bmi160.obj: C:\Users\Jasper\\ Grant\Documents\CubeSat-ADCS-Firmware\ccs-workspace\firmware-main\layer-devices\inc\bmi160_defs.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/stdint.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/_ti_config.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/linkage.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/_stdint40.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/sys/stdint.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/sys/cdefs.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/sys/_types.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/machine/_types.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/machine/_stdint.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/sys/_stdint.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/stddef.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/math.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/_defs.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/machine/_limits.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/string.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/xlocale/_string.h
+layer-devices/src/bmi160.obj: X:/CCS10.3.1.00003_win64/features/include/stdlib.h

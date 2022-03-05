@@ -1,0 +1,33 @@
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-core/src/jsons.c
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/share/targets.h
+layer-core/src/jsons.obj: C:\Users\Jasper\\ Grant\Documents\CubeSat-ADCS-Firmware\ccs-workspace\firmware-main\share\config_assert.h
+layer-core/src/jsons.obj: C:\Users\Jasper\\ Grant\Documents\CubeSat-ADCS-Firmware\ccs-workspace\firmware-main\share\log_trace.h
+layer-core/src/jsons.obj: C:\Users\Jasper\\ Grant\Documents\CubeSat-ADCS-Firmware\ccs-workspace\firmware-main\share\version.h
+layer-core/src/jsons.obj: C:\Users\Jasper\\ Grant\Documents\CubeSat-ADCS-Firmware\ccs-workspace\firmware-main\share\attributes.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/stdint.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/_ti_config.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/linkage.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/_stdint40.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/sys/stdint.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/sys/cdefs.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/sys/_types.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/machine/_types.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/machine/_stdint.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/sys/_stdint.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/limits.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/stdlib.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/string.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/xlocale/_string.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/stdio.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/stdarg.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/JTOK/inc/jtok.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/stddef.h
+layer-core/src/jsons.obj: X:/CCS10.3.1.00003_win64/features/include/stdbool.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-core/inc/obc_interface.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-core/inc/jsons.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-core/inc/reaction_wheels.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/share/pwm.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/share/rotational_directions.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-core/inc/magnetorquers.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-core/inc/sun_sensors.h
+layer-core/src/jsons.obj: C:/Users/Jasper\\ Grant/Documents/CubeSat-ADCS-Firmware/ccs-workspace/firmware-main/layer-core/inc/magnetometer.h

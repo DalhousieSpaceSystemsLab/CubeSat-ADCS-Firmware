@@ -25,8 +25,12 @@ void loop(){
 
  Serial.print(Ogyro.x); Serial.print(" ");
  Serial.print(Ogyro.y); Serial.print(" ");
- Serial.print(Ogyro.z); Serial.print(" ]\n");
+ Serial.print(Ogyro.z); Serial.print(" ");
+
+ Serial.print(Oaccel.x); Serial.print(" ");
+ Serial.print(Oaccel.y); Serial.print(" ");
+ Serial.print(Oaccel.z); Serial.print(" ]\n");
  
 
- delay(500);
+ delay(250);
 }

@@ -1,4 +1,6 @@
 #define HWSERIAL Serial1
+#define IMX6SERIAL Serial2
+
 #include <string.h>
 #include <DFRobot_BMX160.h>
 #define MAX_VOLTAGE 5.0
@@ -22,9 +24,14 @@ const byte ch0_code = 0b10010100; // ADC channel 0: used by LM20BIM7 temperature
 const byte ch1_code = 0b11010100; // ADC channel 1: used by SFH-2430 photodiode (240 degree configuration)
 const byte ch2_code = 0b10100100; // ADC channel 2: used by SFH-2430 photodiode   (0 degree configuration)
 const byte ch3_code = 0b11100100; // ADC channel 3: used by SFH-2430 photodiode (120 degree configuration)
+#define XplusSS 37
+#define XminusSS 36
+#define YplusSS 35
+#define YminusSS 34
+#define ZplusSS 38
+#define ZminusSS 33
 
-
-
+int setSS = 38;
 void setup(){
  Serial.begin(115200);
  Serial1.begin(115200);
@@ -50,6 +57,7 @@ void setup(){
 void loop(){
   //Get string from IMX6
  String receivedString = Serial.readString();
+
  Serial.println(receivedString);
 
  //Get sunsen data
@@ -62,8 +70,7 @@ void loop(){
  float SS120deg_volt = 3.3*(SS120deg_bit/4096.0);
  int SS240deg_bit = ads7841(ch1_code);
  float SS240deg_volt = 3.3*(SS240deg_bit/4096.0);
-
- int Omagnx, Omagny, Omagnz, Ogyrox, Ogyroy, Ogyroz;
+ int Omagnx, Omagny, Omagnz, Ogyrox, Ogyroy, Ogyroz, Oaccelx, Oaccely, Oaccelz;
  String gyroString;
  float XVoltage, YVoltage, ZVoltage;
 
@@ -140,6 +147,104 @@ void loop(){
   }
   Serial.print("{\"mqtr_volts\" : \"set\"}");
 
+ }
+ else if(receivedString == "{\"all\"}\n"){
+  gyroString = Serial1.readString();
+  sscanf(gyroString.c_str(), "IMU:[%d %d %d %d %d %d %d %d %d]", &Omagnx, &Omagny, &Omagnz, &Ogyrox, &Ogyroy, &Ogyroz, &Oaccelx, &Oaccely, &Oaccelz);
+  //run sunsensor reading several times and output data
+   Serial.print("{\"all\" :");
+   
+     setSS = XplusSS;
+   SS0deg_bit = ads7841(ch2_code);
+   SS0deg_volt = 3.3*(SS0deg_bit/4096.0);
+   SS120deg_bit = ads7841(ch3_code);
+   SS120deg_volt = 3.3*(SS120deg_bit/4096.0);
+   SS240deg_bit = ads7841(ch1_code);
+   SS240deg_volt = 3.3*(SS240deg_bit/4096.0);
+   IMX6SERIAL.print(SS0deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS120deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS240deg_volt);
+   IMX6SERIAL.print(", ");
+
+     setSS = XminusSS;
+   SS0deg_bit = ads7841(ch2_code);
+   SS0deg_volt = 3.3*(SS0deg_bit/4096.0);
+   SS120deg_bit = ads7841(ch3_code);
+   SS120deg_volt = 3.3*(SS120deg_bit/4096.0);
+   SS240deg_bit = ads7841(ch1_code);
+   SS240deg_volt = 3.3*(SS240deg_bit/4096.0);
+   IMX6SERIAL.print(SS0deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS120deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS240deg_volt);
+   IMX6SERIAL.print(", ");
+
+     setSS = YplusSS;
+   SS0deg_bit = ads7841(ch2_code);
+   SS0deg_volt = 3.3*(SS0deg_bit/4096.0);
+   SS120deg_bit = ads7841(ch3_code);
+   SS120deg_volt = 3.3*(SS120deg_bit/4096.0);
+   SS240deg_bit = ads7841(ch1_code);
+   SS240deg_volt = 3.3*(SS240deg_bit/4096.0);
+   IMX6SERIAL.print(SS0deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS120deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS240deg_volt);
+   IMX6SERIAL.print(", ");
+
+     setSS = YminusSS;
+   SS0deg_bit = ads7841(ch2_code);
+   SS0deg_volt = 3.3*(SS0deg_bit/4096.0);
+   SS120deg_bit = ads7841(ch3_code);
+   SS120deg_volt = 3.3*(SS120deg_bit/4096.0);
+   SS240deg_bit = ads7841(ch1_code);
+   SS240deg_volt = 3.3*(SS240deg_bit/4096.0);
+   IMX6SERIAL.print(SS0deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS120deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS240deg_volt);
+   IMX6SERIAL.print(", ");
+
+     setSS = ZminusSS;
+   SS0deg_bit = ads7841(ch2_code);
+   SS0deg_volt = 3.3*(SS0deg_bit/4096.0);
+   SS120deg_bit = ads7841(ch3_code);
+   SS120deg_volt = 3.3*(SS120deg_bit/4096.0);
+   SS240deg_bit = ads7841(ch1_code);
+   SS240deg_volt = 3.3*(SS240deg_bit/4096.0);
+   IMX6SERIAL.print(SS0deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS120deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS240deg_volt);
+   IMX6SERIAL.print(", ");
+
+     setSS = XplusSS;
+   SS0deg_bit = ads7841(ch2_code);
+   SS0deg_volt = 3.3*(SS0deg_bit/4096.0);
+   SS120deg_bit = ads7841(ch3_code);
+   SS120deg_volt = 3.3*(SS120deg_bit/4096.0);
+   SS240deg_bit = ads7841(ch1_code);
+   SS240deg_volt = 3.3*(SS240deg_bit/4096.0);
+   IMX6SERIAL.print(SS0deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS120deg_volt);
+   IMX6SERIAL.print(", ");
+   IMX6SERIAL.print(SS240deg_volt);
+   IMX6SERIAL.print(", ");
+   
+  Serial.print("%d, %d, %d, %d, %d, %d, %d, %d, %d ]}", Omagnx, Omagny, Omagnz, Oaccelx, Oaccely, Oaccelz, Ogyrox, Ogyroy, Ogyroz);
+ }
+ else if ( (receivedString.at(0) == "{")&&(receivedString.rbegin() == "}") ){
+  Serial.print("{\"error\" : \"json_unk\" : \"received\", \"%s\" }",receivedString.c_str());
+ }
+ else {
+  Serial.print("{\"error\" : \"json_format\" : \"received\", \"%s\" }",receivedString.c_str());
  }
 }
 unsigned int ads7841(const byte control) {
